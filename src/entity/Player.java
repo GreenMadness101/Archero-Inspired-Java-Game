@@ -10,11 +10,14 @@ import javax.swing.SpinnerDateModel;
 import main.GamePanel;
 import main.KeyHandler;
 
+
 public class Player extends Entity
 {
 
   GamePanel gp;
   KeyHandler keyH;
+
+
 
   public Player(GamePanel gp, KeyHandler keyH)
   {
@@ -58,34 +61,38 @@ public class Player extends Entity
 
   public void update()
   {
-    if(keyH.upPressed)
+    if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed)
     {
-      y -= speed;
-      direction = "up";
-    }
-    else if(keyH.leftPressed)
-    {
-      x -= speed;
-      direction = "left";
-    }
-    else if(keyH.downPressed)
-    {
-      y += speed;
-      direction = "down";
-    }
-    else if(keyH.rightPressed)
-    {
-      x += speed;
-      direction = "right";
-    }
+      if(keyH.upPressed)
+      {
+        y -= speed;
+        direction = "up";
+      }
+      else if(keyH.leftPressed)
+      {
+        x -= speed;
+        direction = "left";
+      }
+      else if(keyH.downPressed)
+      {
+        y += speed;
+        direction = "down";
+      }
+      else if(keyH.rightPressed)
+      {
+        x += speed;
+        direction = "right";
+      }
 
-    spriteCounter++;
-    //change this value to decide how fast it animates
-    if(spriteCounter > 12)
-    {
-      spriteBool = !spriteBool;
-      spriteCounter = 0;
+      spriteCounter++;
+      //change this value to decide how fast it animates
+      if(spriteCounter > 12)
+      {
+        spriteBool = !spriteBool;
+        spriteCounter = 0;
+      }
     }
+    
 
   }
 

@@ -14,7 +14,9 @@ public class Entity
     public String direction;
 
     public int spriteCounter = 0;
-    public int spriteNum = 1;
     public boolean spriteBool = false;
+
+    ////maybe use for changing the image when stopped
+    //public boolean spriteStop = true;
     
 }
