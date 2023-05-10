@@ -1,7 +1,10 @@
 package tile;
 
 import java.awt.Graphics2D;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
 
@@ -11,6 +14,7 @@ public class TileManager
 {
   GamePanel gp;
   Tile[] tile;
+  int mapTileNum[][];
 
   public TileManager(GamePanel gp)
   {
@@ -18,7 +22,10 @@ public class TileManager
 
     tile = new Tile[10];
 
+    mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
+
     getTileImage();
+    loadMap("/res/maps/map.txt");
   }
 
   public void getTileImage()
@@ -40,9 +47,70 @@ public class TileManager
     }
   } 
 
+  public void loadMap(String filePath)
+  {
+    try
+    {
+      //used to import text file
+      InputStream is = getClass().getResourceAsStream(filePath);
+      //used to read the text file
+      BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+      int col = 0;
+      int row = 0;
+
+      while(col < gp.maxScreenCol && row < gp.maxScreenRow)
+      {
+        //reads a single line and puts it into the String line
+        String line = br.readLine();
+
+        while(col < gp.maxScreenCol)
+        {
+          //puts all the strings into an array
+          String numbers[] = line.split(" ");
+          //makes the array integer
+          int num = Integer.parseInt(numbers[col]);
+
+          mapTileNum[col][row] = num;
+          col++;
+        }
+        if(col == gp.maxScreenCol)
+        {
+          col = 0;
+          row++;
+        }
+      }
+      br.close();
+    }
+    catch(Exception e)
+    {
+
+    }
+  }
+
   public void draw(Graphics2D g2)
   {
-    g2.drawImage(tile[0].image, 0, 0, gp.tileSize, gp.tileSize, null);
+    int col = 0;
+    int row = 0;
+    int x = 0;
+    int y = 0;
+
+    while(col < gp.maxScreenCol && row < gp.maxScreenRow)
+    {
+      int tileNum = mapTileNum[col][row];
+
+      g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+      col++;
+      x += gp.tileSize;
+
+      if(col == gp.maxScreenCol)
+      {
+        col = 0;
+        x = 0;
+        row++;
+        y += gp.tileSize;
+      }
+    }
   }
   
 }

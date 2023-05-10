@@ -9,6 +9,7 @@ import javax.swing.event.SwingPropertyChangeSupport;
 
 import entity.Entity;
 import entity.Player;
+import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable
 {
@@ -20,10 +21,10 @@ public class GamePanel extends JPanel implements Runnable
   public final int tileSize = originalTileSize * scale; //48x48 tile
 
   //Change this ratio - rn 3 x 4
-  final int maxScreenCol = 12;
-  final int maxScreenRow = 16;
-  final int screenWidth = tileSize * maxScreenCol; // 768 pixels
-  final int screenHeight = tileSize * maxScreenRow; // 576 
+  public final int maxScreenCol = 12;
+  public final int maxScreenRow = 16;
+  public final int screenWidth = tileSize * maxScreenCol; // 768 pixels
+  public final int screenHeight = tileSize * maxScreenRow; // 576 
   
   //FPS
   int fps = 60;
@@ -37,6 +38,9 @@ public class GamePanel extends JPanel implements Runnable
 
   //PLAYER
   Player player = new Player(this, keyH);
+
+  //TILES
+  TileManager tileM = new TileManager(this);
 
   //CONSTRUCTOR
   public GamePanel()
@@ -114,6 +118,10 @@ public class GamePanel extends JPanel implements Runnable
 
     //graphics 2D has more functions
     Graphics2D g2 = (Graphics2D)g;
+
+    //make sure this is ahead because they are layered
+    //tile should be on a layer below player
+    tileM.draw(g2);
 
     player.draw(g2);
 
