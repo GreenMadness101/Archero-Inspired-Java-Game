@@ -21,12 +21,16 @@ public boolean upPressed, downPressed, leftPressed, rightPressed;
         {
             case KeyEvent.VK_W:
                 upPressed = true;
+                break;
             case KeyEvent.VK_A:
                 leftPressed = true;
+                break;
             case KeyEvent.VK_S:
                 downPressed = true;
+                break;
             case KeyEvent.VK_D:
                 rightPressed = true;
+                break;
 
         }
     }
@@ -40,12 +44,16 @@ public boolean upPressed, downPressed, leftPressed, rightPressed;
         {
             case KeyEvent.VK_W:
                 upPressed = false;
+                break;
             case KeyEvent.VK_A:
                 leftPressed = false;
+                break;
             case KeyEvent.VK_S:
                 downPressed = false;
+                break;
             case KeyEvent.VK_D:
                 rightPressed = false;
+                break;
 
         }
     }

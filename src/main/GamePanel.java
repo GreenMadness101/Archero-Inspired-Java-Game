@@ -7,13 +7,17 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import javax.swing.event.SwingPropertyChangeSupport;
 
+import entity.Entity;
+import entity.Player;
+
 public class GamePanel extends JPanel implements Runnable
 {
   // SCREEN SETTINGS
   final int originalTileSize = 16; //16x16 tile, default size
   final int scale = 3;
 
-  final int tileSize = originalTileSize * scale; //48x48 tile
+  //instead of making public maybe change to a method
+  public final int tileSize = originalTileSize * scale; //48x48 tile
 
   //Change this ratio - rn 3 x 4
   final int maxScreenCol = 12;
@@ -31,12 +35,8 @@ public class GamePanel extends JPanel implements Runnable
   //Similar to a timer
   Thread gameThread;
 
-  //PLAYER POS
-  int playerX = 100;
-  int playerY = 100;
-
-  //Can update this later for a stat boost
-  int playerSpeed = 4;
+  //PLAYER
+  Player player = new Player(this, keyH);
 
   //CONSTRUCTOR
   public GamePanel()
@@ -104,16 +104,7 @@ public class GamePanel extends JPanel implements Runnable
 
   public void update()
   {
-    if(keyH.upPressed)
-      playerY -= playerSpeed;
-    else if(keyH.leftPressed)
-      playerX -= playerSpeed;
-    else if(keyH.downPressed)
-      playerY += playerSpeed;
-    else if(keyH.rightPressed)
-      playerX += playerSpeed;
-    
-    
+    player.update();
   }
 
   @Override
@@ -124,9 +115,7 @@ public class GamePanel extends JPanel implements Runnable
     //graphics 2D has more functions
     Graphics2D g2 = (Graphics2D)g;
 
-    g2.setColor(Color.white);
-
-    g2.fillRect(playerX, playerY, tileSize, tileSize);
+    player.draw(g2);
 
     //this line just helps save memory, not needed
     g2.dispose();
