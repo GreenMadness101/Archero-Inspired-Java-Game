@@ -1,3 +1,4 @@
+package main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -65,39 +66,39 @@ public class GamePanel extends JPanel implements Runnable
     //1 second
     //draws every 1/60 second
     double drawInterval = 1000000000/fps;
-    double newDrawTime = System.nanoTime() + drawInterval;
+    double delta = 0;
+    long lastTime = System.nanoTime();
+    long currentTime;
+    long timer = 0;
+    int drawCount = 0;
 
     //while the gamethread exists it repeats
     while(gameThread != null)
     {
-      System.out.println("The Game Loop is Running");
-
       //the current time in nanoseconds
       //allows to keep track of how long the loops runs
-      long currentTime = System.nanoTime();
+      currentTime = System.nanoTime();
 
-      //update information like charcter positions
-      update();
+      delta += (currentTime - lastTime) / drawInterval;
+      timer+= (currentTime - lastTime);
+      lastTime = currentTime;
 
-      //draw the screen with the updated info 
-      repaint();
-     
-     //pauses game loop for remainingTime 
-     //will not do anything until sleep time is over
-      try
+      if(delta >= 1)
       {
-       double remainingTime = nextDrawTime - System.nanoTime();
-       Thread.sleep((long) remainingTime);
-       if(remainingTime < 0 )
-       {
-        remainingTime = 0;
-       }
-       nextDrawTime += drawInterval;
+        //update information like charcter positions
+        update();
+        //draw the screen with the updated info 
+        repaint();
+        delta--;
+        drawCount++;
       }
-      catch(InterruptedException e){
-        e.printStackTrace();
+
+      if(timer >= 1000000000)
+      {
+        System.out.println("FPS:" + drawCount);
+        drawCount = 0;
+        timer = 0;
       }
-      
     }
   }
 
@@ -105,13 +106,14 @@ public class GamePanel extends JPanel implements Runnable
   {
     if(keyH.upPressed)
       playerY -= playerSpeed;
-    if(keyH.downPressed)
+    else if(keyH.leftPressed)
+      playerX -= playerSpeed;
+    else if(keyH.downPressed)
       playerY += playerSpeed;
-    if(keyH.rightPressed)
+    else if(keyH.rightPressed)
       playerX += playerSpeed;
-    if(keyH.leftPressed)
-      playerX += playerSpeed;
-
+    
+    
   }
 
   @Override
