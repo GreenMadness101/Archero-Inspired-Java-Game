@@ -81,6 +81,23 @@ public class GamePanel extends JPanel implements Runnable
 
       //draw the screen with the updated info 
       repaint();
+     
+     //pauses game loop for remainingTime 
+     //will not do anything until sleep time is over
+      try
+      {
+       double remainingTime = nextDrawTime - System.nanoTime();
+       Thread.sleep((long) remainingTime);
+       if(remainingTime < 0 )
+       {
+        remainingTime = 0;
+       }
+       nextDrawTime += drawInterval;
+      }
+      catch(InterruptedException e){
+        e.printStackTrace();
+      }
+      
     }
   }
 
