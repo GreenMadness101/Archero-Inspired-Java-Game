@@ -1,12 +1,14 @@
 package tile;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
+import javax.lang.model.element.Name;
 
 import main.GamePanel;
 
@@ -25,7 +27,7 @@ public class TileManager
     mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
 
     getTileImage();
-    loadMap("/res/maps/map.txt");
+    loadMap("/res/maps/map4.txt");
   }
 
   public void getTileImage()
@@ -69,6 +71,19 @@ public class TileManager
       tile[9] = new Tile();
       tile[9].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water09.png"));
       tile[9].collision = true;
+
+      tile[10] = new Tile();
+      tile[10].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/wall.png"));
+      tile[10].collision = true;
+
+      tile[11] = new Tile();
+      tile[11].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water.png"));
+      tile[11].collision = true;
+
+      tile[12] = new Tile();
+      tile[12].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/tree.png"));
+      tile[12].collision = true;
+      
     } 
     catch(IOException e)
     {
