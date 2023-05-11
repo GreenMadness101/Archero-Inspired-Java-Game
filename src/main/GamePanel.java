@@ -36,6 +36,9 @@ public class GamePanel extends JPanel implements Runnable
   //Similar to a timer
   Thread gameThread;
 
+  //SOUND
+  Sound sound = new Sound();
+
   //COLLISION
   public CollisionChecker cChecker = new CollisionChecker(this);
 
@@ -58,6 +61,13 @@ public class GamePanel extends JPanel implements Runnable
 
     this.addKeyListener(keyH);
     this.setFocusable(true);
+  }
+
+  //not yet sure what this is for
+  public void setupGame()
+  {
+    playMusic(0);
+
   }
 
   //THREAD METHODS
@@ -130,5 +140,23 @@ public class GamePanel extends JPanel implements Runnable
 
     //this line just helps save memory, not needed
     g2.dispose();
+  }
+
+  public void playMusic(int i)
+  {
+    sound.setFile(i);
+    sound.play();
+    sound.loop();
+  }
+
+  public void stopMusic()
+  {
+    sound.stop();
+  }
+  //play sound effect
+  public void playerSE(int i)
+  {
+    sound.setFile(i);
+    sound.play();
   }
 }
