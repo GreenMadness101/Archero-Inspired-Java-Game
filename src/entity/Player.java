@@ -1,6 +1,7 @@
 package entity;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -24,6 +25,9 @@ public class Player extends Entity
     this.gp =  gp;
     this.keyH = keyH;
 
+    //can adjust values to change collision
+    solidArea = new Rectangle(8 , 16 , 32, 32);
+
     setDefaultValues();
     getPlayerImage();
 
@@ -31,8 +35,8 @@ public class Player extends Entity
 
   public void setDefaultValues()
   {
-    x = 100;
-    y = 100;
+    x = 300;
+    y = 300;
     speed = 4;
     direction = "down";
   }
@@ -65,24 +69,44 @@ public class Player extends Entity
     {
       if(keyH.upPressed)
       {
-        y -= speed;
         direction = "up";
       }
       else if(keyH.leftPressed)
       {
-        x -= speed;
         direction = "left";
       }
       else if(keyH.downPressed)
       {
-        y += speed;
         direction = "down";
       }
       else if(keyH.rightPressed)
       {
-        x += speed;
         direction = "right";
       }
+
+      // CHECK TILE COLLISION
+      collisionOn = false;
+      gp.cChecker.checkTile(this);
+
+     //STOP PLAYER MOVEMENT IF COLLISION
+      if(!collisionOn)
+      {
+        switch(direction)
+        {
+          case "up":
+            y -= speed;
+            break;
+          case "down":
+            y += speed;
+            break;
+          case "right":
+            x += speed;
+            break;
+          case "left":
+            x -= speed;
+            break;
+        }
+    }
 
       spriteCounter++;
       //change this value to decide how fast it animates
@@ -92,6 +116,8 @@ public class Player extends Entity
         spriteCounter = 0;
       }
     }
+
+    
     
 
   }
