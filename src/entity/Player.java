@@ -117,10 +117,6 @@ public class Player extends Entity
         setSpriteCounter(0);
       }
     }
-
-    
-    
-
   }
 
   public void draw(Graphics2D g2)
