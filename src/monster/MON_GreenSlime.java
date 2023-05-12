@@ -10,6 +10,6 @@ public class MON_GreenSlime extends Entity
     super(gp);
 
     //name = "Green Slime";
-    speed = 1;
+    setSpeed(1);
   }
 }

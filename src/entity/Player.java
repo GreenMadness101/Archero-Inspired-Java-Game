@@ -23,7 +23,7 @@ public class Player extends Entity
     this.keyH = keyH;
 
     //can adjust values to change collision
-    solidArea = new Rectangle(8 , 16 , 32, 32);
+    setSolidArea(new Rectangle(8 , 16 , 32, 32));
 
     setDefaultValues();
     getPlayerImage();
@@ -32,10 +32,10 @@ public class Player extends Entity
 
   public void setDefaultValues()
   {
-    x = 240;
-    y = 600;
-    speed = 4;
-    direction = "down";
+    this.setX(240);
+    this.setY(600);
+    setSpeed(4);
+    setDirection("down");
   }
 
   public void getPlayerImage()
@@ -44,15 +44,14 @@ public class Player extends Entity
     {
       //Update Image Files HERE (USE SIMILAR NAMING)
       // the /res/player/ is there due to the images being in a separate package
-      up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/player_up_1.png"));
-      up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/player_up_2.png"));
-      down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/player_down_1.png"));
-      down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/player_down_2.png"));
-      right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/player_right_1.png"));
-      right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/player_right_2.png"));
-      left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/player_left_1.png"));
-      left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/player_left_2.png"));
-
+      setUp1(ImageIO.read(getClass().getResourceAsStream("/res/player/player_up_1.png")));
+      setUp2(ImageIO.read(getClass().getResourceAsStream("/res/player/player_up_2.png")));
+      setDown1(ImageIO.read(getClass().getResourceAsStream("/res/player/player_down_1.png")));
+      setDown2(ImageIO.read(getClass().getResourceAsStream("/res/player/player_down_2.png")));
+      setRight1(ImageIO.read(getClass().getResourceAsStream("/res/player/player_right_1.png")));
+      setRight2(ImageIO.read(getClass().getResourceAsStream("/res/player/player_right_2.png")));
+      setLeft1(ImageIO.read(getClass().getResourceAsStream("/res/player/player_left_1.png")));
+      setLeft2(ImageIO.read(getClass().getResourceAsStream("/res/player/player_left_2.png")));
     }
     catch(IOException e)
     {
@@ -66,53 +65,56 @@ public class Player extends Entity
     {
       if(keyH.upPressed)
       {
-        direction = "up";
+        setDirection("up");
       }
       else if(keyH.leftPressed)
       {
-        direction = "left";
+        setDirection("left");
       }
       else if(keyH.downPressed)
-      {
-        direction = "down";
+      {setDirection("down");
       }
       else if(keyH.rightPressed)
       {
-        direction = "right";
+        setDirection("right");
       }
 
       // CHECK TILE COLLISION
-      collisionOn = false;
+      setCollisionOn(false);
       gp.cChecker.checkTile(this);
 
       
 
      //STOP PLAYER MOVEMENT IF COLLISION
-      if(!collisionOn)
+      if(!getCollisionOn())
       {
-        switch(direction)
+        switch(getDirection())
         {
           case "up":
-            y -= speed;
+            setY(getY() - getSpeed());
+            //y -= speed;
             break;
           case "down":
-            y += speed;
+            setY(getY() + getSpeed());
+            //y += speed;
             break;
           case "right":
-            x += speed;
+            setX(getX() + getSpeed());
+            //x += speed;
             break;
           case "left":
-            x -= speed;
+            setX(getX() - getSpeed());
+            //x -= speed;
             break;
         }
     }
 
-      spriteCounter++;
+      setSpriteCounter(getSpriteCounter() + 1);
       //change this value to decide how fast it animates
-      if(spriteCounter > 12)
+      if(getSpriteCounter() > 12)
       {
-        spriteBool = !spriteBool;
-        spriteCounter = 0;
+        setSpriteBool(!getSpriteBool());
+        setSpriteCounter(0);
       }
     }
 
@@ -125,38 +127,38 @@ public class Player extends Entity
   {
     BufferedImage image = null;
 
-    switch(direction)
+    switch(getDirection())
     {
       case "up":
-        if(spriteBool)
-          image = up1;
+        if(getSpriteBool())
+          image = getUp1();
         else
-          image = up2;
+          image = getUp2();
         break;
 
       case "down":
-        if(spriteBool)
-          image = down1;
+        if(getSpriteBool())
+          image = getDown1();
         else
-          image = down2;
+          image = getDown2();
         break;
 
       case "right":
-        if(spriteBool)
-         image = right1;
+        if(getSpriteBool())
+         image = getRight1();
         else
-          image = right2;
+          image = getRight2();
         break;
 
       case "left":
-        if(spriteBool)
-          image = left1;
+        if(getSpriteBool())
+          image = getLeft1();
         else
-          image = left2;
+          image = getLeft2();
         break;
     }
 
-    g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+    g2.drawImage(image, this.getX(), this.getY(), gp.getTileSize(), gp.getTileSize(), null);
   }
 
 }

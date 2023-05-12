@@ -18,13 +18,13 @@ public class GamePanel extends JPanel implements Runnable
   final int scale = 3;
 
   //instead of making public maybe change to a method
-  public final int tileSize = originalTileSize * scale; //48x48 tile
+  private final int tileSize = originalTileSize * scale; //48x48 tile
 
   //Change this ratio - rn 3 x 4
-  public final int maxScreenCol = 11;
-  public final int maxScreenRow = 15;
-  public final int screenWidth = tileSize * maxScreenCol; // 768 pixels // diff now due to change in num cols
-  public final int screenHeight = tileSize * maxScreenRow; // 576 // diff now due to change in num rows
+  private final int maxScreenCol = 11;
+  private final int maxScreenRow = 15;
+  private final int screenWidth = tileSize * maxScreenCol; // 768 pixels // diff now due to change in num cols
+  private final int screenHeight = tileSize * maxScreenRow; // 576 // diff now due to change in num rows
   
   //FPS
   int fps = 60;
@@ -158,5 +158,33 @@ public class GamePanel extends JPanel implements Runnable
   {
     sound.setFile(i);
     sound.play();
+  }
+
+  //GETTERS AND SETTERS
+
+  //TILE SIZE
+  public int getTileSize() 
+  {
+      return tileSize;
+  }
+
+  //MAX SCREENCOL ADN ROW
+  public int getMaxScreenCol() 
+  {
+      return maxScreenCol;
+  }
+  public int getMaxScreenRow() 
+  {
+      return maxScreenRow;
+  }
+
+  //SCREEN WIDTH AND HEIGHT
+  public int getScreenHeight() 
+  {
+      return screenHeight;
+  }
+  public int getScreenWidth() 
+  {
+      return screenWidth;
   }
 }

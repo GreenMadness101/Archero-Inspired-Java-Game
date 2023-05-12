@@ -24,7 +24,7 @@ public class TileManager
 
     tile = new Tile[20];
 
-    mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
+    mapTileNum = new int[gp.getMaxScreenCol()][gp.getMaxScreenRow()];
 
     getTileImage();
     loadMap("/res/maps/map4.txt");
@@ -103,12 +103,12 @@ public class TileManager
       int col = 0;
       int row = 0;
 
-      while(col < gp.maxScreenCol && row < gp.maxScreenRow)
+      while(col < gp.getMaxScreenCol() && row < gp.getMaxScreenRow())
       {
         //reads a single line and puts it into the String line
         String line = br.readLine();
 
-        while(col < gp.maxScreenCol)
+        while(col < gp.getMaxScreenCol())
         {
           //puts all the strings into an array
           String numbers[] = line.split(" ");
@@ -118,7 +118,7 @@ public class TileManager
           mapTileNum[col][row] = num;
           col++;
         }
-        if(col == gp.maxScreenCol)
+        if(col == gp.getMaxScreenCol())
         {
           col = 0;
           row++;
@@ -139,20 +139,20 @@ public class TileManager
     int x = 0;
     int y = 0;
 
-    while(col < gp.maxScreenCol && row < gp.maxScreenRow)
+    while(col < gp.getMaxScreenCol() && row < gp.getMaxScreenRow())
     {
       int tileNum = mapTileNum[col][row];
 
-      g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+      g2.drawImage(tile[tileNum].image, x, y, gp.getTileSize(), gp.getTileSize(), null);
       col++;
-      x += gp.tileSize;
+      x += gp.getTileSize();
 
-      if(col == gp.maxScreenCol)
+      if(col == gp.getMaxScreenCol())
       {
         col = 0;
         x = 0;
         row++;
-        y += gp.tileSize;
+        y += gp.getTileSize();
       }
     }
   }

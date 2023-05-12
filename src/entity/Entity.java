@@ -9,20 +9,20 @@ import main.GamePanel;
 public class Entity 
 {
     GamePanel gp;
-    public int x,y;
+    private int x,y;
 
     //update this value to make faster
-    public int speed;
+    private int speed;
 
     //basically used to store image files
-    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public String direction;
+    private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    private String direction;
 
-    public int spriteCounter = 0;
-    public boolean spriteBool = false;
+    private int spriteCounter = 0;
+    private boolean spriteBool = false;
 
-    public Rectangle solidArea = new Rectangle(0, 0, gp.tileSize, gp.tileSize);
-    public boolean collisionOn = false;
+    private Rectangle solidArea;
+    private boolean collisionOn = false;
 
     ////maybe use for changing the image when stopped
     //public boolean spriteStop = true;
@@ -30,6 +30,7 @@ public class Entity
     public Entity(GamePanel gp)
     {
         this.gp = gp;
+        solidArea = new Rectangle(0, 0, gp.getTileSize(), gp.getTileSize());
     }
 
     public void setAction(){}
@@ -110,7 +111,153 @@ public class Entity
                 break;
         }
 
-        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, x, y, gp.getTileSize(), gp.getTileSize(), null);
     }
+
+    //GETTER AND SETTER FUNCTIONS
+    //x and y
+    public int getX()
+    {
+        return x;
+    }
+    public void setX(int x)
+    {
+        this.x = x;
+    }
+    public int getY()
+    {
+        return y;
+    }
+    public void setY(int y)
+    {
+        this.y = y;
+    }
+
+    //speed
+    public int getSpeed()
+    {
+        return speed;
+    }
+    public void setSpeed(int speed)
+    {
+        this.speed = speed;
+    }
+
+    //BUFFERED IMAGE
+    public BufferedImage getUp1()
+    {
+        return up1;
+    }
+    public void setUp1(BufferedImage image)
+    {
+        up1 = image;
+    }
+    public BufferedImage getUp2()
+    {
+        return up2;
+    }
+    public void setUp2(BufferedImage image)
+    {
+        up2 = image;
+    }
+    public BufferedImage getDown1()
+    {
+        return down1;
+    }
+    public void setDown1(BufferedImage image)
+    {
+        down1 = image;
+    }
+    public BufferedImage getDown2()
+    {
+        return down2;
+    }
+    public void setDown2(BufferedImage image)
+    {
+        down2 = image;
+    }
+    public BufferedImage getLeft1()
+    {
+        return left1;
+    }
+    public void setLeft1(BufferedImage image)
+    {
+        left1 = image;
+    }
+    public BufferedImage getLeft2()
+    {
+        return left2;
+    }
+    public void setLeft2(BufferedImage image)
+    {
+        left2 = image;
+    }
+    public BufferedImage getRight1()
+    {
+        return right1;
+    }
+    public void setRight1(BufferedImage image)
+    {
+        right1 = image;
+    }
+    public BufferedImage getRight2()
+    {
+        return right2;
+    }
+    public void setRight2(BufferedImage image)
+    {
+        right2 = image;
+    }
+
+    //DIRECTION
+    public String getDirection() 
+    {
+        return direction;
+    }
+    public void setDirection(String direction) 
+    {
+        this.direction = direction;
+    }
+
+    //SPRITE COUNTER
+    public int getSpriteCounter() 
+    {
+        return spriteCounter;
+    }
+    public void setSpriteCounter(int spriteCounter) 
+    {
+        this.spriteCounter = spriteCounter;
+    }
+
+    //SPRITE BOOL
+    public boolean getSpriteBool()
+    {
+        return spriteBool;
+    }
+    public void setSpriteBool(boolean spriteBool) 
+    {
+        this.spriteBool = spriteBool;
+    }
+
+    //SOLID AREA
+    public Rectangle getSolidArea() 
+    {
+        return solidArea;
+    }
+    public void setSolidArea(Rectangle solidArea) 
+    {
+        this.solidArea = solidArea;
+    }
+
+    //COLLISION ON
+    public void setCollisionOn(boolean collisionOn) 
+    {
+        this.collisionOn = collisionOn;
+    }
+    public boolean getCollisionOn()
+    {
+        return collisionOn;
+    }
+
     
 }
