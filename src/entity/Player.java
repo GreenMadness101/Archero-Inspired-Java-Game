@@ -15,14 +15,11 @@ import main.KeyHandler;
 public class Player extends Entity
 {
 
-  GamePanel gp;
   KeyHandler keyH;
-
-
 
   public Player(GamePanel gp, KeyHandler keyH)
   {
-    this.gp =  gp;
+    super(gp);
     this.keyH = keyH;
 
     //can adjust values to change collision
@@ -87,6 +84,8 @@ public class Player extends Entity
       // CHECK TILE COLLISION
       collisionOn = false;
       gp.cChecker.checkTile(this);
+
+      
 
      //STOP PLAYER MOVEMENT IF COLLISION
       if(!collisionOn)
