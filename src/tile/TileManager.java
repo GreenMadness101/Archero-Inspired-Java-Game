@@ -27,7 +27,7 @@ public class TileManager
     mapTileNum = new int[gp.getMaxScreenCol()][gp.getMaxScreenRow()];
 
     getTileImage();
-    loadMap("/res/maps/start.txt");
+    loadMap("/res/maps/map6.txt");
   }
 
   public void getTileImage()
