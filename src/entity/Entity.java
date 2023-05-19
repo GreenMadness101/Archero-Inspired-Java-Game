@@ -27,6 +27,12 @@ public class Entity
     ////maybe use for changing the image when stopped
     //public boolean spriteStop = true;
 
+    //CHARACTER STATUS
+    private int maxLife;
+    private int life;
+
+
+
     public Entity(GamePanel gp)
     {
         this.gp = gp;
@@ -50,21 +56,29 @@ public class Entity
         //STOP PLAYER MOVEMENT IF COLLISION
         if(!collisionOn)
         {
-            switch(direction)
-            {
-            case "up":
+            if(direction == "up")
                 y -= speed;
-                break;
-            case "down":
-                y += speed;
-                break;
-            case "right":
+            if(direction == "down")
+                y+= speed;
+            if(direction == "right")
                 x += speed;
-                break;
-            case "left":
+            if(direction == "left")
                 x -= speed;
-                break;
-            }
+            // switch(direction)
+            // {
+            // case "up":
+            //     y -= speed;
+            //     break;
+            // case "down":
+            //     y += speed;
+            //     break;
+            // case "right":
+            //     x += speed;
+            //     break;
+            // case "left":
+            //     x -= speed;
+            //     break;
+            // }
         }
 
         spriteCounter++;
@@ -257,6 +271,25 @@ public class Entity
     public boolean getCollisionOn()
     {
         return collisionOn;
+    }
+
+    //LIFE
+    public int getMaxLife() 
+    {
+        return maxLife;
+    }
+    public void setMaxLife(int maxLife) 
+    {
+        this.maxLife = maxLife;
+    }
+
+    public int getLife() 
+    {
+        return life;
+    }
+    public void setLife(int life) 
+    {
+        this.life = life;
     }
 
     

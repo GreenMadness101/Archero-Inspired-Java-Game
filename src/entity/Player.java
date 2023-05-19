@@ -14,7 +14,6 @@ import main.KeyHandler;
 
 public class Player extends Entity
 {
-
   KeyHandler keyH;
 
   public Player(GamePanel gp, KeyHandler keyH)
@@ -36,6 +35,10 @@ public class Player extends Entity
     this.setY(600);
     setSpeed(4);
     setDirection("down");
+
+    //LIVES
+    setMaxLife(6);
+    setLife(getMaxLife());
   }
 
   public void getPlayerImage()
@@ -61,20 +64,21 @@ public class Player extends Entity
 
   public void update()
   {
-    if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed)
+    if(keyH.getDownPressed() || keyH.getUpPressed() || keyH.getLeftPressed() || keyH.getRightPressed())
     {
-      if(keyH.upPressed)
+      if(keyH.getUpPressed())
       {
         setDirection("up");
+        System.out.println(getDirection());
       }
-      else if(keyH.leftPressed)
+      if(keyH.getLeftPressed())
       {
         setDirection("left");
       }
-      else if(keyH.downPressed)
+      if(keyH.getDownPressed())
       {setDirection("down");
       }
-      else if(keyH.rightPressed)
+      if(keyH.getRightPressed())
       {
         setDirection("right");
       }

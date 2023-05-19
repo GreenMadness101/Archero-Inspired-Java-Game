@@ -7,7 +7,7 @@ import entity.*;
 public class KeyHandler implements KeyListener 
 {
 
-public boolean upPressed, downPressed, leftPressed, rightPressed;
+private boolean upPressed, downPressed, leftPressed, rightPressed;
 
     @Override
     public void keyTyped(KeyEvent e) 
@@ -59,6 +59,40 @@ public boolean upPressed, downPressed, leftPressed, rightPressed;
 
         }
     }
+
+public boolean getUpPressed()
+{
+    return upPressed;
+}
+public boolean getDownPressed()
+{
+    return downPressed;
+}
+public boolean getLeftPressed()
+{
+    return leftPressed;
+}
+public boolean getRightPressed()
+{
+    return rightPressed;
+}
+public void setDownPressed(boolean downPressed) 
+{
+    this.downPressed = downPressed;
+}
+public void setLeftPressed(boolean leftPressed) 
+{
+    this.leftPressed = leftPressed;
+}
+public void setRightPressed(boolean rightPressed) 
+{
+    this.rightPressed = rightPressed;
+}
+public void setUpPressed(boolean upPressed) 
+{
+    this.upPressed = upPressed;
+}
+
 
     
 }
