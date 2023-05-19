@@ -27,7 +27,7 @@ public class TileManager
     mapTileNum = new int[gp.getMaxScreenCol()][gp.getMaxScreenRow()];
 
     getTileImage();
-    loadMap("/res/maps/start.txt");
+    loadMap("/res/maps/map6.txt");
   }
 
   public void getTileImage()
@@ -83,6 +83,10 @@ public class TileManager
       tile[12] = new Tile();
       tile[12].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/tree.png"));
       tile[12].collision = true;
+
+      tile[13] = new Tile();
+      tile[13].image  =  ImageIO.read(getClass().getResourceAsStream("/res/tiles/Water Block.png"));
+      tile[13].collision = true;
       
     } 
     catch(IOException e)
