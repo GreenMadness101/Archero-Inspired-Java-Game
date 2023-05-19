@@ -29,21 +29,19 @@ public class GamePanel extends JPanel implements Runnable
   //FPS
   int fps = 60;
 
-  //KEY HANDLER
+  //SETUP
   KeyHandler keyH = new KeyHandler();
-
-  //TIMER
   //Similar to a timer
   Thread gameThread;
-
-  //SOUND
   Sound sound = new Sound();
+  AssetSetter aSetter = new AssetSetter(this);
 
   //COLLISION
   public CollisionChecker cChecker = new CollisionChecker(this);
 
-  //PLAYER
+  //ENITITY
   public Player player = new Player(this, keyH);
+  public Entity monster[] = new Entity[20];
 
   //TILES
   TileManager tileM = new TileManager(this);
@@ -63,10 +61,10 @@ public class GamePanel extends JPanel implements Runnable
     this.setFocusable(true);
   }
 
-  //not yet sure what this is for
   public void setupGame()
   {
     playMusic(0);
+    aSetter.setMonster();
 
   }
 
@@ -122,6 +120,15 @@ public class GamePanel extends JPanel implements Runnable
   public void update()
   {
     player.update();
+    
+    //NEEED TO FIX THIS UPDATE FUNCTION
+    // for(int i  = 0; i < monster.length; i++)
+    // {
+    //   if(monster[i] != null)
+    //   {
+    //     monster[i].update();
+    //   }
+    // }
   }
 
   @Override
