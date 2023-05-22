@@ -16,7 +16,7 @@ public class Entity
 
     //basically used to store image files
     private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    private String direction;
+    private String direction = "down";
 
     private int spriteCounter = 0;
     private boolean spriteBool = false;
@@ -24,8 +24,12 @@ public class Entity
     private Rectangle solidArea;
     private boolean collisionOn = false;
 
-    ////maybe use for changing the image when stopped
-    //public boolean spriteStop = true;
+    //USED IN SETACTION for Monster
+    private int actionLockCounter = 0;
+
+    private BufferedImage image1, image2, image3;
+    private String name;
+    private boolean collision = false;
 
     //CHARACTER STATUS
     private int maxLife;
@@ -46,12 +50,12 @@ public class Entity
         setAction();
 
         collisionOn = false;
-        gp.cChecker.checkTile(this);
+        gp.getCollisionChecker().checkTile(this);
 
         //use when using objects
         //gp.cChecker.checkObject(this, false);
 
-        gp.cChecker.checkPlayer(this);
+        gp.getCollisionChecker().checkPlayer(this);
 
         //STOP PLAYER MOVEMENT IF COLLISION
         if(!collisionOn)
@@ -290,6 +294,56 @@ public class Entity
     public void setLife(int life) 
     {
         this.life = life;
+    }
+
+    //ACTION LOCK COUNTER
+    public int getActionLockCounter() 
+    {
+      return actionLockCounter;
+    }
+    public void setActionLockCounter(int actionLockCounter) 
+    {
+      this.actionLockCounter = actionLockCounter;
+    }
+
+    //OBJECT STUFF
+    public void setCollision(boolean collision) 
+    {
+      this.collision = collision;
+    }
+    public boolean getCollision()
+    {
+        return collision;
+    }
+    public BufferedImage getImage1() {
+      return image1;
+    }
+    public BufferedImage getImage2() {
+      return image2;
+    }
+    public BufferedImage getImage3() {
+      return image3;
+    }
+    public void setImage1(BufferedImage image1) 
+    {
+      this.image1 = image1;
+    }
+    public void setImage2(BufferedImage image2) 
+    {
+      this.image2 = image2;
+    }
+    public void setImage3(BufferedImage image3) 
+    {
+      this.image3 = image3;
+    }
+
+    public String getName() 
+    {
+      return name;
+    }
+    public void setName(String name) 
+    {
+      this.name = name;
     }
 
     

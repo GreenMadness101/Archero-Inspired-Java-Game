@@ -3,12 +3,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.JPanel;
 import javax.swing.event.SwingPropertyChangeSupport;
 
 import entity.Entity;
 import entity.Player;
+import monster.MON_GreenSlime;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable
@@ -37,11 +41,15 @@ public class GamePanel extends JPanel implements Runnable
   AssetSetter aSetter = new AssetSetter(this);
 
   //COLLISION
-  public CollisionChecker cChecker = new CollisionChecker(this);
+  private CollisionChecker cChecker = new CollisionChecker(this);
 
   //ENITITY
-  public Player player = new Player(this, keyH);
+  private Player player = new Player(this, keyH);
   public Entity monster[] = new Entity[20];
+
+  ArrayList<Entity> entityList = new ArrayList<Entity>();
+
+  public MON_GreenSlime mon = new MON_GreenSlime(this);
 
   //TILES
   TileManager tileM = new TileManager(this);
@@ -120,15 +128,17 @@ public class GamePanel extends JPanel implements Runnable
   public void update()
   {
     player.update();
+
+    //mon.update();
     
-    //NEEED TO FIX THIS UPDATE FUNCTION
-    // for(int i  = 0; i < monster.length; i++)
-    // {
-    //   if(monster[i] != null)
-    //   {
-    //     monster[i].update();
-    //   }
-    // }
+    //NEED TO FIX THIS UPDATE FUNCTION
+    for(int i  = 0; i < monster.length; i++)
+    {
+      if(monster[i] != null)
+      {
+        monster[i].update();
+      }
+    }
   }
 
   @Override
@@ -143,7 +153,34 @@ public class GamePanel extends JPanel implements Runnable
     //tile should be on a layer below player
     tileM.draw(g2);
 
-    player.draw(g2);
+    entityList.add(player);
+    for(int i = 0; i < monster.length; i++)
+    {
+      if(monster[i] != null)
+      {
+        entityList.add(monster[i]);
+      }
+    }
+
+    //SORT
+    Collections.sort(entityList, new Comparator<Entity>() 
+    {
+
+      @Override
+      public int compare(Entity e1, Entity e2) {
+        
+        int result = Integer.compare(e1.getY(), e2.getY());
+
+        return result;
+      }
+      
+    });
+
+    for(Entity e: entityList)
+    {
+      e.draw(g2);
+    }
+    entityList.clear();
 
     //this line just helps save memory, not needed
     g2.dispose();
@@ -194,4 +231,26 @@ public class GamePanel extends JPanel implements Runnable
   {
       return screenWidth;
   }
+
+  //COLLISION CHECKER
+  public CollisionChecker getCollisionChecker()
+  {
+    return cChecker;
+  }
+  public void setCollisionChecker(CollisionChecker cChecker)
+  {
+    this.cChecker = cChecker;
+  }
+
+  //PLAYER
+  public Player getPlayer() 
+  {
+    return player;
+  }
+  public void setPlayer(Player player) 
+  {
+    this.player = player;
+  }
+
+
 }
