@@ -34,6 +34,9 @@ public class CollisionChecker
     {
       case "up":
         entityTopRow = ((entityTopY - entity.getSpeed())/gp.getTileSize());
+        System.out.println(entity.getX());
+        System.out.println(entity.getSolidArea().getLocation());
+        System.out.println(entityLeftCol);
         tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
         tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
         if(gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision || entity.getY() <= 0)
@@ -47,6 +50,8 @@ public class CollisionChecker
         {
           entityBottomRow = gp.getMaxScreenRow() - 1;
         }
+        System.out.println(entity.getX());
+        System.out.println(entity.getSolidArea().x);
         tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
         tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityBottomRow];
         if(gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision || entity.getY() + gp.getTileSize() >= gp.getScreenHeight() - 1)
@@ -147,35 +152,35 @@ public class CollisionChecker
     entity.getSolidArea().x = entity.getX() + entity.getSolidArea().x;
     entity.getSolidArea().y = entity.getY() + entity.getSolidArea().y;
     //get entity solid area
-    gp.player.getSolidArea().x = gp.player.getX() + gp.player.getSolidArea().x;
-    gp.player.getSolidArea().y = gp.player.getY() + gp.player.getSolidArea().y;
+    gp.getPlayer().getSolidArea().x = gp.getPlayer().getX() + gp.getPlayer().getSolidArea().x;
+    gp.getPlayer().getSolidArea().y = gp.getPlayer().getY() + gp.getPlayer().getSolidArea().y;
 
     switch(entity.getDirection())
     {
       case "up":
         entity.getSolidArea().y -= entity.getSpeed();
-        if(entity.getSolidArea().intersects(gp.player.getSolidArea()))
+        if(entity.getSolidArea().intersects(gp.getPlayer().getSolidArea()))
         {
           entity.setCollisionOn(true);
         }
         break;
       case "down":
         entity.getSolidArea().y += entity.getSpeed();
-        if(entity.getSolidArea().intersects(gp.player.getSolidArea()))
+        if(entity.getSolidArea().intersects(gp.getPlayer().getSolidArea()))
         {
           entity.setCollisionOn(true);
         }
         break;
       case "left":
         entity.getSolidArea().x -= entity.getSpeed();
-        if(entity.getSolidArea().intersects(gp.player.getSolidArea()))
+        if(entity.getSolidArea().intersects(gp.getPlayer().getSolidArea()))
         {
           entity.setCollisionOn(false);
         }
         break;
       case "right":
         entity.getSolidArea().x += entity.getSpeed();
-        if(entity.getSolidArea().intersects(gp.player.getSolidArea()))
+        if(entity.getSolidArea().intersects(gp.getPlayer().getSolidArea()))
         {
           entity.setCollisionOn(false);
         }

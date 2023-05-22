@@ -69,7 +69,6 @@ public class Player extends Entity
       if(keyH.getUpPressed())
       {
         setDirection("up");
-        System.out.println(getDirection());
       }
       if(keyH.getLeftPressed())
       {
@@ -85,7 +84,7 @@ public class Player extends Entity
 
       // CHECK TILE COLLISION
       setCollisionOn(false);
-      gp.cChecker.checkTile(this);
+      gp.getCollisionChecker().checkTile(this);
 
       
 

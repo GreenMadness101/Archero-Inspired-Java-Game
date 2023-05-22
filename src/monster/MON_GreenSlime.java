@@ -44,12 +44,11 @@ public class MON_GreenSlime extends Entity
   
   public void setAction()
   {
-    //might not be declared here
-    int actionLockCounter = 0;
-    actionLockCounter++;
+    setActionLockCounter(getActionLockCounter()+1);
 
-    if(actionLockCounter == 120)
+    if(getActionLockCounter() == 120)
     {
+      
       int i = (int)(Math.random()*100) + 1;
       if(i > 75) 
       { 
@@ -68,7 +67,7 @@ public class MON_GreenSlime extends Entity
         setDirection("right");
       }
 
-      actionLockCounter= 0;
+      setActionLockCounter(0);
     }
 
   }
