@@ -58,11 +58,11 @@ public class MON_GreenSlime extends Entity
       {
         setDirection("down");
       }
-      else if(i > 50)
+      else if(i > 25)
       {
         setDirection("left");
       }
-      else if(i > 50)
+      else if(i > 0)
       {
         setDirection("right");
       }

@@ -47,12 +47,12 @@ public class GamePanel extends JPanel implements Runnable
   private Player player = new Player(this, keyH);
   public Entity monster[] = new Entity[20];
 
-  ArrayList<Entity> entityList = new ArrayList<Entity>();
+  private ArrayList<Entity> entityList = new ArrayList<Entity>();
 
-  public MON_GreenSlime mon = new MON_GreenSlime(this);
+  private MON_GreenSlime mon = new MON_GreenSlime(this);
 
   //TILES
-  TileManager tileM = new TileManager(this);
+  private TileManager tileM = new TileManager(this);
 
   //CONSTRUCTOR
   public GamePanel()
@@ -154,6 +154,7 @@ public class GamePanel extends JPanel implements Runnable
     tileM.draw(g2);
 
     entityList.add(player);
+
     for(int i = 0; i < monster.length; i++)
     {
       if(monster[i] != null)
@@ -176,11 +177,14 @@ public class GamePanel extends JPanel implements Runnable
       
     });
 
-    for(Entity e: entityList)
+    for(Entity e : entityList)
     {
       e.draw(g2);
     }
-    entityList.clear();
+    for(int i = entityList.size() -1; i >= 0 ; i--)
+    {
+      entityList.remove(i);
+    }
 
     //this line just helps save memory, not needed
     g2.dispose();
@@ -252,5 +256,10 @@ public class GamePanel extends JPanel implements Runnable
     this.player = player;
   }
 
+  //TILE MANAGER
+  public TileManager getTileM() 
+  {
+      return tileM;
+  }
 
 }

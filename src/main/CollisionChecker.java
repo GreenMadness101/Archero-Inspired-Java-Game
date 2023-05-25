@@ -37,9 +37,9 @@ public class CollisionChecker
         System.out.println(entity.getX());
         System.out.println(entity.getSolidArea().getLocation());
         System.out.println(entityLeftCol);
-        tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
-        tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
-        if(gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision || entity.getY() <= 0)
+        tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityTopRow];
+        tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityTopRow];
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getY() <= 0)
         {
           entity.setCollisionOn(true);
         }
@@ -52,27 +52,28 @@ public class CollisionChecker
         }
         System.out.println(entity.getX());
         System.out.println(entity.getSolidArea().x);
-        tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
-        tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityBottomRow];
-        if(gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision || entity.getY() + gp.getTileSize() >= gp.getScreenHeight() - 1)
+        System.out.println(entity.getSolidArea().y);
+        tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityBottomRow];
+        tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityBottomRow];
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getY() + gp.getTileSize() >= gp.getScreenHeight() - 1)
         {
           entity.setCollisionOn(true);
         }
         break;
       case "right":
         entityRightCol = ((entityRightX + entity.getSpeed())/gp.getTileSize());
-        tileNum1 = gp.tileM.mapTileNum[entityRightCol][entityBottomRow];
-        tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
-        if(gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision || entity.getX() + gp.getTileSize() >= gp.getScreenWidth())
+        tileNum1 = gp.getTileM().mapTileNum[entityRightCol][entityBottomRow];
+        tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityTopRow];
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getX() + gp.getTileSize() >= gp.getScreenWidth())
         {
           entity.setCollisionOn(true);
         }
         break;
       case "left":
         entityLeftCol = ((entityLeftX - entity.getSpeed())/gp.getTileSize());
-        tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
-        tileNum2 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
-        if(gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision || entity.getX() <= 0)
+        tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityBottomRow];
+        tileNum2 = gp.getTileM().mapTileNum[entityLeftCol][entityTopRow];
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getX() <= 0)
         {
           entity.setCollisionOn(true);
         }
@@ -149,9 +150,9 @@ public class CollisionChecker
 
   public void checkPlayer(Entity entity)
   {
+    //these statemnts caused the previous error
     entity.getSolidArea().x = entity.getX() + entity.getSolidArea().x;
-    entity.getSolidArea().y = entity.getY() + entity.getSolidArea().y;
-    //get entity solid area
+    entity.getSolidArea().y = entity.getY() + entity.getSolidArea().y;    //get entity solid area
     gp.getPlayer().getSolidArea().x = gp.getPlayer().getX() + gp.getPlayer().getSolidArea().x;
     gp.getPlayer().getSolidArea().y = gp.getPlayer().getY() + gp.getPlayer().getSolidArea().y;
 

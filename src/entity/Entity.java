@@ -55,7 +55,7 @@ public class Entity
         //use when using objects
         //gp.cChecker.checkObject(this, false);
 
-        gp.getCollisionChecker().checkPlayer(this);
+        // gp.getCollisionChecker().checkPlayer(this);
 
         //STOP PLAYER MOVEMENT IF COLLISION
         if(!collisionOn)
