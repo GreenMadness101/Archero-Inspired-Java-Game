@@ -133,7 +133,7 @@ public class CollisionChecker
         //watch the video on objects to find what these values are defined as
         //also check if these statements are placed right
         // entity.getSolidArea().x = entity.solidAreaDefaultX;
-        // entity.getSolidArea().y = entity.solideAreaDefaultY;
+        // entity.getSolidArea().y = entity.solidAreaDefaultY;
         // target[i].getSolidArea().x = target[i].solidAreaDefaultX;
         // target[i].getSolidArea().y = target[i].solidAreaDefaultY;
       }
@@ -170,23 +170,23 @@ public class CollisionChecker
         entity.getSolidArea().x -= entity.getSpeed();
         if(entity.getSolidArea().intersects(gp.getPlayer().getSolidArea()))
         {
-          entity.setCollisionOn(false);
+          entity.setCollisionOn(true);
         }
         break;
       case "right":
         entity.getSolidArea().x += entity.getSpeed();
         if(entity.getSolidArea().intersects(gp.getPlayer().getSolidArea()))
         {
-          entity.setCollisionOn(false);
+          entity.setCollisionOn(true);
         }
         break;
     }
     //watch the video on objects to find what these values are defined as
     //also check if these statements are placed right
-    // entity.getSolidArea().x = entity.solidAreaDefaultX;
-    // entity.getSolidArea().y = entity.solidAreaDefaultY;
-    // gp.getPlayer().getSolidArea().x = gp.getPlayer().solidAreaDefaultX;
-    // gp.getPlayer().getSolidArea().y = gp.getPlayer().solidAreaDefaultY;
+    entity.getSolidArea().x = entity.getSolidAreaDefaultX();
+    entity.getSolidArea().y = entity.getSolidAreaDefaultY();
+    gp.getPlayer().getSolidArea().x = gp.getPlayer().getSolidAreaDefaultX();
+    gp.getPlayer().getSolidArea().y = gp.getPlayer().getSolidAreaDefaultY();
   }
   
 }

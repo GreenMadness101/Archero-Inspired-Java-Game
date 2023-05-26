@@ -81,24 +81,7 @@ public class MON_GreenSlime extends Entity
           this.setDirection("up");
         }
       }
-      
-    //   int i = (int)(Math.random()*100) + 1;
-    //   if(i > 75) 
-    //   { 
-    //     setDirection("up");
-    //   }
-    //   else if(i > 50)
-    //   {
-    //     setDirection("down");
-    //   }
-    //   else if(i > 25)
-    //   {
-    //     setDirection("left");
-    //   }
-    //   else if(i > 0)
-    //   {
-    //     setDirection("right");
-    //   }
+    
 
       setActionLockCounter(0);
     }

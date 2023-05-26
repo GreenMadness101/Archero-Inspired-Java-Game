@@ -22,6 +22,9 @@ public class Entity
     private boolean spriteBool = false;
 
     private Rectangle solidArea;
+    private int solidAreaDefaultX;
+    private int solidAreaDefaultY;
+
     private boolean collisionOn = false;
 
     //USED IN SETACTION for Monster
@@ -56,7 +59,7 @@ public class Entity
         
         //gp.cChecker.checkObject(this, false);
 
-        // gp.getCollisionChecker().checkPlayer(this);
+        gp.getCollisionChecker().checkPlayer(this);
 
         //STOP PLAYER MOVEMENT IF COLLISION
         if(!collisionOn)
@@ -266,6 +269,16 @@ public class Entity
     public void setSolidArea(Rectangle solidArea) 
     {
         this.solidArea = solidArea;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+    }
+    public int getSolidAreaDefaultX() 
+    {
+        return solidAreaDefaultX;
+    }
+    public int getSolidAreaDefaultY() 
+    {
+        return solidAreaDefaultY;
     }
 
     //COLLISION ON
