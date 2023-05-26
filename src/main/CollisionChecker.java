@@ -34,9 +34,6 @@ public class CollisionChecker
     {
       case "up":
         entityTopRow = ((entityTopY - entity.getSpeed())/gp.getTileSize());
-        System.out.println(entity.getX());
-        System.out.println(entity.getSolidArea().getLocation());
-        System.out.println(entityLeftCol);
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityTopRow];
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityTopRow];
         if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getY() <= 0)
@@ -50,9 +47,6 @@ public class CollisionChecker
         {
           entityBottomRow = gp.getMaxScreenRow() - 1;
         }
-        System.out.println(entity.getX());
-        System.out.println(entity.getSolidArea().x);
-        System.out.println(entity.getSolidArea().y);
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityBottomRow];
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityBottomRow];
         if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getY() + gp.getTileSize() >= gp.getScreenHeight() - 1)
@@ -138,10 +132,10 @@ public class CollisionChecker
         }
         //watch the video on objects to find what these values are defined as
         //also check if these statements are placed right
-        // entity.solidArea.x = entity.solidAreaDefaultX;
-        // entity.solidArea.y = entity.solideAreaDefaultY;
-        // target[i].solidArea.x = target[i].solidAreaDefaultX;
-        // target[i].solidArea.y = target[i].solidAreaDefaultY;
+        // entity.getSolidArea().x = entity.solidAreaDefaultX;
+        // entity.getSolidArea().y = entity.solideAreaDefaultY;
+        // target[i].getSolidArea().x = target[i].solidAreaDefaultX;
+        // target[i].getSolidArea().y = target[i].solidAreaDefaultY;
       }
     }
     return index;
@@ -189,10 +183,10 @@ public class CollisionChecker
     }
     //watch the video on objects to find what these values are defined as
     //also check if these statements are placed right
-    // entity.solidArea.x = entity.solidAreaDefaultX;
-    // entity.solidArea.y = entity.solidAreaDefaultY;
-    // gp.player.solidArea.x = gp.player.solidAreaDefaultX;
-    // gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+    // entity.getSolidArea().x = entity.solidAreaDefaultX;
+    // entity.getSolidArea().y = entity.solidAreaDefaultY;
+    // gp.getPlayer().getSolidArea().x = gp.getPlayer().solidAreaDefaultX;
+    // gp.getPlayer().getSolidArea().y = gp.getPlayer().solidAreaDefaultY;
   }
   
 }

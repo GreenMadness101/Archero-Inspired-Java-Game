@@ -53,6 +53,7 @@ public class Entity
         gp.getCollisionChecker().checkTile(this);
 
         //use when using objects
+        
         //gp.cChecker.checkObject(this, false);
 
         // gp.getCollisionChecker().checkPlayer(this);
