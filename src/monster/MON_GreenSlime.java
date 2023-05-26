@@ -53,7 +53,7 @@ public class MON_GreenSlime extends Entity
   {
     setActionLockCounter(getActionLockCounter()+1);
 
-    if(getActionLockCounter() == 60)
+    if(getActionLockCounter() == 10)
     {
       int difX = Math.abs(this.getX() - gp.getPlayer().getX());
       int difY = Math.abs(this.getY() - gp.getPlayer().getY());

@@ -117,7 +117,7 @@ public class CollisionChecker
             entity.getSolidArea().x -= entity.getSpeed();
             if(entity.getSolidArea().intersects(target[i].getSolidArea()))
             {
-              entity.setCollisionOn(false);
+              entity.setCollisionOn(true);
               index = i;
             }
             break;
@@ -125,17 +125,17 @@ public class CollisionChecker
             entity.getSolidArea().x += entity.getSpeed();
             if(entity.getSolidArea().intersects(target[i].getSolidArea()))
             {
-              entity.setCollisionOn(false);
+              entity.setCollisionOn(true);
               index = i;
             }
             break;
         }
         //watch the video on objects to find what these values are defined as
         //also check if these statements are placed right
-        // entity.getSolidArea().x = entity.solidAreaDefaultX;
-        // entity.getSolidArea().y = entity.solidAreaDefaultY;
-        // target[i].getSolidArea().x = target[i].solidAreaDefaultX;
-        // target[i].getSolidArea().y = target[i].solidAreaDefaultY;
+        entity.getSolidArea().x = entity.getSolidAreaDefaultX();
+        entity.getSolidArea().y = entity.getSolidAreaDefaultY();
+        target[i].getSolidArea().x = target[i].getSolidAreaDefaultX();
+        target[i].getSolidArea().y = target[i].getSolidAreaDefaultY();
       }
     }
     return index;

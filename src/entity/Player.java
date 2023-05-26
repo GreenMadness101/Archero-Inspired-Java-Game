@@ -85,6 +85,8 @@ public class Player extends Entity
       // CHECK TILE COLLISION
       setCollisionOn(false);
       gp.getCollisionChecker().checkTile(this);
+      gp.getCollisionChecker().checkEntity(this, gp.monster);
+
 
       
 
