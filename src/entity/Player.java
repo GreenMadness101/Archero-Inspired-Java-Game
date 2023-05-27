@@ -61,9 +61,35 @@ public class Player extends Entity
       e.printStackTrace();
     }
   }
+  public void getPlayerAttackImage()
+  {
+    try 
+    {
+      //Update Image Files HERE (USE SIMILAR NAMING)
+      // the /res/player/ is there due to the images being in a separate package
+      //use Utility Tool if scaling is needed
+      setUp1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_up_1.png")));
+      setUp2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_up_2.png")));
+      setDown1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_down_1.png")));
+      setDown2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_down_2.png")));
+      setRight1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_right_1.png")));
+      setRight2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_right_2.png")));
+      setLeft1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_left_1.png")));
+      setLeft2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_left_2.png")));
+    }
+    catch(IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
 
   public void update()
   {
+    if(keyH.getEnterPressed())
+    {
+      setAttacking(true);
+    }
+
     if(keyH.getDownPressed() || keyH.getUpPressed() || keyH.getLeftPressed() || keyH.getRightPressed())
     {
       if(keyH.getUpPressed())
@@ -121,6 +147,16 @@ public class Player extends Entity
         setSpriteBool(!getSpriteBool());
         setSpriteCounter(0);
       }
+    }
+  }
+
+  public void attacking()
+  {
+    setSpriteCounter(getSpriteCounter() + 1);
+
+    if(getSpriteBool() <= 5)
+    {
+      getSprit
     }
   }
 
