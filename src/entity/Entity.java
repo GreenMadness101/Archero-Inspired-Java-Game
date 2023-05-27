@@ -9,34 +9,36 @@ import main.GamePanel;
 public class Entity 
 {
     GamePanel gp;
-    private int x,y;
-
-    //update this value to make faster
-    private int speed;
-
-    //basically used to store image files
+    
+    //IMAGES
     private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    private String direction = "down";
-
+    private BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+    
+    //IMAGE SWITCHER
     private int spriteCounter = 0;
     private boolean spriteBool = false;
-
+    
+    //COLLISION
     private Rectangle solidArea;
     private int solidAreaDefaultX;
     private int solidAreaDefaultY;
-
+    
     private boolean collisionOn = false;
-
+    
     //USED IN SETACTION for Monster
     private int actionLockCounter = 0;
-
+    
     private BufferedImage image1, image2, image3;
     private String name;
     private boolean collision = false;
-
+    
     //CHARACTER STATUS
     private int maxLife;
     private int life;
+    private int x,y;
+    private int speed;
+    private String direction = "down";
+    private boolean attacking = false;
 
 
 
@@ -96,6 +98,7 @@ public class Entity
             spriteBool = !spriteBool;
             spriteCounter = 0;
         }
+
     }
 
     public void draw(Graphics2D g2)
@@ -359,6 +362,19 @@ public class Entity
     {
       this.name = name;
     }
+
+    //ATTACKING
+    public void setAttacking(boolean attacking)
+    {
+        this.attacking = attacking;
+    }
+    public boolean getAttacking()
+    {
+        return attacking;
+    }
+    
+
+
 
     
 }

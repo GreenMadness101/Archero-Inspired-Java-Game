@@ -8,6 +8,7 @@ public class KeyHandler implements KeyListener
 {
 
 private boolean upPressed, downPressed, leftPressed, rightPressed;
+private boolean enterPressed;
 
     @Override
     public void keyTyped(KeyEvent e) 
@@ -33,6 +34,9 @@ private boolean upPressed, downPressed, leftPressed, rightPressed;
             case KeyEvent.VK_D:
                 rightPressed = true;
                 break;
+            case KeyEvent.VK_ENTER:
+                enterPressed = true;
+                break;
 
         }
     }
@@ -55,6 +59,9 @@ private boolean upPressed, downPressed, leftPressed, rightPressed;
                 break;
             case KeyEvent.VK_D:
                 rightPressed = false;
+                break;
+            case KeyEvent.VK_ENTER:
+                enterPressed = false;
                 break;
 
         }
@@ -91,6 +98,16 @@ public void setRightPressed(boolean rightPressed)
 public void setUpPressed(boolean upPressed) 
 {
     this.upPressed = upPressed;
+}
+
+//ENTER KEY
+public void setEnterPressed(boolean enterPressed) 
+{
+  this.enterPressed = enterPressed;
+}
+public boolean getEnterPressed()
+{
+    return enterPressed;
 }
 
 
