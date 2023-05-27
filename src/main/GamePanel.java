@@ -181,10 +181,7 @@ public class GamePanel extends JPanel implements Runnable
     {
       e.draw(g2);
     }
-    for(int i = entityList.size() -1; i >= 0 ; i--)
-    {
-      entityList.remove(i);
-    }
+    entityList.clear();
 
     //this line just helps save memory, not needed
     g2.dispose();
