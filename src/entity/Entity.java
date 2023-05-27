@@ -38,6 +38,8 @@ public class Entity
     private int x,y;
     private int speed;
     private String direction = "down";
+
+    //delete 
     private boolean attacking = false;
 
 
@@ -363,6 +365,7 @@ public class Entity
       this.name = name;
     }
 
+    //delete
     //ATTACKING
     public void setAttacking(boolean attacking)
     {

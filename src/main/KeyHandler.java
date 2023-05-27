@@ -60,6 +60,7 @@ private boolean enterPressed;
             case KeyEvent.VK_D:
                 rightPressed = false;
                 break;
+            //delete
             case KeyEvent.VK_ENTER:
                 enterPressed = false;
                 break;
@@ -100,6 +101,7 @@ public void setUpPressed(boolean upPressed)
     this.upPressed = upPressed;
 }
 
+//delete
 //ENTER KEY
 public void setEnterPressed(boolean enterPressed) 
 {

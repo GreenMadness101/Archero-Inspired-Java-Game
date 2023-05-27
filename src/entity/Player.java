@@ -61,6 +61,7 @@ public class Player extends Entity
       e.printStackTrace();
     }
   }
+  //delete
   public void getPlayerAttackImage()
   {
     try 
@@ -85,6 +86,7 @@ public class Player extends Entity
 
   public void update()
   {
+    //delete
     if(keyH.getEnterPressed())
     {
       setAttacking(true);
@@ -150,14 +152,15 @@ public class Player extends Entity
     }
   }
 
+  //delete
   public void attacking()
   {
     setSpriteCounter(getSpriteCounter() + 1);
 
-    if(getSpriteBool() <= 5)
-    {
-      getSprit
-    }
+    // if(getSpriteBool() <= 5)
+    // {
+     
+    // }
   }
 
   public void draw(Graphics2D g2)
