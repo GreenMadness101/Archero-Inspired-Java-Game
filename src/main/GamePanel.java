@@ -49,7 +49,6 @@ public class GamePanel extends JPanel implements Runnable
 
   private ArrayList<Entity> entityList = new ArrayList<Entity>();
 
-  private MON_GreenSlime mon = new MON_GreenSlime(this);
 
   //TILES
   private TileManager tileM = new TileManager(this);
@@ -129,14 +128,19 @@ public class GamePanel extends JPanel implements Runnable
   {
     player.update();
 
-    //mon.update();
-    
-    //NEED TO FIX THIS UPDATE FUNCTION
     for(int i  = 0; i < monster.length; i++)
     {
       if(monster[i] != null)
       {
-        monster[i].update();
+        if(monster[i].getAlive() && !monster[i].getDying())
+        {
+          monster[i].update();
+        }
+        if(!monster[i].getAlive())
+        {
+          monster[i] = null;
+        }
+
       }
     }
   }

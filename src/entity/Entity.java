@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -25,8 +26,10 @@ public class Entity
     
     private boolean collisionOn = false;
     
+    //COUNTERS
     //USED IN SETACTION for Monster
     private int actionLockCounter = 0;
+    private int dyingCounter = 0;
     
     private BufferedImage image1, image2, image3;
     private String name;
@@ -38,6 +41,9 @@ public class Entity
     private int x,y;
     private int speed;
     private String direction = "down";
+
+    private boolean alive = true;
+    private boolean dying = false;
 
     //delete 
     private boolean attacking = false;
@@ -55,6 +61,9 @@ public class Entity
     public void update()
     {
         setAction();
+
+
+
 
         collisionOn = false;
         gp.getCollisionChecker().checkTile(this);
@@ -138,7 +147,51 @@ public class Entity
                 break;
         }
 
+        if(dying)
+        {
+            dyingAnimation(g2);
+        }
+        
         g2.drawImage(image, x, y, gp.getTileSize(), gp.getTileSize(), null);
+    }
+
+    public void dyingAnimation(Graphics2D g2)
+    {
+        dyingCounter++;
+        if(dyingCounter <= 5)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }
+        if(dyingCounter > 5 && dyingCounter <= 10)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+        if(dyingCounter > 10 && dyingCounter <= 15)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }
+        if(dyingCounter > 15 && dyingCounter <= 20)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+        if(dyingCounter > 20 && dyingCounter <= 25)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }        
+        if(dyingCounter > 30 && dyingCounter <= 25)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+        if(dyingCounter > 25 && dyingCounter <= 40)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }
+        if(dyingCounter > 40)
+        {
+            dying = false;
+            alive = false;
+        }
+        
     }
 
     //GETTER AND SETTER FUNCTIONS
@@ -375,6 +428,26 @@ public class Entity
     {
         return attacking;
     }
+
+    //ALIVE and DEAD
+    public boolean getAlive()
+    {
+        return alive;
+    }
+    public void setAlive(boolean alive) 
+    {
+      this.alive = alive;
+    }
+    public boolean getDying()
+    {
+        return dying;
+    }
+    public void setDying(boolean dying) 
+    {
+      this.dying = dying;
+    }
+
+ 
     
 
 

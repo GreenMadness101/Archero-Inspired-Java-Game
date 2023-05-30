@@ -89,7 +89,11 @@ public class Player extends Entity
     //delete
     if(keyH.getEnterPressed())
     {
-      setAttacking(true);
+      //setAttacking(true);
+      //temp
+      gp.monster[0].setDying(true);
+      gp.getPlayer().setDying(false);
+      System.out.println(gp.getPlayer().getDying());
     }
 
     if(keyH.getDownPressed() || keyH.getUpPressed() || keyH.getLeftPressed() || keyH.getRightPressed())
@@ -197,6 +201,7 @@ public class Player extends Entity
           image = getLeft2();
         break;
     }
+
 
     g2.drawImage(image, this.getX(), this.getY(), gp.getTileSize(), gp.getTileSize(), null);
   }
