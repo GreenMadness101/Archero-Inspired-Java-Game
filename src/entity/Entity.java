@@ -1,5 +1,7 @@
 package entity;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -9,34 +11,43 @@ import main.GamePanel;
 public class Entity 
 {
     GamePanel gp;
-    private int x,y;
-
-    //update this value to make faster
-    private int speed;
-
-    //basically used to store image files
+    
+    //IMAGES
     private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    private String direction = "down";
-
+    private BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+    
+    //IMAGE SWITCHER
     private int spriteCounter = 0;
     private boolean spriteBool = false;
-
+    
+    //COLLISION
     private Rectangle solidArea;
     private int solidAreaDefaultX;
     private int solidAreaDefaultY;
-
+    
     private boolean collisionOn = false;
-
+    
+    //COUNTERS
     //USED IN SETACTION for Monster
     private int actionLockCounter = 0;
-
+    private int dyingCounter = 0;
+    
     private BufferedImage image1, image2, image3;
     private String name;
     private boolean collision = false;
-
+    
     //CHARACTER STATUS
     private int maxLife;
     private int life;
+    private int x,y;
+    private int speed;
+    private String direction = "down";
+
+    private boolean alive = true;
+    private boolean dying = false;
+
+    //delete 
+    private boolean attacking = false;
 
     //FOR PROJECTILE
     private int maxMana;
@@ -102,6 +113,7 @@ public class Entity
             spriteBool = !spriteBool;
             spriteCounter = 0;
         }
+
     }
 
     public void draw(Graphics2D g2)
@@ -139,8 +151,69 @@ public class Entity
                 break;
         }
 
+        //HP BAR MONSTER
+
+        if(name.equals("monster"))
+        {
+            g2.setColor(new Color(35, 35, 35));
+            
+            g2.setColor(new Color(255, 0, 30));
+            //CHekc if x and y are right varaibles
+            g2.fillRect(x, y - 15, gp.getTileSize(), 10);
+        }
+        // if(name.equals("player"))
+        // {
+        //     createPlayerHealthBar(g2);
+        // }
+
+        if(dying)
+        {
+            dyingAnimation(g2);
+        }
+        
         g2.drawImage(image, x, y, gp.getTileSize(), gp.getTileSize(), null);
     }
+
+    public void dyingAnimation(Graphics2D g2)
+    {
+        dyingCounter++;
+        if(dyingCounter <= 5)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }
+        if(dyingCounter > 5 && dyingCounter <= 10)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+        if(dyingCounter > 10 && dyingCounter <= 15)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }
+        if(dyingCounter > 15 && dyingCounter <= 20)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+        if(dyingCounter > 20 && dyingCounter <= 25)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }        
+        if(dyingCounter > 30 && dyingCounter <= 25)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+        if(dyingCounter > 25 && dyingCounter <= 40)
+        {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }
+        if(dyingCounter > 40)
+        {
+            dying = false;
+            alive = false;
+        }
+        
+    }
+
+
 
     //GETTER AND SETTER FUNCTIONS
     //x and y
@@ -366,6 +439,7 @@ public class Entity
       this.name = name;
     }
 
+<<<<<<< HEAD
     public int getMaxMana()
     {
         return maxMana;
@@ -392,6 +466,41 @@ public class Entity
     {
         this.projectile = projectile;
     }
+=======
+    //delete
+    //ATTACKING
+    public void setAttacking(boolean attacking)
+    {
+        this.attacking = attacking;
+    }
+    public boolean getAttacking()
+    {
+        return attacking;
+    }
+
+    //ALIVE and DEAD
+    public boolean getAlive()
+    {
+        return alive;
+    }
+    public void setAlive(boolean alive) 
+    {
+      this.alive = alive;
+    }
+    public boolean getDying()
+    {
+        return dying;
+    }
+    public void setDying(boolean dying) 
+    {
+      this.dying = dying;
+    }
+
+ 
+    
+
+
+>>>>>>> 910656d6ff7015e7d18272eb7f206e0cce1bf7be
 
     
 }

@@ -21,6 +21,8 @@ public class Player extends Entity
     super(gp);
     this.keyH = keyH;
 
+    setName("player");
+
     //can adjust values to change collision
     setSolidArea(new Rectangle(8 , 16 , 32, 32));
 
@@ -61,9 +63,41 @@ public class Player extends Entity
       e.printStackTrace();
     }
   }
+  //delete
+  public void getPlayerAttackImage()
+  {
+    try 
+    {
+      //Update Image Files HERE (USE SIMILAR NAMING)
+      // the /res/player/ is there due to the images being in a separate package
+      //use Utility Tool if scaling is needed
+      setUp1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_up_1.png")));
+      setUp2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_up_2.png")));
+      setDown1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_down_1.png")));
+      setDown2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_down_2.png")));
+      setRight1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_right_1.png")));
+      setRight2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_right_2.png")));
+      setLeft1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_left_1.png")));
+      setLeft2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_left_2.png")));
+    }
+    catch(IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
 
   public void update()
   {
+    //delete
+    if(keyH.getEnterPressed())
+    {
+      //setAttacking(true);
+      //temp
+      gp.monster[0].setDying(true);
+      gp.getPlayer().setDying(false);
+      System.out.println(gp.getPlayer().getDying());
+    }
+
     if(keyH.getDownPressed() || keyH.getUpPressed() || keyH.getLeftPressed() || keyH.getRightPressed())
     {
       if(keyH.getUpPressed())
@@ -124,6 +158,17 @@ public class Player extends Entity
     }
   }
 
+  //delete
+  public void attacking()
+  {
+    setSpriteCounter(getSpriteCounter() + 1);
+
+    // if(getSpriteBool() <= 5)
+    // {
+     
+    // }
+  }
+
   public void draw(Graphics2D g2)
   {
     BufferedImage image = null;
@@ -159,7 +204,17 @@ public class Player extends Entity
         break;
     }
 
+    createPlayerHealthBar(g2);
+
+
     g2.drawImage(image, this.getX(), this.getY(), gp.getTileSize(), gp.getTileSize(), null);
+  }
+
+  public void createPlayerHealthBar(Graphics2D g2)
+  {
+      g2.setColor(new Color(31, 160, 22));
+      //CHekc if x and y are right varaibles
+      g2.fillRect(getX() - 5, getY() - 15, gp.getTileSize() + 10, 10);
   }
 
 }

@@ -22,7 +22,7 @@ public class MON_GreenSlime extends Entity
 
     this.gp = gp;
 
-    //name = "Green Slime";
+    setName("monster");
     setSpeed(1);
     setMaxLife(4);
     setLife(getMaxLife());
@@ -52,7 +52,7 @@ public class MON_GreenSlime extends Entity
   public void setAction()
   {
     setActionLockCounter(getActionLockCounter()+1);
-
+    
     if(getActionLockCounter() == 10)
     {
       int difX = Math.abs(this.getX() - gp.getPlayer().getX());
