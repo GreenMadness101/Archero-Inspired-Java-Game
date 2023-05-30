@@ -22,7 +22,7 @@ public class MON_GreenSlime extends Entity
 
     this.gp = gp;
 
-    //name = "Green Slime";
+    setName("monster");
     setSpeed(1);
     setMaxLife(4);
     setLife(getMaxLife());

@@ -21,6 +21,8 @@ public class Player extends Entity
     super(gp);
     this.keyH = keyH;
 
+    setName("player");
+
     //can adjust values to change collision
     setSolidArea(new Rectangle(8 , 16 , 32, 32));
 
@@ -202,8 +204,17 @@ public class Player extends Entity
         break;
     }
 
+    createPlayerHealthBar(g2);
+
 
     g2.drawImage(image, this.getX(), this.getY(), gp.getTileSize(), gp.getTileSize(), null);
+  }
+
+  public void createPlayerHealthBar(Graphics2D g2)
+  {
+      g2.setColor(new Color(31, 160, 22));
+      //CHekc if x and y are right varaibles
+      g2.fillRect(getX() - 5, getY() - 15, gp.getTileSize() + 10, 10);
   }
 
 }
