@@ -38,6 +38,12 @@ public class Entity
     private int maxLife;
     private int life;
 
+    //FOR PROJECTILE
+    private int maxMana;
+    private int mana;
+    private Projectile projectile;
+    
+
 
 
     public Entity(GamePanel gp)
@@ -358,6 +364,33 @@ public class Entity
     public void setName(String name) 
     {
       this.name = name;
+    }
+
+    public int getMaxMana()
+    {
+        return maxMana;
+    }
+    public void setMaxMana(int maxMana)
+    {
+        this.maxMana = maxMana;
+    }
+
+    public int getMana()
+    {
+        return mana;
+    }
+    public void setMana(int mana)
+    {
+        this.mana = mana;
+    }
+
+    public Projectile getProjectile()
+    {
+        return projectile;
+    }
+    public void setProjectile(Projectile projectile)
+    {
+        this.projectile = projectile;
     }
 
     
