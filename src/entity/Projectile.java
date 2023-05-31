@@ -21,6 +21,21 @@ public class Projectile extends Entity
     }
 
     public void update(){
+      if(user == gp.getPlayer())
+      {
+
+        //IF PROJECTILE HITS A MONSTER IT DISAPPEARS
+        int monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
+        if(monsterIndex != 999)
+        {
+          gp.getPlayer().
+          setAlive(false);
+        }
+      }
+      if(user != gp.getPlayer())
+      {
+
+      }
         switch(getDirection()){
             case "up":
             setY(getY() - getSpeed());
