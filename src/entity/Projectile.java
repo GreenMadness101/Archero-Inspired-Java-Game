@@ -16,6 +16,7 @@ public class Projectile extends Entity
         setDirection(direction);
         this.user = user;
         setLife(getMaxLife());
+        setAlive(true);
 
 
     }
