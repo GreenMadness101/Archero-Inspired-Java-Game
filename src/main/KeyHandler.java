@@ -70,7 +70,7 @@ private boolean shotKeyPressed;
                 break;
             case KeyEvent.VK_F:
                 shotKeyPressed = false; 
-                break;    
+                break;
 
         }
     }
