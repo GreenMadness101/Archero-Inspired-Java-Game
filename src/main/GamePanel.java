@@ -48,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable
   public Entity monster[] = new Entity[20];
 
   private ArrayList<Entity> entityList = new ArrayList<Entity>();
+  private ArrayList<Entity> projectileList = new ArrayList<Entity>();
 
 
   //TILES
@@ -143,6 +144,22 @@ public class GamePanel extends JPanel implements Runnable
 
       }
     }
+
+    for(int i  = 0; i < projectileList.size(); i++)
+    {
+      if(projectileList.get(i) != null)
+      {
+        if(projectileList.get(i).getAlive())
+        {
+          projectileList.get(i).update();
+        }
+        if(!projectileList.get(i).getAlive())
+        {
+          projectileList.remove(i);
+        }
+
+      }
+    }
   }
 
   @Override
@@ -164,6 +181,14 @@ public class GamePanel extends JPanel implements Runnable
       if(monster[i] != null)
       {
         entityList.add(monster[i]);
+      }
+    }
+
+    for(int i = 0; i <projectileList.size(); i++)
+    {
+      if(projectileList.get(i) != null)
+      {
+        entityList.add(projectileList.get(i));
       }
     }
 
@@ -262,5 +287,12 @@ public class GamePanel extends JPanel implements Runnable
   {
       return tileM;
   }
+
+  public ArrayList<Entity> getProjectileList()
+  {
+    return projectileList;
+  }
+
+
 
 }

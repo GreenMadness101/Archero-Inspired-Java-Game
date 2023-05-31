@@ -9,6 +9,7 @@ public class KeyHandler implements KeyListener
 
 private boolean upPressed, downPressed, leftPressed, rightPressed;
 private boolean enterPressed;
+private boolean shotKeyPressed;
 
     @Override
     public void keyTyped(KeyEvent e) 
@@ -37,6 +38,9 @@ private boolean enterPressed;
             case KeyEvent.VK_ENTER:
                 enterPressed = true;
                 break;
+            case KeyEvent.VK_F:
+                shotKeyPressed = true; 
+                break;   
 
         }
     }
@@ -64,6 +68,9 @@ private boolean enterPressed;
             case KeyEvent.VK_ENTER:
                 enterPressed = false;
                 break;
+            case KeyEvent.VK_F:
+                shotKeyPressed = false; 
+                break;    
 
         }
     }
@@ -112,6 +119,14 @@ public boolean getEnterPressed()
     return enterPressed;
 }
 
+public void setShotKeyPressed(boolean shotKeyPressed)
+{
+    this.shotKeyPressed = shotKeyPressed;
+}
+public boolean getShotKeyPressed()
+{
+    return shotKeyPressed;
+}
 
     
 }

@@ -10,6 +10,7 @@ import javax.swing.SpinnerDateModel;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Projectile;
 
 
 public class Player extends Entity
@@ -41,6 +42,7 @@ public class Player extends Entity
     //LIVES
     setMaxLife(6);
     setLife(getMaxLife());
+    setProjectile(new OBJ_Projectile(gp));
   }
 
   public void getPlayerImage()
@@ -114,6 +116,13 @@ public class Player extends Entity
       if(keyH.getRightPressed())
       {
         setDirection("right");
+      }
+
+      if(keyH.getShotKeyPressed() && !getAlive())
+      {
+        //SET DEFAULT COORDINATED, DIRECTION, AND USER
+        getProjectile().set(getX(), getY(), getDirection(), true, this);
+        gp.getProjectileList().add(getProjectile());
       }
 
       // CHECK TILE COLLISION

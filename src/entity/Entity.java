@@ -439,7 +439,7 @@ public class Entity
       this.name = name;
     }
 
-<<<<<<< HEAD
+
     public int getMaxMana()
     {
         return maxMana;
@@ -466,7 +466,7 @@ public class Entity
     {
         this.projectile = projectile;
     }
-=======
+
     //delete
     //ATTACKING
     public void setAttacking(boolean attacking)
@@ -495,12 +495,13 @@ public class Entity
     {
       this.dying = dying;
     }
+    
 
  
     
 
 
->>>>>>> 910656d6ff7015e7d18272eb7f206e0cce1bf7be
 
-    
+
+
 }

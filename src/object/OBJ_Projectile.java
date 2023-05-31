@@ -9,7 +9,7 @@ import main.GamePanel;
 
 public class OBJ_Projectile extends Projectile {
 
-    GamePanel gp;
+    private GamePanel gp;
     public OBJ_Projectile(GamePanel gp) {
         super(gp);
         this.gp = gp;
@@ -19,12 +19,12 @@ public class OBJ_Projectile extends Projectile {
         setMaxLife(80);
         setLife(getMaxLife());
         //attack = 2;
-        //alive = false;
+        setAlive(false);
         getImage();
 
 
     }
-    //update image files here
+    //update image files herew
     public void getImage()
     {
      try {
