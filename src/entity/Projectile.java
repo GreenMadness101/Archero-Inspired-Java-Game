@@ -10,32 +10,18 @@ public class Projectile extends Entity
         super(gp);
     }
 
-    public void set(int worldX, int worldY, String direction, boolean alive, Entity user){
-        setX(worldX);
-        setY(worldY);
+    public void set(int x, int y, String direction, boolean alive, Entity user){
+        setX(x);
+        setY(y);
         setDirection(direction);
         this.user = user;
         setLife(getMaxLife());
+        setAlive(true);
 
 
     }
 
     public void update(){
-      if(user == gp.getPlayer())
-      {
-
-        //IF PROJECTILE HITS A MONSTER IT DISAPPEARS
-        int monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
-        if(monsterIndex != 999)
-        {
-          gp.getPlayer().
-          setAlive(false);
-        }
-      }
-      if(user != gp.getPlayer())
-      {
-
-      }
         switch(getDirection()){
             case "up":
             setY(getY() - getSpeed());
@@ -50,11 +36,21 @@ public class Projectile extends Entity
             setX(getX() - getSpeed());
             break;
         }
+
+        //Attempt to make it not alive if the fireball collides with walls or tiles
+        setCollisionOn(false);
+        gp.getCollisionChecker().checkTile(this);
+
         //causes the projectile to dissapear
-        setLife(getLife() - 1);
-        if(getLife()<= 0)
+        // setLife(getLife() - 1);
+        // if(getLife()  <= 0)
+        // {
+        //   System.out.println("hiiii");
+        //     setAlive(false);
+        // }
+        if(getCollisionOn())
         {
-            setAlive(false);
+          setAlive(false);
         }
 
         setSpriteCounter(getSpriteCounter() + 1);
