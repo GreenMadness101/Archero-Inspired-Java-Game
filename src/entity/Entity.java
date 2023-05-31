@@ -50,11 +50,10 @@ public class Entity
     private boolean attacking = false;
 
     //FOR PROJECTILE
-    private int maxMana;
-    private int mana;
+    // private int maxMana;
+    // private int mana;
     private Projectile projectile;
     
-
 
 
     public Entity(GamePanel gp)
@@ -440,23 +439,23 @@ public class Entity
     }
 
 
-    public int getMaxMana()
-    {
-        return maxMana;
-    }
-    public void setMaxMana(int maxMana)
-    {
-        this.maxMana = maxMana;
-    }
+    // public int getMaxMana()
+    // {
+    //     return maxMana;
+    // }
+    // public void setMaxMana(int maxMana)
+    // {
+    //     this.maxMana = maxMana;
+    // }
 
-    public int getMana()
-    {
-        return mana;
-    }
-    public void setMana(int mana)
-    {
-        this.mana = mana;
-    }
+    // public int getMana()
+    // {
+    //     return mana;
+    // }
+    // public void setMana(int mana)
+    // {
+    //     this.mana = mana;
+    // }
 
     public Projectile getProjectile()
     {

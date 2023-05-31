@@ -42,6 +42,8 @@ public class Player extends Entity
     //LIVES
     setMaxLife(6);
     setLife(getMaxLife());
+
+    //CHANGE
     setProjectile(new OBJ_Projectile(gp));
   }
 
@@ -118,13 +120,6 @@ public class Player extends Entity
         setDirection("right");
       }
 
-      if(keyH.getShotKeyPressed() && !getAlive())
-      {
-        //SET DEFAULT COORDINATED, DIRECTION, AND USER
-        getProjectile().set(getX(), getY(), getDirection(), true, this);
-        gp.getProjectileList().add(getProjectile());
-      }
-
       // CHECK TILE COLLISION
       setCollisionOn(false);
       gp.getCollisionChecker().checkTile(this);
@@ -164,6 +159,13 @@ public class Player extends Entity
         setSpriteBool(!getSpriteBool());
         setSpriteCounter(0);
       }
+    }
+
+    if(keyH.getShotKeyPressed() && !getProjectile().getAlive())
+    {
+      //SET DEFAULT COORDINATED, DIRECTION, AND USER
+      getProjectile().set(getX(), getY(), getDirection(), true, this);
+      gp.getProjectileList().add(getProjectile());
     }
   }
 
