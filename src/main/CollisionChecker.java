@@ -81,7 +81,7 @@ public class CollisionChecker
 
     // }
 
-  public int checkEntity(Entity entity, Entity[] target)
+  public boolean checkEntity(Entity entity, Entity[] target)
   {
     int index = 999;
 
@@ -102,6 +102,7 @@ public class CollisionChecker
             if(entity.getSolidArea().intersects(target[i].getSolidArea()))
             {
               entity.setCollisionOn(true);
+              entity.setCollisionDamage(true);
               index = i;
             }
             break;
@@ -110,6 +111,7 @@ public class CollisionChecker
             if(entity.getSolidArea().intersects(target[i].getSolidArea()))
             {
               entity.setCollisionOn(true);
+              entity.setCollisionDamage(true);
               index = i;
             }
             break;
@@ -118,6 +120,7 @@ public class CollisionChecker
             if(entity.getSolidArea().intersects(target[i].getSolidArea()))
             {
               entity.setCollisionOn(true);
+              entity.setCollisionDamage(true);
               index = i;
             }
             break;
@@ -126,6 +129,7 @@ public class CollisionChecker
             if(entity.getSolidArea().intersects(target[i].getSolidArea()))
             {
               entity.setCollisionOn(true);
+              entity.setCollisionDamage(true);
               index = i;
             }
             break;
@@ -138,8 +142,11 @@ public class CollisionChecker
         target[i].getSolidArea().y = target[i].getSolidAreaDefaultY();
       }
     }
-    return index;
-
+    if(index != 999)
+    {
+      return true;
+    }
+    return false;
   }
 
   public void checkPlayer(Entity entity)
@@ -157,6 +164,7 @@ public class CollisionChecker
         if(entity.getSolidArea().intersects(gp.getPlayer().getSolidArea()))
         {
           entity.setCollisionOn(true);
+          entity.setCollisionDamage(true);
         }
         break;
       case "down":
@@ -164,6 +172,7 @@ public class CollisionChecker
         if(entity.getSolidArea().intersects(gp.getPlayer().getSolidArea()))
         {
           entity.setCollisionOn(true);
+          entity.setCollisionDamage(true);
         }
         break;
       case "left":
@@ -171,6 +180,7 @@ public class CollisionChecker
         if(entity.getSolidArea().intersects(gp.getPlayer().getSolidArea()))
         {
           entity.setCollisionOn(true);
+          entity.setCollisionDamage(true);
         }
         break;
       case "right":
@@ -178,6 +188,7 @@ public class CollisionChecker
         if(entity.getSolidArea().intersects(gp.getPlayer().getSolidArea()))
         {
           entity.setCollisionOn(true);
+          entity.setCollisionDamage(true);
         }
         break;
     }
