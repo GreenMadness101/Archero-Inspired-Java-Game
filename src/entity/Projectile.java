@@ -41,8 +41,7 @@ public class Projectile extends Entity
         setLife(getLife() - 1);
         if(getLife()  <= 0)
         {
-          System.out.println("hiiii");
-            setAlive(false);
+          setAlive(false);
         }
 
 

@@ -16,7 +16,7 @@ public class OBJ_Projectile extends Projectile {
         //TODO Auto-generated constructor stub
         setName("Fireball");
         setSpeed(5);
-        setMaxLife(80);
+        setMaxLife(200);
         setLife(getMaxLife());
         //attack = 2;
         setAlive(false);
