@@ -90,6 +90,8 @@ public class Player extends Entity
     }
   }
 
+
+
   public void update()
   {
     //delete
@@ -175,11 +177,18 @@ public class Player extends Entity
       }
     }
 
-    if(keyH.getShotKeyPressed() && !getProjectile().getAlive())
+    if(keyH.getShotKeyPressed() && !getProjectile().getAlive() && getShotAvailableCounter() == 30)
     {
       //SET DEFAULT COORDINATED, DIRECTION, AND USER
       getProjectile().set(getX(), getY(), getDirection(), true, this);
       gp.getProjectileList().add(getProjectile());
+      setShotAvailableCounter(0);
+    }
+
+    //If you shoot a fireball you cannot shoot another one for another 30 frames
+    if(getShotAvailableCounter() < 30)
+    {
+      setShotAvailableCounter(getShotAvailableCounter() + 1);
     }
   }
 

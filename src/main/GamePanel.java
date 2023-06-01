@@ -293,6 +293,10 @@ public class GamePanel extends JPanel implements Runnable
     return projectileList;
   }
 
+  public Entity[] getMonsterArr()
+  {
+    return monster;
+  }
 
 
 }

@@ -54,6 +54,7 @@ public class Entity
     // private int maxMana;
     // private int mana;
     private Projectile projectile;
+    private int shotAvailableCounter;
     
 
 
@@ -502,7 +503,14 @@ public class Entity
     {
         return collisionDamage;
     }
-    
+    public int getShotAvailableCounter()
+    {
+        return shotAvailableCounter;
+    }
+    public void setShotAvailableCounter(int shotAvailableCounter)
+    {
+        this.shotAvailableCounter += shotAvailableCounter;
+    }
 
  
     
