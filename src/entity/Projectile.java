@@ -22,6 +22,14 @@ public class Projectile extends Entity
     }
 
     public void update(){
+        if(user ==  gp.getPlayer())
+        {
+
+        }
+        if(user != gp.getPlayer())
+        {
+          
+        }
         switch(getDirection()){
             case "up":
             setY(getY() - getSpeed());
