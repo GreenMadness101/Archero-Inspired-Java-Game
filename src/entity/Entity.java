@@ -35,6 +35,7 @@ public class Entity
     private BufferedImage image1, image2, image3;
     private String name;
     private boolean collision = false;
+    private boolean collisionDamage = false;
     
     //CHARACTER STATUS
     private int maxLife;
@@ -493,6 +494,13 @@ public class Entity
     public void setDying(boolean dying) 
     {
       this.dying = dying;
+    }
+    public void setCollisionDamage(boolean collisionDamage) {
+        this.collisionDamage = collisionDamage;
+    }
+    public boolean getCollisionDamage()
+    {
+        return collisionDamage;
     }
     
 

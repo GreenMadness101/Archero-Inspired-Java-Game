@@ -40,7 +40,7 @@ public class Player extends Entity
     setDirection("down");
 
     //LIVES
-    setMaxLife(6);
+    setMaxLife(100);
     setLife(getMaxLife());
 
     //CHANGE
@@ -122,8 +122,22 @@ public class Player extends Entity
 
       // CHECK TILE COLLISION
       setCollisionOn(false);
+      setCollisionDamage(false);
       gp.getCollisionChecker().checkTile(this);
+      
       gp.getCollisionChecker().checkEntity(this, gp.monster);
+      if(getCollisionDamage())
+      {
+        int count = 0;
+        count++;
+        System.out.println("blud");
+        if(count > 10)
+        {
+          setLife(getLife() - 10);
+          System.out.println(getLife());
+          count =0;
+        }
+      }
 
 
       
@@ -223,9 +237,14 @@ public class Player extends Entity
 
   public void createPlayerHealthBar(Graphics2D g2)
   {
-      g2.setColor(new Color(31, 160, 22));
-      //CHekc if x and y are right varaibles
-      g2.fillRect(getX() - 5, getY() - 15, gp.getTileSize() + 10, 10);
+
+    g2.setColor(Color.black);
+    g2.fillRect(getX() - 6, getY() - 16, gp.getTileSize() + 12, 12);
+
+    g2.setColor(new Color(31, 160, 22));
+    double healthRatio = getLife()/getMaxLife();
+    g2.fillRect(getX() - 5, getY() - 15, (int)((gp.getTileSize() + 10) * healthRatio), 10);
   }
+
 
 }

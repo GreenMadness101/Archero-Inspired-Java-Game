@@ -45,21 +45,13 @@ public class Projectile extends Entity
             break;
         }
 
-        //Attempt to make it not alive if the fireball collides with walls or tiles
-        setCollisionOn(false);
-        gp.getCollisionChecker().checkTile(this);
-
         //causes the projectile to dissapear
-        // setLife(getLife() - 1);
-        // if(getLife()  <= 0)
-        // {
-        //   System.out.println("hiiii");
-        //     setAlive(false);
-        // }
-        if(getCollisionOn())
+        setLife(getLife() - 1);
+        if(getLife()  <= 0)
         {
           setAlive(false);
         }
+
 
         setSpriteCounter(getSpriteCounter() + 1);
         //change this value to decide how fast it animates

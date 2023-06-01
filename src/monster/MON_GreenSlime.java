@@ -2,7 +2,6 @@ package monster;
 
 import java.awt.Rectangle;
 import java.io.IOException;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 
