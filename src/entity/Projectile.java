@@ -31,6 +31,7 @@ public class Projectile extends Entity
             //gp.getPlayer().damageMonster(monsterIndex, attack);
             setAlive(false);
           }
+         
         }
         
         switch(getDirection()){
