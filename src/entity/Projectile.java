@@ -28,8 +28,18 @@ public class Projectile extends Entity
           boolean monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
         if(monsterIndex)
         {
+<<<<<<< HEAD
           //gp.getPlayer().damageMonster(monsterIndex, attack);
           setAlive(false);
+=======
+           boolean monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
+          if(monsterIndex)
+          {
+            //gp.getPlayer().damageMonster(monsterIndex, attack);
+            setAlive(false);
+          }
+         
+>>>>>>> 74541a0783a645dc9a17163591a90eb815045c95
         }
       }
         
