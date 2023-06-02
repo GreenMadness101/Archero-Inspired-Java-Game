@@ -26,6 +26,9 @@ public class Projectile extends Entity
       if(user == gp.getPlayer())
       {
           boolean monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
+          setCollisionOn(false);
+          setCollisionDamage(false);
+          gp.getCollisionChecker().checkTile(this);
         if(monsterIndex)
         {
           monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
@@ -35,6 +38,11 @@ public class Projectile extends Entity
             setAlive(false);
           }
          
+        }
+        //Projectile Collision with Tiles
+        if(!getCollisionOn())
+        {
+          setAlive(false);
         }
       }
         
