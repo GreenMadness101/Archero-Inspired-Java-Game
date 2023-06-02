@@ -40,7 +40,7 @@ public class Projectile extends Entity
          
         }
         //Projectile Collision with Tiles
-        if(!getCollisionOn())
+        if(getCollisionOn())
         {
           setAlive(false);
         }
