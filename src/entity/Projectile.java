@@ -23,15 +23,15 @@ public class Projectile extends Entity
 
     public void update(){
       //collision for projectile   
-      if(user ==  gp.getPlayer())
+      if(user == gp.getPlayer())
+      {
+          boolean monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
+        if(monsterIndex)
         {
-           boolean monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
-          if(monsterIndex)
-          {
-            //gp.getPlayer().damageMonster(monsterIndex, attack);
-            setAlive(false);
-          }
+          //gp.getPlayer().damageMonster(monsterIndex, attack);
+          setAlive(false);
         }
+      }
         
         switch(getDirection()){
             case "up":
