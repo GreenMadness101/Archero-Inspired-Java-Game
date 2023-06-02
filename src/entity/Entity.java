@@ -31,6 +31,7 @@ public class Entity
     //USED IN SETACTION for Monster
     private int actionLockCounter = 0;
     private int dyingCounter = 0;
+    private int damageCounter = 0;
     
     private BufferedImage image1, image2, image3;
     private String name;
@@ -47,12 +48,7 @@ public class Entity
     private boolean alive = true;
     private boolean dying = false;
 
-    //delete 
-    private boolean attacking = false;
-
     //FOR PROJECTILE
-    // private int maxMana;
-    // private int mana;
     private Projectile projectile;
     private int shotAvailableCounter;
     
@@ -78,6 +74,14 @@ public class Entity
         //gp.cChecker.checkObject(this, false);
 
         gp.getCollisionChecker().checkPlayer(this);
+        damageCounter++;
+        if(collisionDamage && damageCounter > 40)
+        {
+            System.out.println("hi");
+            gp.getPlayer().setLife(gp.getPlayer().getLife() - 10);
+            collisionDamage = false;
+            damageCounter = 0;
+        }
 
         //STOP PLAYER MOVEMENT IF COLLISION
         if(!collisionOn)
@@ -468,17 +472,6 @@ public class Entity
         this.projectile = projectile;
     }
 
-    //delete
-    //ATTACKING
-    public void setAttacking(boolean attacking)
-    {
-        this.attacking = attacking;
-    }
-    public boolean getAttacking()
-    {
-        return attacking;
-    }
-
     //ALIVE and DEAD
     public boolean getAlive()
     {
@@ -510,6 +503,15 @@ public class Entity
     public void setShotAvailableCounter(int shotAvailableCounter)
     {
         this.shotAvailableCounter += shotAvailableCounter;
+    }
+
+    //DAMAGE COUNTER
+    public void setDamageCounter(int damageCounter) 
+    {
+        this.damageCounter = damageCounter;
+    }
+    public int getDamageCounter() {
+        return damageCounter;
     }
 
  

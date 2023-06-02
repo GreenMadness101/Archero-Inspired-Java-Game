@@ -128,18 +128,6 @@ public class Player extends Entity
       gp.getCollisionChecker().checkTile(this);
       
       gp.getCollisionChecker().checkEntity(this, gp.monster);
-      if(getCollisionDamage())
-      {
-        int count = 0;
-        count++;
-        System.out.println("blud");
-        if(count > 10)
-        {
-          setLife(getLife() - 10);
-          System.out.println(getLife());
-          count =0;
-        }
-      }
 
 
       
@@ -182,7 +170,6 @@ public class Player extends Entity
       //SET DEFAULT COORDINATED, DIRECTION, AND USER
       getProjectile().set(getX(), getY(), getDirection(), true, this);
       gp.getProjectileList().add(getProjectile());
-     
     }
 
     
@@ -247,7 +234,7 @@ public class Player extends Entity
     g2.fillRect(getX() - 6, getY() - 16, gp.getTileSize() + 12, 12);
 
     g2.setColor(new Color(31, 160, 22));
-    double healthRatio = getLife()/getMaxLife();
+    double healthRatio = ((double)getLife())/getMaxLife();
     g2.fillRect(getX() - 5, getY() - 15, (int)((gp.getTileSize() + 10) * healthRatio), 10);
   }
 
