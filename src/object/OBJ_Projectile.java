@@ -14,7 +14,7 @@ public class OBJ_Projectile extends Projectile
         super(gp);
         setName("Fireball");
         setSpeed(7);
-        setMaxLife(200);
+        setMaxLife(80);
         setLife(getMaxLife());
         //attack = 2;
         setAlive(false);
