@@ -14,7 +14,7 @@ public class Entity
     
     //IMAGES
     private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    private BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+    //private BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     
     //IMAGE SWITCHER
     private int spriteCounter = 0;
@@ -32,6 +32,7 @@ public class Entity
     private int actionLockCounter = 0;
     private int dyingCounter = 0;
     private int damageCounter = 0;
+    private int shootCounter = 0;
     
     private BufferedImage image1, image2, image3;
     private String name;
@@ -68,12 +69,11 @@ public class Entity
 
         collisionOn = false;
         gp.getCollisionChecker().checkTile(this);
-
+        gp.getCollisionChecker().checkBorder(this);
         //use when using objects
-        
         //gp.cChecker.checkObject(this, false);
-
         gp.getCollisionChecker().checkPlayer(this);
+
         damageCounter++;
         if(collisionDamage && damageCounter > 40)
         {
@@ -444,25 +444,6 @@ public class Entity
       this.name = name;
     }
 
-
-    // public int getMaxMana()
-    // {
-    //     return maxMana;
-    // }
-    // public void setMaxMana(int maxMana)
-    // {
-    //     this.maxMana = maxMana;
-    // }
-
-    // public int getMana()
-    // {
-    //     return mana;
-    // }
-    // public void setMana(int mana)
-    // {
-    //     this.mana = mana;
-    // }
-
     public Projectile getProjectile()
     {
         return projectile;
@@ -512,6 +493,16 @@ public class Entity
     }
     public int getDamageCounter() {
         return damageCounter;
+    }
+
+    //SHOOT COUNTER
+    public int getShootCounter() 
+    {
+      return shootCounter;
+    }
+    public void setShootCounter(int shootCounter) 
+    {
+      this.shootCounter = shootCounter;
     }
 
  

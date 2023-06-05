@@ -243,6 +243,11 @@ public class CollisionChecker
     }
   }
 
+  public void projectileCheckTile(Entity entity)
+  {
+    
+  }
+
   
   
   

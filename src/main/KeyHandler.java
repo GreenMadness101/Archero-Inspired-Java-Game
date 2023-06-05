@@ -2,7 +2,7 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import entity.*;
+
 
 public class KeyHandler implements KeyListener 
 {
@@ -38,9 +38,9 @@ private boolean shotKeyPressed;
             case KeyEvent.VK_ENTER:
                 enterPressed = true;
                 break;
-            case KeyEvent.VK_F:
-                shotKeyPressed = true; 
-                break;   
+            // case KeyEvent.VK_F:
+            //     shotKeyPressed = true; 
+            //     break;   
 
         }
     }
@@ -119,13 +119,17 @@ public boolean getEnterPressed()
     return enterPressed;
 }
 
-public void setShotKeyPressed(boolean shotKeyPressed)
-{
-    this.shotKeyPressed = shotKeyPressed;
-}
+// public void setShotKeyPressed(boolean shotKeyPressed)
+// {
+//     this.shotKeyPressed = shotKeyPressed;
+// }
 public boolean getShotKeyPressed()
 {
-    return shotKeyPressed;
+    if(!downPressed && !upPressed && !leftPressed && !rightPressed)
+    {
+        return true;
+    }
+    return false;
 }
 
     

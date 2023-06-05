@@ -7,14 +7,13 @@ import javax.imageio.ImageIO;
 import entity.Projectile;
 import main.GamePanel;
 
-public class OBJ_Projectile extends Projectile {
+public class OBJ_Projectile extends Projectile 
+{
 
-    private GamePanel gp;
     public OBJ_Projectile(GamePanel gp) {
         super(gp);
-        this.gp = gp;
         setName("Fireball");
-        setSpeed(5);
+        setSpeed(7);
         setMaxLife(200);
         setLife(getMaxLife());
         //attack = 2;
@@ -23,6 +22,10 @@ public class OBJ_Projectile extends Projectile {
 
 
     }
+
+
+
+
     //update image files herew
     public void getImage()
     {

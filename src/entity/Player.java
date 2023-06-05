@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.SpinnerDateModel;
 
 import main.GamePanel;
 import main.KeyHandler;
@@ -167,26 +166,28 @@ public class Player extends Entity
       }
     }
 
-    if(keyH.getShotKeyPressed() && !getProjectile().getAlive()) 
+     setShootCounter(getShootCounter() + 1);
+    while(keyH.getShotKeyPressed() && getShootCounter() > 20)
     {
       //SET DEFAULT COORDINATED, DIRECTION, AND USER
-      getProjectile().set(getX(), getY(), getDirection(), true, this);
+
+      //make method to find closest monster
+
+      //placeholder values
+      getProjectile().set(getX(), getY(), 10, 11, true, this);
       gp.getProjectileList().add(getProjectile());
+      setShootCounter(0);
     }
+    // if(keyH.getShotKeyPressed() && !getProjectile().getAlive()) 
+    // {
+    //   //SET DEFAULT COORDINATED, DIRECTION, AND USER
+    //   getProjectile().set(getX(), getY(), getDirection(), true, this);
+    //   gp.getProjectileList().add(getProjectile());
+    // }
 
     
   }
 
-  //delete
-  public void attacking()
-  {
-    setSpriteCounter(getSpriteCounter() + 1);
-
-    // if(getSpriteBool() <= 5)
-    // {
-     
-    // }
-  }
 
   public void draw(Graphics2D g2)
   {
