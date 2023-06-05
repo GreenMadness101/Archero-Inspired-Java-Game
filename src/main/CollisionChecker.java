@@ -199,5 +199,8 @@ public class CollisionChecker
     gp.getPlayer().getSolidArea().x = gp.getPlayer().getSolidAreaDefaultX();
     gp.getPlayer().getSolidArea().y = gp.getPlayer().getSolidAreaDefaultY();
   }
+
+  
+  
   
 }
