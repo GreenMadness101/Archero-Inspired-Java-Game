@@ -27,6 +27,28 @@ public class CollisionChecker
       entityBottomRow = gp.getMaxScreenRow() - 1;
     }
 
+    if(entityBottomRow <= 0)
+    {
+      entityBottomRow = 0;
+    }
+    if(entityTopRow <= 0)
+    {
+      entityTopRow = 0;
+    }
+    if(entityRightCol >= gp.getMaxScreenCol())
+    {
+      entityRightCol = gp.getMaxScreenCol() - 1;
+    }
+    if(entityRightCol <= 0)
+    {
+      entityRightCol = 0;
+    }
+    if(entityLeftCol <= 0)
+    {
+      entityLeftCol = 0;
+    }
+    
+
 
     int tileNum1, tileNum2;
 
@@ -52,6 +74,8 @@ public class CollisionChecker
           entityBottomRow = gp.getMaxScreenRow() - 1;
         }
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityBottomRow];
+        System.out.println(entityRightCol);
+        System.out.println(entityBottomRow);
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityBottomRow];
         if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
         {

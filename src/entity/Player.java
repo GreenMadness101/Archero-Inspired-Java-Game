@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.time.chrono.MinguoDate;
 
 import javax.imageio.ImageIO;
 
@@ -166,15 +167,16 @@ public class Player extends Entity
       }
     }
 
-     setShootCounter(getShootCounter() + 1);
+    setShootCounter(getShootCounter() + 1);
     while(keyH.getShotKeyPressed() && getShootCounter() > 20)
     {
+      
       //SET DEFAULT COORDINATED, DIRECTION, AND USER
 
       //make method to find closest monster
 
       //placeholder values
-      getProjectile().set(getX(), getY(), 10, 11, true, this);
+      getProjectile().set(getX(), getY(), gp.monster[findClosestMonster()].getX(), gp.monster[findClosestMonster()].getY(), true, this);
       gp.getProjectileList().add(getProjectile());
       setShootCounter(0);
     }
@@ -239,6 +241,22 @@ public class Player extends Entity
     g2.setColor(new Color(31, 160, 22));
     double healthRatio = ((double)getLife())/getMaxLife();
     g2.fillRect(getX() - 5, getY() - 15, (int)((gp.getTileSize() + 10) * healthRatio), 10);
+  }
+
+  public int findClosestMonster()
+  {
+    int minIndex = 0;;
+    for(int i = 1; i < gp.monster.length; i++)
+    {
+      if(gp.monster[i] != null)
+      {
+        if(gp.monster[i].getX() < gp.monster[minIndex].getX())
+        {
+          minIndex = i;
+        }
+      }
+    }
+    return minIndex;
   }
 
 

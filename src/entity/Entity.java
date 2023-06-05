@@ -78,7 +78,7 @@ public class Entity
         if(collisionDamage && damageCounter > 40)
         {
             System.out.println("hi");
-            gp.getPlayer().setLife(gp.getPlayer().getLife() - 10);
+            gp.getPlayer().setLife(gp.getPlayer().getLife() - 5);
             collisionDamage = false;
             damageCounter = 0;
         }
