@@ -126,6 +126,8 @@ public class Player extends Entity
       setCollisionOn(false);
       setCollisionDamage(false);
       gp.getCollisionChecker().checkTile(this);
+      gp.getCollisionChecker().checkBorder(this);
+
       
       gp.getCollisionChecker().checkEntity(this, gp.monster);
 

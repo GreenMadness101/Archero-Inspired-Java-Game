@@ -34,9 +34,13 @@ public class CollisionChecker
     {
       case "up":
         entityTopRow = ((entityTopY - entity.getSpeed())/gp.getTileSize());
+        if(entityTopRow <= 0)
+        {
+          entityTopRow = 0;
+        }
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityTopRow];
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityTopRow];
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getY() <= 0)
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
         {
           entity.setCollisionOn(true);
         }
@@ -49,25 +53,33 @@ public class CollisionChecker
         }
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityBottomRow];
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityBottomRow];
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getY() + gp.getTileSize() >= gp.getScreenHeight() - 1)
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
         {
           entity.setCollisionOn(true);
         }
         break;
       case "right":
         entityRightCol = ((entityRightX + entity.getSpeed())/gp.getTileSize());
+        if(entityRightCol >= gp.getMaxScreenCol())
+        {
+          entityRightCol = gp.getMaxScreenCol() - 1;
+        }
         tileNum1 = gp.getTileM().mapTileNum[entityRightCol][entityBottomRow];
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityTopRow];
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getX() + gp.getTileSize() >= gp.getScreenWidth())
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
         {
           entity.setCollisionOn(true);
         }
         break;
       case "left":
         entityLeftCol = ((entityLeftX - entity.getSpeed())/gp.getTileSize());
+        if(entityLeftCol <= 0)
+        {
+          entityLeftCol = 0;
+        }
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityBottomRow];
         tileNum2 = gp.getTileM().mapTileNum[entityLeftCol][entityTopRow];
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getX() <= 0)
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
         {
           entity.setCollisionOn(true);
         }
@@ -198,6 +210,37 @@ public class CollisionChecker
     entity.getSolidArea().y = entity.getSolidAreaDefaultY();
     gp.getPlayer().getSolidArea().x = gp.getPlayer().getSolidAreaDefaultX();
     gp.getPlayer().getSolidArea().y = gp.getPlayer().getSolidAreaDefaultY();
+  }
+
+  public void checkBorder(Entity entity)
+  {
+    switch(entity.getDirection())
+    {
+      case "up":
+        if(entity.getY() <= 0)
+        {
+          entity.setCollisionOn(true);
+        }
+        break;
+      case "down":
+        if(entity.getY() + gp.getTileSize() >= gp.getScreenHeight() - 1)
+        {
+          entity.setCollisionOn(true);
+        }
+        break;
+      case "right":
+        if(entity.getX() + gp.getTileSize() >= gp.getScreenWidth())
+        {
+          entity.setCollisionOn(true);
+        }
+        break;
+      case "left":
+        if(entity.getX() <= 0)
+        {
+          entity.setCollisionOn(true);
+        }
+        break;
+    }
   }
 
   

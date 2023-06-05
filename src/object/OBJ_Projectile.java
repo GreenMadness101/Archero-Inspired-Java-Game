@@ -13,7 +13,6 @@ public class OBJ_Projectile extends Projectile {
     public OBJ_Projectile(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        //TODO Auto-generated constructor stub
         setName("Fireball");
         setSpeed(5);
         setMaxLife(200);
@@ -39,7 +38,6 @@ public class OBJ_Projectile extends Projectile {
         
 
     } catch (IOException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
     }
      
