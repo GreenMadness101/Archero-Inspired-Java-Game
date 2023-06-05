@@ -245,18 +245,33 @@ public class Player extends Entity
 
   public int findClosestMonster()
   {
-    int minIndex = 0;;
+    int minIndexX = 0;
+    int minIndexY = 0;
+    int length1;
+    int lenght2;
     for(int i = 1; i < gp.monster.length; i++)
     {
       if(gp.monster[i] != null)
       {
-        if(gp.monster[i].getX() < gp.monster[minIndex].getX())
+        if(gp.monster[i].getX() < gp.monster[minIndexX].getX())
         {
-          minIndex = i;
+          minIndexX = i;
+        }
+      }
+      if(gp.monster[i] != null)
+      {
+        if(gp.monster[i].getX() < gp.monster[minIndexY].getX())
+        {
+          minIndexY = i;
         }
       }
     }
-    return minIndex;
+    if(minIndexX == minIndexY)
+    {
+      return minIndexX;
+    }
+    //lenght1 = Math.abs(Math.pow(getX() - gp.monster[minIndexX].getX()))
+    return minIndexX;
   }
 
 

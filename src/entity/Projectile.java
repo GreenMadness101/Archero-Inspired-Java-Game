@@ -38,6 +38,8 @@ public class Projectile extends Entity
     //System.out.println(angle);
     dX = (int) (7*(Math.cos(angle)));
     dY = (int) (7*(Math.sin(angle)));
+    dX = Math.abs(dX);
+    dY = Math.abs(dY);
     if(monsterX <= playerX)
     {
       dX = dX* -1;
@@ -46,8 +48,8 @@ public class Projectile extends Entity
     {
       dY = dY* -1;
     }
-    // System.out.println(dX);
-    // System.out.println(dY);
+    System.out.println(dX);
+    System.out.println(dY);
 
 
   }

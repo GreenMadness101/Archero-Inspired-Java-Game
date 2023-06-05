@@ -74,8 +74,6 @@ public class CollisionChecker
           entityBottomRow = gp.getMaxScreenRow() - 1;
         }
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityBottomRow];
-        System.out.println(entityRightCol);
-        System.out.println(entityBottomRow);
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityBottomRow];
         if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
         {

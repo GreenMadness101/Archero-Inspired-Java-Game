@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.sql.DriverManager;
 
 import main.GamePanel;
 
@@ -45,6 +46,7 @@ public class Entity
     private int x,y;
     private int speed;
     private String direction = "down";
+    private int damage;
 
     private boolean alive = true;
     private boolean dying = false;
@@ -52,6 +54,7 @@ public class Entity
     //FOR PROJECTILE
     private Projectile projectile;
     private int shotAvailableCounter;
+
     
 
 
@@ -503,6 +506,15 @@ public class Entity
     public void setShootCounter(int shootCounter) 
     {
       this.shootCounter = shootCounter;
+    }
+
+    public void setDamage(int damage) 
+    {
+        this.damage = damage;
+    }
+    public int getDamage() 
+    {
+        return damage;
     }
 
  
