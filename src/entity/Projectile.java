@@ -48,8 +48,6 @@ public class Projectile extends Entity
     {
       dY = dY* -1;
     }
-    System.out.println(dX);
-    System.out.println(dY);
 
 
   }
@@ -61,16 +59,16 @@ public class Projectile extends Entity
       //collision for projectile   
       if(user == gp.getPlayer())
       {
-          boolean monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
+          int monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
           setCollisionOn(false);
           setCollisionDamage(false);
           gp.getCollisionChecker().checkTile(this);
-        if(monsterIndex)
+        if(monsterIndex != 99 )
         {
           monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
-          if(monsterIndex)
+          if(monsterIndex != 999)
           {
-            //gp.getPlayer().damageMonster(monsterIndex, attack);
+            gp.monster[monsterIndex].setLife(gp.monster[monsterIndex].getLife() - gp.getPlayer().getDamage());
             setAlive(false);
           }
          

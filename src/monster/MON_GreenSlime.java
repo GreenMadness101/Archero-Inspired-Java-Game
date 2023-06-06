@@ -23,7 +23,7 @@ public class MON_GreenSlime extends Entity
 
     setName("monster");
     setSpeed(1);
-    setMaxLife(4);
+    setMaxLife(20);
     setLife(getMaxLife());
 
     setSolidArea(new Rectangle(3, 18, 42, 30));
