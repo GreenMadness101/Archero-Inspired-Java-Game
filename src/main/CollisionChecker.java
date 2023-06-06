@@ -115,7 +115,7 @@ public class CollisionChecker
 
     // }
 
-  public boolean checkEntity(Entity entity, Entity[] target)
+  public int checkEntity(Entity entity, Entity[] target)
   {
     int index = 999;
 
@@ -176,11 +176,7 @@ public class CollisionChecker
         target[i].getSolidArea().y = target[i].getSolidAreaDefaultY();
       }
     }
-    if(index != 999)
-    {
-      return true;
-    }
-    return false;
+    return index;
   }
 
   public void checkPlayer(Entity entity)
