@@ -45,6 +45,8 @@ public class Player extends Entity
 
     //CHANGE
     setProjectile(new OBJ_Projectile(gp));
+
+    setDamage(10);
   }
 
   public void getPlayerImage()
@@ -245,33 +247,22 @@ public class Player extends Entity
 
   public int findClosestMonster()
   {
-    int minIndexX = 0;
-    int minIndexY = 0;
+    int minIndex = 0;
     int length1;
     int lenght2;
     for(int i = 1; i < gp.monster.length; i++)
     {
       if(gp.monster[i] != null)
       {
-        if(gp.monster[i].getX() < gp.monster[minIndexX].getX())
+        length1 = (int) Math.sqrt(Math.abs(Math.pow((getX() - gp.monster[i].getX()), 2) - Math.pow((getY() - gp.monster[i].getY()), 2)));
+        lenght2 = (int) Math.sqrt(Math.abs(Math.pow((getX() - gp.monster[minIndex].getX()), 2) - Math.pow((getY() - gp.monster[minIndex].getY()), 2)));
+        if(length1 < lenght2)
         {
-          minIndexX = i;
-        }
-      }
-      if(gp.monster[i] != null)
-      {
-        if(gp.monster[i].getX() < gp.monster[minIndexY].getX())
-        {
-          minIndexY = i;
+          minIndex = i;
         }
       }
     }
-    if(minIndexX == minIndexY)
-    {
-      return minIndexX;
-    }
-    //lenght1 = Math.abs(Math.pow(getX() - gp.monster[minIndexX].getX()))
-    return minIndexX;
+    return minIndex;
   }
 
 
