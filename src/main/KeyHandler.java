@@ -2,14 +2,13 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import entity.*;
+
 
 public class KeyHandler implements KeyListener 
 {
 
 private boolean upPressed, downPressed, leftPressed, rightPressed;
 private boolean enterPressed;
-private boolean shotKeyPressed;
 
     @Override
     public void keyTyped(KeyEvent e) 
@@ -38,9 +37,9 @@ private boolean shotKeyPressed;
             case KeyEvent.VK_ENTER:
                 enterPressed = true;
                 break;
-            case KeyEvent.VK_F:
-                shotKeyPressed = true; 
-                break;   
+            // case KeyEvent.VK_F:
+            //     shotKeyPressed = true; 
+            //     break;   
 
         }
     }
@@ -67,9 +66,6 @@ private boolean shotKeyPressed;
             //delete
             case KeyEvent.VK_ENTER:
                 enterPressed = false;
-                break;
-            case KeyEvent.VK_F:
-                shotKeyPressed = false; 
                 break;
 
         }
@@ -119,13 +115,17 @@ public boolean getEnterPressed()
     return enterPressed;
 }
 
-public void setShotKeyPressed(boolean shotKeyPressed)
-{
-    this.shotKeyPressed = shotKeyPressed;
-}
+// public void setShotKeyPressed(boolean shotKeyPressed)
+// {
+//     this.shotKeyPressed = shotKeyPressed;
+// }
 public boolean getShotKeyPressed()
 {
-    return shotKeyPressed;
+    if(!downPressed && !upPressed && !leftPressed && !rightPressed)
+    {
+        return true;
+    }
+    return false;
 }
 
     

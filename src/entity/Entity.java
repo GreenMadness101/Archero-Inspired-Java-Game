@@ -14,7 +14,7 @@ public class Entity
     
     //IMAGES
     private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    private BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+    //private BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     
     //IMAGE SWITCHER
     private int spriteCounter = 0;
@@ -32,6 +32,7 @@ public class Entity
     private int actionLockCounter = 0;
     private int dyingCounter = 0;
     private int damageCounter = 0;
+    private int shootCounter = 0;
     
     private BufferedImage image1, image2, image3;
     private String name;
@@ -44,6 +45,7 @@ public class Entity
     private int x,y;
     private int speed;
     private String direction = "down";
+    private int damage;
 
     private boolean alive = true;
     private boolean dying = false;
@@ -51,6 +53,7 @@ public class Entity
     //FOR PROJECTILE
     private Projectile projectile;
     private int shotAvailableCounter;
+
     
 
 
@@ -66,19 +69,23 @@ public class Entity
     {
         setAction();
 
+        if(getLife() <= 0)
+        {
+            dying = true;
+        }
+
         collisionOn = false;
         gp.getCollisionChecker().checkTile(this);
-
+        gp.getCollisionChecker().checkBorder(this);
         //use when using objects
-        
         //gp.cChecker.checkObject(this, false);
-
         gp.getCollisionChecker().checkPlayer(this);
+
         damageCounter++;
         if(collisionDamage && damageCounter > 40)
         {
             System.out.println("hi");
-            gp.getPlayer().setLife(gp.getPlayer().getLife() - 10);
+            gp.getPlayer().setLife(gp.getPlayer().getLife() - 5);
             collisionDamage = false;
             damageCounter = 0;
         }
@@ -160,11 +167,13 @@ public class Entity
 
         if(name.equals("monster"))
         {
-            g2.setColor(new Color(35, 35, 35));
+            g2.setColor(Color.black);
+            g2.fillRect(getX() - 1, getY() - 16, gp.getTileSize() + 2, 12);
             
             g2.setColor(new Color(255, 0, 30));
             //CHekc if x and y are right varaibles
-            g2.fillRect(x, y - 15, gp.getTileSize(), 10);
+            double healthRatio = ((double)getLife())/getMaxLife();
+            g2.fillRect(x, y - 15, (int) (gp.getTileSize() * healthRatio), 10);
         }
         // if(name.equals("player"))
         // {
@@ -444,25 +453,6 @@ public class Entity
       this.name = name;
     }
 
-
-    // public int getMaxMana()
-    // {
-    //     return maxMana;
-    // }
-    // public void setMaxMana(int maxMana)
-    // {
-    //     this.maxMana = maxMana;
-    // }
-
-    // public int getMana()
-    // {
-    //     return mana;
-    // }
-    // public void setMana(int mana)
-    // {
-    //     this.mana = mana;
-    // }
-
     public Projectile getProjectile()
     {
         return projectile;
@@ -512,6 +502,25 @@ public class Entity
     }
     public int getDamageCounter() {
         return damageCounter;
+    }
+
+    //SHOOT COUNTER
+    public int getShootCounter() 
+    {
+      return shootCounter;
+    }
+    public void setShootCounter(int shootCounter) 
+    {
+      this.shootCounter = shootCounter;
+    }
+
+    public void setDamage(int damage) 
+    {
+        this.damage = damage;
+    }
+    public int getDamage() 
+    {
+        return damage;
     }
 
  

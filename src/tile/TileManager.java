@@ -1,14 +1,12 @@
 package tile;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
-import javax.lang.model.element.Name;
 
 import main.GamePanel;
 
@@ -27,7 +25,7 @@ public class TileManager
     mapTileNum = new int[gp.getMaxScreenCol()][gp.getMaxScreenRow()];
 
     getTileImage();
-    loadMap("/res/maps/map7.txt");
+    loadMap("/res/maps/start.txt");
   }
 
   public void getTileImage()
@@ -87,6 +85,24 @@ public class TileManager
       tile[13] = new Tile();
       tile[13].image  =  ImageIO.read(getClass().getResourceAsStream("/res/tiles/Water Block.png"));
       tile[13].collision = true;
+      
+      tile[14] = new Tile();
+      tile[14].image  =  ImageIO.read(getClass().getResourceAsStream("/res/tiles/gate_5.png"));
+      // tile[14].image = uTool.scaleImage
+      tile[14].collision = true;
+      
+      tile[15] = new Tile();
+      tile[15].image  =  ImageIO.read(getClass().getResourceAsStream("/res/tiles/Water Block.png"));
+      tile[15].collision = false;
+      
+      tile[16] = new Tile();
+      tile[16].image  =  ImageIO.read(getClass().getResourceAsStream("/res/tiles/Water Block.png"));
+      tile[16].collision = true;
+      
+      tile[17] = new Tile();
+      tile[17].image  =  ImageIO.read(getClass().getResourceAsStream("/res/tiles/Water Block.png"));
+      tile[17].collision = true;
+      
 
       // tile[14] = new Tile();
       // tile[14].image = ImageIO.read(getClass().getResourceAsStream("res/tiles/FenceTile.png"));
@@ -164,5 +180,21 @@ public class TileManager
       }
     }
   }
-  
+
+  public int[][] getMapTileNum() 
+  {
+      return mapTileNum;
+  }
+  public void setMapTileNum(int[][] mapTileNum) 
+  {
+      this.mapTileNum = mapTileNum;
+  }
+  public void openGate()
+  {
+    mapTileNum[5][0] = 15;
+  }
+  public void closeGate()
+  {
+    mapTileNum[5][0] = 14;
+  }
 }

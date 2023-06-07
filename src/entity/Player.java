@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.SpinnerDateModel;
 
 import main.GamePanel;
 import main.KeyHandler;
@@ -45,6 +44,8 @@ public class Player extends Entity
 
     //CHANGE
     setProjectile(new OBJ_Projectile(gp));
+
+    setDamage(10);
   }
 
   public void getPlayerImage()
@@ -94,15 +95,6 @@ public class Player extends Entity
 
   public void update()
   {
-    //delete
-    if(keyH.getEnterPressed())
-    {
-      //setAttacking(true);
-      //temp
-      gp.monster[0].setDying(true);
-      gp.getPlayer().setDying(false);
-      System.out.println(gp.getPlayer().getDying());
-    }
 
     if(keyH.getDownPressed() || keyH.getUpPressed() || keyH.getLeftPressed() || keyH.getRightPressed())
     {
@@ -126,6 +118,8 @@ public class Player extends Entity
       setCollisionOn(false);
       setCollisionDamage(false);
       gp.getCollisionChecker().checkTile(this);
+      gp.getCollisionChecker().checkBorder(this);
+
       
       gp.getCollisionChecker().checkEntity(this, gp.monster);
 
@@ -165,26 +159,41 @@ public class Player extends Entity
       }
     }
 
-    if(keyH.getShotKeyPressed() && !getProjectile().getAlive()) 
+    if(gp.monster.size() > 0)
     {
-      //SET DEFAULT COORDINATED, DIRECTION, AND USER
-      getProjectile().set(getX(), getY(), getDirection(), true, this);
-      gp.getProjectileList().add(getProjectile());
+      gp.getTileM().closeGate();
+      setShootCounter(getShootCounter() + 1);
+      while(keyH.getShotKeyPressed() && getShootCounter() > 20)
+      {
+        
+        //SET DEFAULT COORDINATED, DIRECTION, AND USER
+  
+        //make method to find closest monster
+  
+        //placeholder values
+        int i = findClosestMonster();
+        if(i != 999)
+        {
+          getProjectile().set(getX(), getY(), gp.monster.get(i).getX(), gp.monster.get(i).getY(), true, this);
+          gp.getProjectileList().add(getProjectile());
+          setShootCounter(0);
+        }
+      }
     }
+    if(gp.monster.size() <= 0)
+    {
+      gp.getTileM().openGate();
+    }
+    // if(keyH.getShotKeyPressed() && !getProjectile().getAlive()) 
+    // {
+    //   //SET DEFAULT COORDINATED, DIRECTION, AND USER
+    //   getProjectile().set(getX(), getY(), getDirection(), true, this);
+    //   gp.getProjectileList().add(getProjectile());
+    // }
 
     
   }
 
-  //delete
-  public void attacking()
-  {
-    setSpriteCounter(getSpriteCounter() + 1);
-
-    // if(getSpriteBool() <= 5)
-    // {
-     
-    // }
-  }
 
   public void draw(Graphics2D g2)
   {
@@ -236,6 +245,27 @@ public class Player extends Entity
     g2.setColor(new Color(31, 160, 22));
     double healthRatio = ((double)getLife())/getMaxLife();
     g2.fillRect(getX() - 5, getY() - 15, (int)((gp.getTileSize() + 10) * healthRatio), 10);
+  }
+
+  public int findClosestMonster()
+  {
+    int minIndex = 0;
+    int length1;
+    int lenght2;
+    if(gp.monster.size() <= 0)
+    {
+      return 999;
+    }
+    for(int i = 1; i < gp.monster.size(); i++)
+    {
+      length1 = (int) Math.sqrt(Math.abs(Math.pow((getX() - gp.monster.get(i).getX()), 2) - Math.pow((getY() - gp.monster.get(i).getY()), 2)));
+      lenght2 = (int) Math.sqrt(Math.abs(Math.pow((getX() - gp.monster.get(minIndex).getX()), 2) - Math.pow((getY() - gp.monster.get(minIndex).getY()), 2)));
+      if(length1 < lenght2)
+      {
+        minIndex = i;
+      }
+    }
+    return minIndex;
   }
 
 

@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import entity.Entity;
 
 public class CollisionChecker 
@@ -27,6 +29,28 @@ public class CollisionChecker
       entityBottomRow = gp.getMaxScreenRow() - 1;
     }
 
+    if(entityBottomRow <= 0)
+    {
+      entityBottomRow = 0;
+    }
+    if(entityTopRow <= 0)
+    {
+      entityTopRow = 0;
+    }
+    if(entityRightCol >= gp.getMaxScreenCol())
+    {
+      entityRightCol = gp.getMaxScreenCol() - 1;
+    }
+    if(entityRightCol <= 0)
+    {
+      entityRightCol = 0;
+    }
+    if(entityLeftCol <= 0)
+    {
+      entityLeftCol = 0;
+    }
+    
+
 
     int tileNum1, tileNum2;
 
@@ -34,12 +58,17 @@ public class CollisionChecker
     {
       case "up":
         entityTopRow = ((entityTopY - entity.getSpeed())/gp.getTileSize());
+        if(entityTopRow <= 0)
+        {
+          entityTopRow = 0;
+        }
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityTopRow];
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityTopRow];
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getY() <= 0)
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
         {
           entity.setCollisionOn(true);
         }
+        if(gp.getTileM().tile[tileNum1].collision)
         break;
       case "down":
         entityBottomRow = ((entityBottomY + entity.getSpeed())/gp.getTileSize());
@@ -49,25 +78,33 @@ public class CollisionChecker
         }
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityBottomRow];
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityBottomRow];
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getY() + gp.getTileSize() >= gp.getScreenHeight() - 1)
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
         {
           entity.setCollisionOn(true);
         }
         break;
       case "right":
         entityRightCol = ((entityRightX + entity.getSpeed())/gp.getTileSize());
+        if(entityRightCol >= gp.getMaxScreenCol())
+        {
+          entityRightCol = gp.getMaxScreenCol() - 1;
+        }
         tileNum1 = gp.getTileM().mapTileNum[entityRightCol][entityBottomRow];
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityTopRow];
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getX() + gp.getTileSize() >= gp.getScreenWidth())
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
         {
           entity.setCollisionOn(true);
         }
         break;
       case "left":
         entityLeftCol = ((entityLeftX - entity.getSpeed())/gp.getTileSize());
+        if(entityLeftCol <= 0)
+        {
+          entityLeftCol = 0;
+        }
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityBottomRow];
         tileNum2 = gp.getTileM().mapTileNum[entityLeftCol][entityTopRow];
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision || entity.getX() <= 0)
+        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
         {
           entity.setCollisionOn(true);
         }
@@ -81,25 +118,24 @@ public class CollisionChecker
 
     // }
 
-  public boolean checkEntity(Entity entity, Entity[] target)
+  public int checkEntity(Entity entity, ArrayList<Entity> monster)
   {
     int index = 999;
 
-    for(int i = 0; i < target.length; i++)
+    for(int i = 0; i < monster.size(); i++)
     {
-      if(target[i] != null)
-      {
+
         entity.getSolidArea().x = entity.getX() + entity.getSolidArea().x;
         entity.getSolidArea().y = entity.getY() + entity.getSolidArea().y;
         //get entity solid area
-        target[i].getSolidArea().x = target[i].getX() + target[i].getSolidArea().x;
-        target[i].getSolidArea().y = target[i].getY() + target[i].getSolidArea().y;
+        monster.get(i).getSolidArea().x = monster.get(i).getX() + monster.get(i).getSolidArea().x;
+        monster.get(i).getSolidArea().y = monster.get(i).getY() + monster.get(i).getSolidArea().y;
 
         switch(entity.getDirection())
         {
           case "up":
             entity.getSolidArea().y -= entity.getSpeed();
-            if(entity.getSolidArea().intersects(target[i].getSolidArea()))
+            if(entity.getSolidArea().intersects(monster.get(i).getSolidArea()))
             {
               entity.setCollisionOn(true);
               entity.setCollisionDamage(true);
@@ -108,7 +144,7 @@ public class CollisionChecker
             break;
           case "down":
             entity.getSolidArea().y += entity.getSpeed();
-            if(entity.getSolidArea().intersects(target[i].getSolidArea()))
+            if(entity.getSolidArea().intersects(monster.get(i).getSolidArea()))
             {
               entity.setCollisionOn(true);
               entity.setCollisionDamage(true);
@@ -117,7 +153,7 @@ public class CollisionChecker
             break;
           case "left":
             entity.getSolidArea().x -= entity.getSpeed();
-            if(entity.getSolidArea().intersects(target[i].getSolidArea()))
+            if(entity.getSolidArea().intersects(monster.get(i).getSolidArea()))
             {
               entity.setCollisionOn(true);
               entity.setCollisionDamage(true);
@@ -126,7 +162,7 @@ public class CollisionChecker
             break;
           case "right":
             entity.getSolidArea().x += entity.getSpeed();
-            if(entity.getSolidArea().intersects(target[i].getSolidArea()))
+            if(entity.getSolidArea().intersects(monster.get(i).getSolidArea()))
             {
               entity.setCollisionOn(true);
               entity.setCollisionDamage(true);
@@ -138,15 +174,10 @@ public class CollisionChecker
         //also check if these statements are placed right
         entity.getSolidArea().x = entity.getSolidAreaDefaultX();
         entity.getSolidArea().y = entity.getSolidAreaDefaultY();
-        target[i].getSolidArea().x = target[i].getSolidAreaDefaultX();
-        target[i].getSolidArea().y = target[i].getSolidAreaDefaultY();
-      }
+        monster.get(i).getSolidArea().x = monster.get(i).getSolidAreaDefaultX();
+        monster.get(i).getSolidArea().y = monster.get(i).getSolidAreaDefaultY();
     }
-    if(index != 999)
-    {
-      return true;
-    }
-    return false;
+    return index;
   }
 
   public void checkPlayer(Entity entity)
@@ -199,6 +230,39 @@ public class CollisionChecker
     gp.getPlayer().getSolidArea().x = gp.getPlayer().getSolidAreaDefaultX();
     gp.getPlayer().getSolidArea().y = gp.getPlayer().getSolidAreaDefaultY();
   }
+
+  public void checkBorder(Entity entity)
+  {
+    switch(entity.getDirection())
+    {
+      case "up":
+        if(entity.getY() <= 0)
+        {
+          entity.setCollisionOn(true);
+        }
+        break;
+      case "down":
+        if(entity.getY() + gp.getTileSize() >= gp.getScreenHeight() - 1)
+        {
+          entity.setCollisionOn(true);
+        }
+        break;
+      case "right":
+        if(entity.getX() + gp.getTileSize() >= gp.getScreenWidth())
+        {
+          entity.setCollisionOn(true);
+        }
+        break;
+      case "left":
+        if(entity.getX() <= 0)
+        {
+          entity.setCollisionOn(true);
+        }
+        break;
+    }
+  }
+
+  
 
   
   
