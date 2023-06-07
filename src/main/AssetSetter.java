@@ -3,6 +3,7 @@ package main;
 import entity.Entity;
 import monster.MON_Bat;
 import monster.MON_GreenSlime;
+import monster.MON_Wizard;
 
 public class AssetSetter 
 {
@@ -23,6 +24,10 @@ public class AssetSetter
         gp.monster.add(new MON_Bat(gp));
         gp.monster.get(2).setX(250);
         gp.monster.get(2).setY(250);
+        gp.monster.add(new MON_Wizard(gp));
+        gp.monster.get(3).setX(200);
+        gp.monster.get(3).setY(200);
+
 
     }
     
