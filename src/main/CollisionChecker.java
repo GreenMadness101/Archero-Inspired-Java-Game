@@ -68,6 +68,7 @@ public class CollisionChecker
         {
           entity.setCollisionOn(true);
         }
+        if(gp.getTileM().tile[tileNum1].collision)
         break;
       case "down":
         entityBottomRow = ((entityBottomY + entity.getSpeed())/gp.getTileSize());

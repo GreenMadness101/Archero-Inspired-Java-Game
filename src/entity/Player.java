@@ -161,6 +161,7 @@ public class Player extends Entity
 
     if(gp.monster.size() > 0)
     {
+      gp.getTileM().closeGate();
       setShootCounter(getShootCounter() + 1);
       while(keyH.getShotKeyPressed() && getShootCounter() > 20)
       {
@@ -178,7 +179,10 @@ public class Player extends Entity
           setShootCounter(0);
         }
       }
-
+    }
+    if(gp.monster.size() <= 0)
+    {
+      gp.getTileM().openGate();
     }
     // if(keyH.getShotKeyPressed() && !getProjectile().getAlive()) 
     // {

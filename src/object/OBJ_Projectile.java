@@ -10,10 +10,9 @@ import main.GamePanel;
 
 public class OBJ_Projectile extends Projectile 
 {
-
     public OBJ_Projectile(GamePanel gp) {
         super(gp);
-        setName("Fireball");
+        setName("projectile");
         setSpeed(7);
         setMaxLife(80);
         setLife(getMaxLife());
@@ -21,8 +20,6 @@ public class OBJ_Projectile extends Projectile
         setAlive(false);
         getImage();
         setSolidArea(new Rectangle(21 , 9 , 12, 36));
-
-
     }
 
 
@@ -41,12 +38,8 @@ public class OBJ_Projectile extends Projectile
         setLeft1(ImageIO.read(getClass().getResourceAsStream("/res/projectiles/projectile_1.png")));
         setLeft2(ImageIO.read(getClass().getResourceAsStream("/res/projectiles/projectile_1.png")));
         
-
     } catch (IOException e) {
         e.printStackTrace();
     }
-     
-
-
     }
 }
