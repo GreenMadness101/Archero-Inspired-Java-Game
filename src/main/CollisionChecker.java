@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import entity.Entity;
 
 public class CollisionChecker 
@@ -66,6 +68,7 @@ public class CollisionChecker
         {
           entity.setCollisionOn(true);
         }
+        if(gp.getTileM().tile[tileNum1].collision)
         break;
       case "down":
         entityBottomRow = ((entityBottomY + entity.getSpeed())/gp.getTileSize());
@@ -115,25 +118,24 @@ public class CollisionChecker
 
     // }
 
-  public int checkEntity(Entity entity, Entity[] target)
+  public int checkEntity(Entity entity, ArrayList<Entity> monster)
   {
     int index = 999;
 
-    for(int i = 0; i < target.length; i++)
+    for(int i = 0; i < monster.size(); i++)
     {
-      if(target[i] != null)
-      {
+
         entity.getSolidArea().x = entity.getX() + entity.getSolidArea().x;
         entity.getSolidArea().y = entity.getY() + entity.getSolidArea().y;
         //get entity solid area
-        target[i].getSolidArea().x = target[i].getX() + target[i].getSolidArea().x;
-        target[i].getSolidArea().y = target[i].getY() + target[i].getSolidArea().y;
+        monster.get(i).getSolidArea().x = monster.get(i).getX() + monster.get(i).getSolidArea().x;
+        monster.get(i).getSolidArea().y = monster.get(i).getY() + monster.get(i).getSolidArea().y;
 
         switch(entity.getDirection())
         {
           case "up":
             entity.getSolidArea().y -= entity.getSpeed();
-            if(entity.getSolidArea().intersects(target[i].getSolidArea()))
+            if(entity.getSolidArea().intersects(monster.get(i).getSolidArea()))
             {
               entity.setCollisionOn(true);
               entity.setCollisionDamage(true);
@@ -142,7 +144,7 @@ public class CollisionChecker
             break;
           case "down":
             entity.getSolidArea().y += entity.getSpeed();
-            if(entity.getSolidArea().intersects(target[i].getSolidArea()))
+            if(entity.getSolidArea().intersects(monster.get(i).getSolidArea()))
             {
               entity.setCollisionOn(true);
               entity.setCollisionDamage(true);
@@ -151,7 +153,7 @@ public class CollisionChecker
             break;
           case "left":
             entity.getSolidArea().x -= entity.getSpeed();
-            if(entity.getSolidArea().intersects(target[i].getSolidArea()))
+            if(entity.getSolidArea().intersects(monster.get(i).getSolidArea()))
             {
               entity.setCollisionOn(true);
               entity.setCollisionDamage(true);
@@ -160,7 +162,7 @@ public class CollisionChecker
             break;
           case "right":
             entity.getSolidArea().x += entity.getSpeed();
-            if(entity.getSolidArea().intersects(target[i].getSolidArea()))
+            if(entity.getSolidArea().intersects(monster.get(i).getSolidArea()))
             {
               entity.setCollisionOn(true);
               entity.setCollisionDamage(true);
@@ -172,9 +174,8 @@ public class CollisionChecker
         //also check if these statements are placed right
         entity.getSolidArea().x = entity.getSolidAreaDefaultX();
         entity.getSolidArea().y = entity.getSolidAreaDefaultY();
-        target[i].getSolidArea().x = target[i].getSolidAreaDefaultX();
-        target[i].getSolidArea().y = target[i].getSolidAreaDefaultY();
-      }
+        monster.get(i).getSolidArea().x = monster.get(i).getSolidAreaDefaultX();
+        monster.get(i).getSolidArea().y = monster.get(i).getSolidAreaDefaultY();
     }
     return index;
   }

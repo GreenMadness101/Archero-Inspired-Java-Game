@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.time.chrono.MinguoDate;
 
 import javax.imageio.ImageIO;
 
@@ -96,15 +95,6 @@ public class Player extends Entity
 
   public void update()
   {
-    //delete
-    if(keyH.getEnterPressed())
-    {
-      //setAttacking(true);
-      //temp
-      gp.monster[0].setDying(true);
-      gp.getPlayer().setDying(false);
-      System.out.println(gp.getPlayer().getDying());
-    }
 
     if(keyH.getDownPressed() || keyH.getUpPressed() || keyH.getLeftPressed() || keyH.getRightPressed())
     {
@@ -169,18 +159,30 @@ public class Player extends Entity
       }
     }
 
-    setShootCounter(getShootCounter() + 1);
-    while(keyH.getShotKeyPressed() && getShootCounter() > 20)
+    if(gp.monster.size() > 0)
     {
-      
-      //SET DEFAULT COORDINATED, DIRECTION, AND USER
-
-      //make method to find closest monster
-
-      //placeholder values
-      getProjectile().set(getX(), getY(), gp.monster[findClosestMonster()].getX(), gp.monster[findClosestMonster()].getY(), true, this);
-      gp.getProjectileList().add(getProjectile());
-      setShootCounter(0);
+      gp.getTileM().closeGate();
+      setShootCounter(getShootCounter() + 1);
+      while(keyH.getShotKeyPressed() && getShootCounter() > 20)
+      {
+        
+        //SET DEFAULT COORDINATED, DIRECTION, AND USER
+  
+        //make method to find closest monster
+  
+        //placeholder values
+        int i = findClosestMonster();
+        if(i != 999)
+        {
+          getProjectile().set(getX(), getY(), gp.monster.get(i).getX(), gp.monster.get(i).getY(), true, this);
+          gp.getProjectileList().add(getProjectile());
+          setShootCounter(0);
+        }
+      }
+    }
+    if(gp.monster.size() <= 0)
+    {
+      gp.getTileM().openGate();
     }
     // if(keyH.getShotKeyPressed() && !getProjectile().getAlive()) 
     // {
@@ -250,16 +252,17 @@ public class Player extends Entity
     int minIndex = 0;
     int length1;
     int lenght2;
-    for(int i = 1; i < gp.monster.length; i++)
+    if(gp.monster.size() <= 0)
     {
-      if(gp.monster[i] != null)
+      return 999;
+    }
+    for(int i = 1; i < gp.monster.size(); i++)
+    {
+      length1 = (int) Math.sqrt(Math.abs(Math.pow((getX() - gp.monster.get(i).getX()), 2) - Math.pow((getY() - gp.monster.get(i).getY()), 2)));
+      lenght2 = (int) Math.sqrt(Math.abs(Math.pow((getX() - gp.monster.get(minIndex).getX()), 2) - Math.pow((getY() - gp.monster.get(minIndex).getY()), 2)));
+      if(length1 < lenght2)
       {
-        length1 = (int) Math.sqrt(Math.abs(Math.pow((getX() - gp.monster[i].getX()), 2) - Math.pow((getY() - gp.monster[i].getY()), 2)));
-        lenght2 = (int) Math.sqrt(Math.abs(Math.pow((getX() - gp.monster[minIndex].getX()), 2) - Math.pow((getY() - gp.monster[minIndex].getY()), 2)));
-        if(length1 < lenght2)
-        {
-          minIndex = i;
-        }
+        minIndex = i;
       }
     }
     return minIndex;
