@@ -17,7 +17,7 @@ public class MON_Bat extends Entity {
         this.gp = gp;
         setName("monster");
         setSpeed(1);
-        setMaxLife(4);
+        setMaxLife(30);
         setLife(getMaxLife());
 
         setSolidArea(new Rectangle(3, 18, 42, 30));

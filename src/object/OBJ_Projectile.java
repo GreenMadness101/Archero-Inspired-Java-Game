@@ -1,5 +1,6 @@
 package object;
 
+import java.awt.Rectangle;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -19,6 +20,7 @@ public class OBJ_Projectile extends Projectile
         //attack = 2;
         setAlive(false);
         getImage();
+        setSolidArea(new Rectangle(21 , 9 , 12, 36));
 
 
     }
