@@ -2,11 +2,14 @@ package monster;
 
 import java.awt.Rectangle;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
 import entity.Entity;
+import entity.Projectile;
 import main.GamePanel;
+import object.OBJ_MonsterProjectile;
 
 public class MON_Wizard extends Entity
 {
@@ -20,7 +23,7 @@ public class MON_Wizard extends Entity
         setSpeed(1);
         setMaxLife(60);
         setLife(getMaxLife());
-
+        setProjectile(new OBJ_MonsterProjectile(gp));
         setSolidArea(new Rectangle(3, 18, 42, 30));
 
         getImage();
@@ -80,6 +83,16 @@ public class MON_Wizard extends Entity
       
   
         setActionLockCounter(0);
+
+       
+      }
+      int i = (int) (Math.random() * 100) + 1;
+
+      if(i>99 && !getProjectile().getAlive()  && getShotAvailableCounter() == 30)
+      {
+        getProjectile().set(getX(), getY(), getDirection(), true, this);
+        gp.getProjectileList().add(getProjectile());
+        setShotAvailableCounter(0);
       }
   
     }
