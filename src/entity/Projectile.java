@@ -68,7 +68,7 @@ public class Projectile extends Entity
           monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
           if(monsterIndex != 999)
           {
-            gp.monster[monsterIndex].setLife(gp.monster[monsterIndex].getLife() - gp.getPlayer().getDamage());
+            gp.monster.get(monsterIndex).setLife(gp.monster.get(monsterIndex).getLife() - gp.getPlayer().getDamage());
             setAlive(false);
           }
          

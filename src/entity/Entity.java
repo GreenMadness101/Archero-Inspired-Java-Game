@@ -70,6 +70,11 @@ public class Entity
     {
         setAction();
 
+        if(getLife() <= 0)
+        {
+            dying = true;
+        }
+
         collisionOn = false;
         gp.getCollisionChecker().checkTile(this);
         gp.getCollisionChecker().checkBorder(this);
@@ -163,11 +168,13 @@ public class Entity
 
         if(name.equals("monster"))
         {
-            g2.setColor(new Color(35, 35, 35));
+            g2.setColor(Color.black);
+            g2.fillRect(getX() - 1, getY() - 16, gp.getTileSize() + 2, 12);
             
             g2.setColor(new Color(255, 0, 30));
             //CHekc if x and y are right varaibles
-            g2.fillRect(x, y - 15, gp.getTileSize(), 10);
+            double healthRatio = ((double)getLife())/getMaxLife();
+            g2.fillRect(x, y - 15, (int) (gp.getTileSize() * healthRatio), 10);
         }
         // if(name.equals("player"))
         // {

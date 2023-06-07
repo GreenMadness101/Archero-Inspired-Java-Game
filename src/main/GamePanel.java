@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable
 
   //ENITITY
   private Player player = new Player(this, keyH);
-  public Entity monster[] = new Entity[20];
+  public ArrayList<Entity> monster = new ArrayList<Entity>();
 
   private ArrayList<Entity> entityList = new ArrayList<Entity>();
   private ArrayList<Entity> projectileList = new ArrayList<Entity>();
@@ -127,17 +127,17 @@ public class GamePanel extends JPanel implements Runnable
   {
     player.update();
 
-    for(int i  = 0; i < monster.length; i++)
+    for(int i  = 0; i < monster.size(); i++)
     {
-      if(monster[i] != null)
+      if(monster.get(i) != null)
       {
-        if(monster[i].getAlive() && !monster[i].getDying())
+        if(monster.get(i).getAlive() && !monster.get(i).getDying())
         {
-          monster[i].update();
+          monster.get(i).update();
         }
-        if(!monster[i].getAlive())
+        if(!monster.get(i).getAlive())
         {
-          monster[i] = null;
+          monster.remove(i);
         }
 
       }
@@ -174,11 +174,11 @@ public class GamePanel extends JPanel implements Runnable
 
     entityList.add(player);
 
-    for(int i = 0; i < monster.length; i++)
+    for(int i = 0; i < monster.size(); i++)
     {
-      if(monster[i] != null)
+      if(monster.get(i) != null)
       {
-        entityList.add(monster[i]);
+        entityList.add(monster.get(i));
       }
     }
 
@@ -291,10 +291,10 @@ public class GamePanel extends JPanel implements Runnable
     return projectileList;
   }
 
-  public Entity[] getMonsterArr()
-  {
-    return monster;
-  }
+  // public Entity[] getMonsterArr()
+  // {
+  //   return monster;
+  // }
 
 
 }
