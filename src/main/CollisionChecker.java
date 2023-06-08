@@ -68,7 +68,13 @@ public class CollisionChecker
         {
           entity.setCollisionOn(true);
         }
-        if(gp.getTileM().tile[tileNum1].collision)
+        entity.setTeleportCounter(entity.getTeleportCounter() + 1);
+        if(gp.getTileM().tile[tileNum1].getTeleport() && entity.getTeleportCounter() >= 100)
+        {
+          int i = (int)(Math.random()*7) + 1;
+          gp.getTileM().loadMap("/res/maps/map" + i + ".txt");
+          entity.setTeleportCounter(0);
+        }
         break;
       case "down":
         entityBottomRow = ((entityBottomY + entity.getSpeed())/gp.getTileSize());
@@ -95,6 +101,13 @@ public class CollisionChecker
         {
           entity.setCollisionOn(true);
         }
+        entity.setTeleportCounter(entity.getTeleportCounter() + 1);
+        if(gp.getTileM().tile[tileNum1].getTeleport() && entity.getTeleportCounter() > 100)
+        {
+          int i = (int)(Math.random()*7) + 1;
+          gp.getTileM().loadMap("/res/maps/map" + i + ".txt");
+          entity.setTeleportCounter(0);
+        }
         break;
       case "left":
         entityLeftCol = ((entityLeftX - entity.getSpeed())/gp.getTileSize());
@@ -107,6 +120,13 @@ public class CollisionChecker
         if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
         {
           entity.setCollisionOn(true);
+        }
+        entity.setTeleportCounter(entity.getTeleportCounter() + 1);
+        if(gp.getTileM().tile[tileNum1].getTeleport() && entity.getTeleportCounter() > 100)
+        {
+          int i = (int)(Math.random()*7) + 1;
+          gp.getTileM().loadMap("/res/maps/map" + i + ".txt");
+          entity.setTeleportCounter(0);
         }
         break;
     }

@@ -33,6 +33,7 @@ public class Entity
     private int dyingCounter = 0;
     private int damageCounter = 0;
     private int shootCounter = 0;
+    private int teleportCounter = 100;
     
     private BufferedImage image1, image2, image3;
     private String name;
@@ -479,7 +480,8 @@ public class Entity
     {
       this.dying = dying;
     }
-    public void setCollisionDamage(boolean collisionDamage) {
+    public void setCollisionDamage(boolean collisionDamage) 
+    {
         this.collisionDamage = collisionDamage;
     }
     public boolean getCollisionDamage()
@@ -521,6 +523,15 @@ public class Entity
     public int getDamage() 
     {
         return damage;
+    }
+    
+    public void setTeleportCounter(int teleportCounter) 
+    {
+        this.teleportCounter = teleportCounter;
+    }
+    public int getTeleportCounter() 
+    {
+        return teleportCounter;
     }
 
  

@@ -87,13 +87,14 @@ public class TileManager
       tile[13].collision = true;
       
       tile[14] = new Tile();
-      tile[14].image  =  ImageIO.read(getClass().getResourceAsStream("/res/tiles/gate_5.png"));
+      tile[14].image  =  ImageIO.read(getClass().getResourceAsStream("/res/tiles/gate_1.png"));
       // tile[14].image = uTool.scaleImage
       tile[14].collision = true;
       
       tile[15] = new Tile();
-      tile[15].image  =  ImageIO.read(getClass().getResourceAsStream("/res/tiles/Water Block.png"));
+      tile[15].image  =  ImageIO.read(getClass().getResourceAsStream("/res/tiles/gate_2.png"));
       tile[15].collision = false;
+      tile[15].setTeleport(true);
       
       tile[16] = new Tile();
       tile[16].image  =  ImageIO.read(getClass().getResourceAsStream("/res/tiles/Water Block.png"));
@@ -117,6 +118,7 @@ public class TileManager
 
   public void loadMap(String filePath)
   {
+    mapTileNum[5][0] = 14;
     try
     {
       //used to import text file

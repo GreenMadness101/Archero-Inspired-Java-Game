@@ -2,7 +2,7 @@ package monster;
 
 import java.awt.Rectangle;
 import java.io.IOException;
-import java.util.Random;
+
 
 import javax.imageio.ImageIO;
 
@@ -86,14 +86,14 @@ public class MON_Wizard extends Entity
 
        
       }
-      int i = (int) (Math.random() * 100) + 1;
+      // int i = (int) (Math.random() * 100) + 1;
 
-      if(i>99 && !getProjectile().getAlive()  && getShotAvailableCounter() == 30)
-      {
-        getProjectile().set(getX(), getY(), getDirection(), true, this);
-        gp.getProjectileList().add(getProjectile());
-        setShotAvailableCounter(0);
-      }
+      // if(i>99 && !getProjectile().getAlive()  && getShotAvailableCounter() == 30)
+      // {
+      //   getProjectile().set(getX(), getY(), getDirection(), true, this);
+      //   gp.getProjectileList().add(getProjectile());
+      //   setShotAvailableCounter(0);
+      // }
   
     }
 
