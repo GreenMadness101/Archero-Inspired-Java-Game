@@ -17,6 +17,8 @@ public class Tile
   {
       this.teleport = teleport;
   }
+ 
+ 
 }
 
 

@@ -16,7 +16,7 @@ public class AssetSetter
     public void setMonster()
     {
         gp.monster.add(new MON_GreenSlime(gp));
-        gp.monster.get(0).setX(200);
+        gp.monster.get(0).setX(220);
         gp.monster.get(0).setY(200);
         gp.monster.add(new MON_GreenSlime(gp));
         gp.monster.get(1).setX(300);
@@ -27,8 +27,8 @@ public class AssetSetter
         gp.monster.add(new MON_Wizard(gp));
         gp.monster.get(3).setX(200);
         gp.monster.get(3).setY(200);
-
-
+    
+       
     }
     
 }

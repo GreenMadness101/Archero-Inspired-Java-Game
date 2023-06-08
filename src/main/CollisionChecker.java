@@ -7,6 +7,7 @@ import entity.Entity;
 public class CollisionChecker 
 {
   GamePanel gp;
+ 
 
   public CollisionChecker(GamePanel gp)
   {
@@ -73,6 +74,9 @@ public class CollisionChecker
         {
           int i = (int)(Math.random()*7) + 1;
           gp.getTileM().loadMap("/res/maps/map" + i + ".txt");
+          gp.getPlayer().setX(240);
+          gp.getPlayer().setY(600);
+          gp.aSetter.setMonster();
           entity.setTeleportCounter(0);
         }
         break;
@@ -106,6 +110,9 @@ public class CollisionChecker
         {
           int i = (int)(Math.random()*7) + 1;
           gp.getTileM().loadMap("/res/maps/map" + i + ".txt");
+          gp.getPlayer().setX(240);
+          gp.getPlayer().setY(600);
+          gp.aSetter.setMonster();
           entity.setTeleportCounter(0);
         }
         break;
@@ -126,6 +133,9 @@ public class CollisionChecker
         {
           int i = (int)(Math.random()*7) + 1;
           gp.getTileM().loadMap("/res/maps/map" + i + ".txt");
+          gp.getPlayer().setX(240);
+          gp.getPlayer().setY(600);
+          gp.aSetter.setMonster();
           entity.setTeleportCounter(0);
         }
         break;
@@ -281,6 +291,8 @@ public class CollisionChecker
         break;
     }
   }
+  
+ 
 
   
 

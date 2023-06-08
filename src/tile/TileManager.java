@@ -183,6 +183,8 @@ public class TileManager
     }
   }
 
+  
+
   public int[][] getMapTileNum() 
   {
       return mapTileNum;
@@ -199,4 +201,10 @@ public class TileManager
   {
     mapTileNum[5][0] = 14;
   }
+  
+  // public boolean getMonsterTile(int i, int j)
+  // {
+  //   return mapTileNum[i][j] == x;
+  // }
+
 }

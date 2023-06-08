@@ -160,6 +160,7 @@ public class GamePanel extends JPanel implements Runnable
     }
   }
 
+  
   @Override
   public void paintComponent(Graphics g)
   {
