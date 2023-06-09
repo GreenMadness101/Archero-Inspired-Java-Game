@@ -1,11 +1,17 @@
 package main;
 import javax.swing.JFrame;
 
-/** */
+/** Creates JFrame and Timer, and sets up Game
+ * 
+ * @author Ishan Voleti
+ * @author Samarth Vysyraju
+ * 
+ */
 public class Main 
 {
     public static void main(String[] args) 
     {
+        //create JFrame and do default stuff
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);

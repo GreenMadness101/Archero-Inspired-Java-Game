@@ -84,7 +84,7 @@ public class CollisionChecker
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityTopRow];
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityTopRow];
         //if tiles collide with entity turn on collision 
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
+        if(gp.getTileM().tile[tileNum1].getCollision() || gp.getTileM().tile[tileNum2].getCollision())
         {
           entity.setCollisionOn(true);
         }
@@ -111,7 +111,7 @@ public class CollisionChecker
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityBottomRow];
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityBottomRow];
         //if tiles collide with entity turn on collision 
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
+        if(gp.getTileM().tile[tileNum1].getCollision() || gp.getTileM().tile[tileNum2].getCollision())
         {
           entity.setCollisionOn(true);
         }
@@ -127,7 +127,7 @@ public class CollisionChecker
         tileNum1 = gp.getTileM().mapTileNum[entityRightCol][entityBottomRow];
         tileNum2 = gp.getTileM().mapTileNum[entityRightCol][entityTopRow];
         //if tiles collide with entity turn on collision 
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
+        if(gp.getTileM().tile[tileNum1].getCollision() || gp.getTileM().tile[tileNum2].getCollision())
         {
           entity.setCollisionOn(true);
         }
@@ -154,7 +154,7 @@ public class CollisionChecker
         tileNum1 = gp.getTileM().mapTileNum[entityLeftCol][entityBottomRow];
         tileNum2 = gp.getTileM().mapTileNum[entityLeftCol][entityTopRow];
         //if tiles collide with entity turn on collision 
-        if(gp.getTileM().tile[tileNum1].collision || gp.getTileM().tile[tileNum2].collision)
+        if(gp.getTileM().tile[tileNum1].getCollision() || gp.getTileM().tile[tileNum2].getCollision())
         {
           entity.setCollisionOn(true);
         }
