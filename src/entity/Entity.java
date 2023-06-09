@@ -8,85 +8,107 @@ import java.awt.image.BufferedImage;
 
 import main.GamePanel;
 
+/** Class creates the entity object which makes up all of the characters in the game including: player and monsters and projectiles
+ * @author Ishan
+ * @author Samarth
+ */
+
 public class Entity 
 {
+    /** Game Panel object, reference to JPanel which everything is on */
     GamePanel gp;
     
-    //IMAGES
+    /** Image objects for movement sprites of entities */
     private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    //private BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     
-    //IMAGE SWITCHER
+    /** counter and boolean to switch sprites every few frames while moving */
     private int spriteCounter = 0;
     private boolean spriteBool = false;
     
-    //COLLISION
+    /** more specific rectangle in which collision occurs */
     private Rectangle solidArea;
+    /** keeps track of original solid area locations */
     private int solidAreaDefaultX;
     private int solidAreaDefaultY;
     
+    /** tracks if entity is colliding with something */
     private boolean collisionOn = false;
     
-    //COUNTERS
-    //USED IN SETACTION for Monster
+    /** multiple counters used to space out time between methods that occur */
     private int actionLockCounter = 0;
     private int dyingCounter = 0;
     private int damageCounter = 0;
     private int shootCounter = 0;
     private int teleportCounter = 100;
     
-    private BufferedImage image1, image2, image3;
+    /** categorizes entity */
     private String name;
-    private boolean collision = false;
+
+    /** checks if entity is colliding with something that causes damage */
     private boolean collisionDamage = false;
     
-    //CHARACTER STATUS
+    /** starting life and current life of entity */
     private int maxLife;
     private int life;
+
+    /** location of entity */
     private int x,y;
+
+    /** how fast entity moves */
     private int speed;
+
+    /** direction entity is facing */
     private String direction = "down";
+
+    /** amount of damage entity does */
     private int damage;
 
+    /** tracks if entity is alive */
     private boolean alive = true;
+    /** tracks if entity is dying */
     private boolean dying = false;
 
-    //FOR PROJECTILE
+    /** projectile created by entity */
     private Projectile projectile;
-    private int shotAvailableCounter;
 
     
 
-
+    /** constructor for entity, assigns param to game panel reference, sets default solid area
+     * 
+     * @param gp
+     */
     public Entity(GamePanel gp)
     {
         this.gp = gp;
         solidArea = new Rectangle(0, 0, gp.getTileSize(), gp.getTileSize());
     }
 
+    /** Placeholder method for entity actions */
     public void setAction(){}
 
+    /** updates method checks lives and collision to decide if movement can occur  */
     public void update()
     {
+        //runs set action
         setAction();
 
+        //checks if entity is dead
         if(getLife() <= 0)
         {
             dying = true;
         }
 
+        //sets entity collision to false and checks collision
         collisionOn = false;
         gp.getCollisionChecker().checkTile(this);
         gp.getCollisionChecker().checkBorder(this);
-        //use when using objects
-        //gp.cChecker.checkObject(this, false);
         gp.getCollisionChecker().checkPlayer(this);
 
+        //checks if players is losing damage
         damageCounter++;
         if(collisionDamage && damageCounter > 40)
         {
-            System.out.println("hi");
-            gp.getPlayer().setLife(gp.getPlayer().getLife() - 5);
+            gp.getPlayer().setLife(gp.getPlayer().getLife() - 10);
             collisionDamage = false;
             damageCounter = 0;
         }
@@ -102,21 +124,6 @@ public class Entity
                 x += speed;
             if(direction == "left")
                 x -= speed;
-            // switch(direction)
-            // {
-            // case "up":
-            //     y -= speed;
-            //     break;
-            // case "down":
-            //     y += speed;
-            //     break;
-            // case "right":
-            //     x += speed;
-            //     break;
-            // case "left":
-            //     x -= speed;
-            //     break;
-            // }
         }
 
         spriteCounter++;
@@ -129,10 +136,16 @@ public class Entity
 
     }
 
+    /** draws entity depending on direction
+     * 
+     * @param g2
+     */
     public void draw(Graphics2D g2)
     {
+        //sets image to null
         BufferedImage image = null;
 
+        //checks direction variable which was set by KeyHandler
         switch(direction)
         {
             case "up":
@@ -165,30 +178,32 @@ public class Entity
         }
 
         //HP BAR MONSTER
-
         if(name.equals("monster"))
         {
             g2.setColor(Color.black);
             g2.fillRect(getX() - 1, getY() - 16, gp.getTileSize() + 2, 12);
             
             g2.setColor(new Color(255, 0, 30));
-            //CHekc if x and y are right varaibles
+            // check if x and y are right variables
             double healthRatio = ((double)getLife())/getMaxLife();
             g2.fillRect(x, y - 15, (int) (gp.getTileSize() * healthRatio), 10);
         }
-        // if(name.equals("player"))
-        // {
-        //     createPlayerHealthBar(g2);
-        // }
 
+
+        //checks if dying variable is true
         if(dying)
         {
             dyingAnimation(g2);
         }
         
+        //draw the entity
         g2.drawImage(image, x, y, gp.getTileSize(), gp.getTileSize(), null);
     }
 
+    /** changes the opacity of dying entity to represent death
+     * 
+     * @param g2
+     */
     public void dyingAnimation(Graphics2D g2)
     {
         dyingCounter++;
@@ -414,36 +429,6 @@ public class Entity
       this.actionLockCounter = actionLockCounter;
     }
 
-    //OBJECT STUFF
-    public void setCollision(boolean collision) 
-    {
-      this.collision = collision;
-    }
-    public boolean getCollision()
-    {
-        return collision;
-    }
-    public BufferedImage getImage1() {
-      return image1;
-    }
-    public BufferedImage getImage2() {
-      return image2;
-    }
-    public BufferedImage getImage3() {
-      return image3;
-    }
-    public void setImage1(BufferedImage image1) 
-    {
-      this.image1 = image1;
-    }
-    public void setImage2(BufferedImage image2) 
-    {
-      this.image2 = image2;
-    }
-    public void setImage3(BufferedImage image3) 
-    {
-      this.image3 = image3;
-    }
 
     public String getName() 
     {
@@ -487,14 +472,6 @@ public class Entity
     public boolean getCollisionDamage()
     {
         return collisionDamage;
-    }
-    public int getShotAvailableCounter()
-    {
-        return shotAvailableCounter;
-    }
-    public void setShotAvailableCounter(int shotAvailableCounter)
-    {
-        this.shotAvailableCounter += shotAvailableCounter;
     }
 
     //DAMAGE COUNTER
