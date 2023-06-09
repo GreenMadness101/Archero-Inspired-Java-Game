@@ -244,12 +244,12 @@ public class GamePanel extends JPanel implements Runnable
    * 
    * @param i  an integer for which music should be played
    */
-  public void playMusic(int i)
-  {
-    sound.setFile(i);
-    sound.play();
-    sound.loop();
-  }
+  // public void playMusic(int i)
+  // {
+  //   sound.setFile(i);
+  //   sound.play();
+  //   sound.loop();
+  // }
   
   /** stops the music */
   public void stopMusic()

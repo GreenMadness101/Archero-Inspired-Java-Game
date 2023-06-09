@@ -3,12 +3,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-
+/** KeyHandler class for when keys for movement are pressed and released
+ * 
+ * @author Samarth
+ * @author Ishan 
+ */
 public class KeyHandler implements KeyListener 
 {
-
+/** boolean fields for if the key is pressed for movement  */
 private boolean upPressed, downPressed, leftPressed, rightPressed;
-private boolean enterPressed;
+
 
     @Override
     public void keyTyped(KeyEvent e) 
@@ -16,6 +20,10 @@ private boolean enterPressed;
         
     }
 
+    /**sets the fields true if the key corresponding to the movements is pressed
+     *  
+     * @param e   gets what key is clicked
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
@@ -34,9 +42,7 @@ private boolean enterPressed;
             case KeyEvent.VK_D:
                 rightPressed = true;
                 break;
-            case KeyEvent.VK_ENTER:
-                enterPressed = true;
-                break;
+            
             // case KeyEvent.VK_F:
             //     shotKeyPressed = true; 
             //     break;   
@@ -44,6 +50,10 @@ private boolean enterPressed;
         }
     }
 
+    /**sets the fields false if the key corresponding to the movements is released
+     *  
+     * @param e   gets what key is clicked
+     */
     @Override
     public void keyReleased(KeyEvent e) 
     {
@@ -63,14 +73,12 @@ private boolean enterPressed;
             case KeyEvent.VK_D:
                 rightPressed = false;
                 break;
-            //delete
-            case KeyEvent.VK_ENTER:
-                enterPressed = false;
-                break;
+           
 
         }
     }
 
+//GETTERS AND SETTERS
 public boolean getUpPressed()
 {
     return upPressed;
@@ -104,16 +112,7 @@ public void setUpPressed(boolean upPressed)
     this.upPressed = upPressed;
 }
 
-//delete
-//ENTER KEY
-public void setEnterPressed(boolean enterPressed) 
-{
-  this.enterPressed = enterPressed;
-}
-public boolean getEnterPressed()
-{
-    return enterPressed;
-}
+
 
 // public void setShotKeyPressed(boolean shotKeyPressed)
 // {
