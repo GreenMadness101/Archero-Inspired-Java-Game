@@ -8,13 +8,22 @@ import javax.imageio.ImageIO;
 import entity.Entity;
 import main.GamePanel;
 
-
+/** class for the slime 
+ * 
+ * @author Ishan
+ * @author Samarth
+ */
 
 public class MON_GreenSlime extends Entity
 {
-
+  
+  /** field for the game panel  */
   private GamePanel gp = null;
 
+   /** constructor for the slime which sets the speed, life, name, calls the super constructor in entity, and sets the field gp to the parameter gp
+     * 
+     * @param gp  the game panel
+     */
   public MON_GreenSlime(GamePanel gp)
   {
     super(gp);
@@ -30,6 +39,10 @@ public class MON_GreenSlime extends Entity
 
     getImage();
   }
+   /**sets the image for the slime for all directions
+   * 
+   * @exception IOExceptions   causes an error if the image does not work 
+   */
   public void getImage()
   {
     try {
@@ -47,7 +60,7 @@ public class MON_GreenSlime extends Entity
       e.printStackTrace();
     }
   }
-  
+  /** pathfinding for the slime to follow the player depending on the difference in their x and y and then determining how the bat should move depending on those values  */
   public void setAction()
   {
     setActionLockCounter(getActionLockCounter()+1);
@@ -56,8 +69,7 @@ public class MON_GreenSlime extends Entity
     {
       int difX = Math.abs(this.getX() - gp.getPlayer().getX());
       int difY = Math.abs(this.getY() - gp.getPlayer().getY());
-      //think about the case if they are in the same position but that might not be possible 
-      //due to collison soon to be implemented
+     
       if(difX > difY)
       {
         if((this.getX() - gp.getPlayer().getX()) < 0)
