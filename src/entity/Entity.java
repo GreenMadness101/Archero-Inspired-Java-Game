@@ -9,10 +9,9 @@ import java.awt.image.BufferedImage;
 import main.GamePanel;
 
 /** Class creates the entity object which makes up all of the characters in the game including: player and monsters and projectiles
- * @author Ishan
- * @author Samarth
+ * @author Ishan Voleti
+ * @author Samarth Vysyaraju
  */
-
 public class Entity 
 {
     /** Game Panel object, reference to JPanel which everything is on */
@@ -75,7 +74,7 @@ public class Entity
 
     /** constructor for entity, assigns param to game panel reference, sets default solid area
      * 
-     * @param gp
+     * @param gp game panel reference 
      */
     public Entity(GamePanel gp)
     {
@@ -138,7 +137,7 @@ public class Entity
 
     /** draws entity depending on direction
      * 
-     * @param g2
+     * @param g2 graphics variable 
      */
     public void draw(Graphics2D g2)
     {
@@ -202,7 +201,7 @@ public class Entity
 
     /** changes the opacity of dying entity to represent death
      * 
-     * @param g2
+     * @param g2 graphics variable
      */
     public void dyingAnimation(Graphics2D g2)
     {
