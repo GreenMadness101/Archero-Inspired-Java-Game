@@ -21,6 +21,11 @@ public class Player extends Entity
   /*the keyhandler for when keys are pressed and released for movement */
   KeyHandler keyH;
 
+  /*Constructor for the player class which calls the super constructor in class entity, sets the field key handler to the parameter keyhandler, sets the name, the area, and image
+   * 
+   * @param gp    the game panel
+   * @param keyH  the keyHandler
+   */
   public Player(GamePanel gp, KeyHandler keyH)
   {
     super(gp);
@@ -36,6 +41,7 @@ public class Player extends Entity
 
   }
 
+  /*sets all the values for the player such as the x and y coordiantes, the speed, the life, the projectile it shoots, and how much damage it does */
   public void setDefaultValues()
   {
     this.setX(240);
@@ -52,7 +58,11 @@ public class Player extends Entity
 
     setDamage(10);
   }
-
+  
+   /* sets the images for the player for each direction
+   *
+   * @exception IOException   cuases an error if the image does not work
+   */
   public void getPlayerImage()
   {
     try 
@@ -73,31 +83,12 @@ public class Player extends Entity
       e.printStackTrace();
     }
   }
-  //delete
-  public void getPlayerAttackImage()
-  {
-    try 
-    {
-      //Update Image Files HERE (USE SIMILAR NAMING)
-      // the /res/player/ is there due to the images being in a separate package
-      //use Utility Tool if scaling is needed
-      setUp1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_up_1.png")));
-      setUp2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_up_2.png")));
-      setDown1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_down_1.png")));
-      setDown2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_down_2.png")));
-      setRight1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_right_1.png")));
-      setRight2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_right_2.png")));
-      setLeft1(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_left_1.png")));
-      setLeft2(ImageIO.read(getClass().getResourceAsStream("/res/player-attack/player_attack_left_2.png")));
-    }
-    catch(IOException e)
-    {
-      e.printStackTrace();
-    }
-  }
 
 
 
+  /*sets the direction of the player depending on what key is pressed, does collision, stops player movement if there is collision, decides how fast the player animates,
+   * shoots the closest monster, and allows the player to advance to the next level when all the monsters are killed
+   */
   public void update()
   {
 
@@ -199,7 +190,10 @@ public class Player extends Entity
     
   }
 
-
+  /*draws the player image and health bar
+   * 
+   * @param g2
+   */
   public void draw(Graphics2D g2)
   {
     BufferedImage image = null;
@@ -241,6 +235,10 @@ public class Player extends Entity
     g2.drawImage(image, this.getX(), this.getY(), gp.getTileSize(), gp.getTileSize(), null);
   }
 
+  /* creates the player health bar
+   * 
+   * @param g2
+   */
   public void createPlayerHealthBar(Graphics2D g2)
   {
 
@@ -252,6 +250,10 @@ public class Player extends Entity
     g2.fillRect(getX() - 5, getY() - 15, (int)((gp.getTileSize() + 10) * healthRatio), 10);
   }
 
+  /*finds the closest monster for the player to shoot at
+  *
+  * @return minIndex   index of the closest monster
+  */
   public int findClosestMonster()
   {
     int minIndex = 0;
