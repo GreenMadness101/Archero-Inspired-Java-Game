@@ -5,8 +5,8 @@ import java.awt.event.KeyListener;
 
 /** KeyHandler class for when keys for movement are pressed and released
  * 
- * @author Samarth
- * @author Ishan 
+ * @author Samarth Vysyraju
+ * @author Ishan Voleti
  */
 public class KeyHandler implements KeyListener 
 {

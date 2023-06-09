@@ -5,12 +5,12 @@ import monster.MON_GreenSlime;
 import monster.MON_Wizard;
 /**Adds the monsters to the map
  * 
- * @author Ishan
- * @author Samarth 
+ * @author Ishan Voleti
+ * @author Samarth Vysyraju
  */
 public class AssetSetter 
 {
-    //** the game panel */
+    /** the game panel */
     GamePanel gp;
 
     /**constructor for assetsetter sets the field gamepanel to the parameter game panel

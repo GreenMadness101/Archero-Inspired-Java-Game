@@ -9,8 +9,8 @@ import entity.Entity;
 import main.GamePanel;
 /** class for the bat 
  * 
- * @author Ishan
- * @author Samarth
+ * @author Ishan Voleti
+ * @author Samarth Vysyraju
  */
 public class MON_Bat extends Entity {
   

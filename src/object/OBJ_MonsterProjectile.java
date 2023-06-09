@@ -10,8 +10,8 @@ import main.GamePanel;
 
 /**class for the monster's projectile
  * 
- * @author Samarth
- * @author Ishan
+ * @author Samarth Vysyraju
+ * @author Ishan Voleti
  */
 public class OBJ_MonsterProjectile extends Projectile
 {

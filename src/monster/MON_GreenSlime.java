@@ -10,8 +10,8 @@ import main.GamePanel;
 
 /** class for the slime 
  * 
- * @author Ishan
- * @author Samarth
+ * @author Ishan Voleti
+ * @author Samarth Vysyraju
  */
 
 public class MON_GreenSlime extends Entity

@@ -13,8 +13,8 @@ import object.OBJ_MonsterProjectile;
 
 /** class for the wizard 
  * 
- * @author Ishan
- * @author Samarth
+ * @author Ishan Voleti
+ * @author Samarth Vysyraju
  */
 public class MON_Wizard extends Entity
 {

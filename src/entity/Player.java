@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.KeyHandler;
 import object.OBJ_Projectile;
-/* Class for creating the player
+/** Class for creating the player
  *
  * @author Ishan
  * @author Samarth 
@@ -18,10 +18,10 @@ import object.OBJ_Projectile;
 
 public class Player extends Entity
 {
-  /*the keyhandler for when keys are pressed and released for movement */
+  /** the keyhandler for when keys are pressed and released for movement */
   KeyHandler keyH;
 
-  /*Constructor for the player class which calls the super constructor in class entity, sets the field key handler to the parameter keyhandler, sets the name, the area, and image
+  /** Constructor for the player class which calls the super constructor in class entity, sets the field key handler to the parameter keyhandler, sets the name, the area, and image
    * 
    * @param gp    the game panel
    * @param keyH  the keyHandler
@@ -41,7 +41,7 @@ public class Player extends Entity
 
   }
 
-  /*sets all the values for the player such as the x and y coordiantes, the speed, the life, the projectile it shoots, and how much damage it does */
+  /** sets all the values for the player such as the x and y coordiantes, the speed, the life, the projectile it shoots, and how much damage it does */
   public void setDefaultValues()
   {
     this.setX(240);
@@ -59,7 +59,7 @@ public class Player extends Entity
     setDamage(10);
   }
   
-   /* sets the images for the player for each direction
+   /** sets the images for the player for each direction
    *
    * @exception IOException   cuases an error if the image does not work
    */
@@ -86,7 +86,7 @@ public class Player extends Entity
 
 
 
-  /*sets the direction of the player depending on what key is pressed, does collision, stops player movement if there is collision, decides how fast the player animates,
+  /** sets the direction of the player depending on what key is pressed, does collision, stops player movement if there is collision, decides how fast the player animates,
    * shoots the closest monster, and allows the player to advance to the next level when all the monsters are killed
    */
   public void update()
@@ -176,6 +176,8 @@ public class Player extends Entity
         }
       }
     }
+
+    //make the tile open gate if no monsters are left
     if(gp.monster.size() <= 0)
     {
       gp.getTileM().openGate();
@@ -190,7 +192,7 @@ public class Player extends Entity
     
   }
 
-  /*draws the player image and health bar
+  /** draws the player image and health bar
    * 
    * @param g2
    */
@@ -235,7 +237,7 @@ public class Player extends Entity
     g2.drawImage(image, this.getX(), this.getY(), gp.getTileSize(), gp.getTileSize(), null);
   }
 
-  /* creates the player health bar
+  /** creates the player health bar
    * 
    * @param g2
    */
@@ -250,7 +252,7 @@ public class Player extends Entity
     g2.fillRect(getX() - 5, getY() - 15, (int)((gp.getTileSize() + 10) * healthRatio), 10);
   }
 
-  /*finds the closest monster for the player to shoot at
+  /** finds the closest monster for the player to shoot at
   *
   * @return minIndex   index of the closest monster
   */

@@ -1,7 +1,7 @@
 package entity;
 
 import main.GamePanel;
-/* Class for a projectile
+/** Class for a projectile
  * @author Samarth
  * @author Ishan 
  */
@@ -22,7 +22,7 @@ public class Projectile extends Entity
     }
 
 
-  /* Uses the parameters to set the position of the projectile, set the user, and shoot at the monster without needing to aim at it
+  /** Uses the parameters to set the position of the projectile, set the user, and shoot at the monster without needing to aim at it
    *
    * @param playerX   x value of projectile
    * @param playerY   y value of projectile 
@@ -61,7 +61,7 @@ public class Projectile extends Entity
   }
 
 
-    /* does collision for projectile with tiles and monsters it also causes the projectile to dissapear from the screen after its life is over and finally also decides 
+    /** does collision for projectile with tiles and monsters it also causes the projectile to dissapear from the screen after its life is over and finally also decides 
     how fast the projectile animates  
     */
     public void update()

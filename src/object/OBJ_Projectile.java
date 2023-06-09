@@ -9,8 +9,8 @@ import entity.Projectile;
 import main.GamePanel;
 /**class for the player projectile
  * 
- * @author Samarth
- * @author Ishan
+ * @author Samarth Vysyraju
+ * @author Ishan Voleti
  */
 public class OBJ_Projectile extends Projectile 
 {
@@ -21,7 +21,7 @@ public class OBJ_Projectile extends Projectile
     public OBJ_Projectile(GamePanel gp) {
         super(gp);
         setName("projectile");
-        setSpeed(7);
+        setSpeed(6);
         setMaxLife(80);
         setLife(getMaxLife());
         //attack = 2;

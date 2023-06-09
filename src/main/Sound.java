@@ -8,8 +8,8 @@ import javax.sound.sampled.Clip;
 
 /**Class for the sound of the game 
  * 
- * @author Ishan
- * @author Samarth 
+ * @author Ishan Voleti
+ * @author Samarth Vysyraju
  */
 public class Sound 
 {
