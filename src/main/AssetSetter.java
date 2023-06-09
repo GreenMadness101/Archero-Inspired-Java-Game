@@ -17,7 +17,7 @@ public class AssetSetter
     {
         gp.monster.add(new MON_GreenSlime(gp));
         gp.monster.get(0).setX(220);
-        gp.monster.get(0).setY(200);
+        gp.monster.get(0).setY(220);
         gp.monster.add(new MON_GreenSlime(gp));
         gp.monster.get(1).setX(300);
         gp.monster.get(1).setY(200);

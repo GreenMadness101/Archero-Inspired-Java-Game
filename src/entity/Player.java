@@ -10,10 +10,15 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.KeyHandler;
 import object.OBJ_Projectile;
-
+/* Class for creating the player
+ *
+ * @author Ishan
+ * @author Samarth 
+ */
 
 public class Player extends Entity
 {
+  /*the keyhandler for when keys are pressed and released for movement */
   KeyHandler keyH;
 
   public Player(GamePanel gp, KeyHandler keyH)

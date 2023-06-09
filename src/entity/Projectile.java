@@ -1,28 +1,36 @@
 package entity;
 
 import main.GamePanel;
-
+/* Class for a projectile
+ * @author Samarth
+ * @author Ishan 
+ */
 public class Projectile extends Entity
 {
+    /*the user of the projectile */
     private Entity user;
+    /*the forward velocity */
     private int dX = 7;
+    /*upward velocity */
     private int dY = 7;
-
+    /*Constructor for the projectile calls the super constructor in class Entity
+     * @param gp   the game panel
+     */
     public Projectile(GamePanel gp)
     {
         super(gp);
     }
 
-  public void set(int x, int y, String direction, boolean alive, Entity user)
-  {
-    setX(x);
-    setY(y);
-    setDirection(direction);
-    this.user = user;
-    setLife(getMaxLife());
-    setAlive(true);
-  }
 
+  /* Uses the parameters to set the position of the projectile, set the user, and shoot at the monster without needing to aim at it
+   *
+   * @param playerX   x value of projectile
+   * @param playerY   y value of projectile 
+   * @param monsterX  x value of monster 
+   * @param monsterY  y value of monster
+   * @param alive     if projectile is still alive
+   * @param user      the user of the projectile 
+   */
   public void set(int playerX, int playerY, int monsterX, int monsterY, boolean alive, Entity user)
   {
     setX(playerX);
@@ -53,7 +61,9 @@ public class Projectile extends Entity
   }
 
 
-
+    /* does collision for projectile with tiles and monsters it also causes the projectile to dissapear from the screen after its life is over and finally also decides 
+    how fast the projectile animates  
+    */
     public void update()
     {
       //collision for projectile   
