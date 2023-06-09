@@ -8,8 +8,17 @@ import javax.imageio.ImageIO;
 import entity.Projectile;
 import main.GamePanel;
 
+/**class for the monster's projectile
+ * 
+ * @author Samarth
+ * @author Ishan
+ */
 public class OBJ_MonsterProjectile extends Projectile
 {
+    /** constructor for the monster's projectile which sets the max life, area, and speed 
+     * 
+     * @param gp   the game panel 
+     */
     public OBJ_MonsterProjectile(GamePanel gp) {
         super(gp);
         setName("projectile");
@@ -23,8 +32,10 @@ public class OBJ_MonsterProjectile extends Projectile
 
 
 
-
-    //update image files herew
+    /** the images for all dierctions for the monster's projectiles
+     * 
+     * @exception IOException  causes and error if image does not work 
+     */
     public void getImage()
     {
      try {
