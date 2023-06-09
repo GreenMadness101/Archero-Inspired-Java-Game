@@ -13,46 +13,65 @@ import entity.Entity;
 import entity.Player;
 import tile.TileManager;
 
+/** the JPanel where everything occurs
+ *
+ * @author Ishan Voleti
+ * @author Samarth Vysyaraju
+ * 
+ */
 public class GamePanel extends JPanel implements Runnable
 {
   // SCREEN SETTINGS
+  /** original tile size  */
   final int originalTileSize = 16; //16x16 tile, default size
+  /** for scaling the tiles */
   final int scale = 3;
 
-  //instead of making public maybe change to a method
+  /** the tileSize */
   private final int tileSize = originalTileSize * scale; //48x48 tile
 
-  //Change this ratio - rn 3 x 4
+  /** maximum columns of tiles  */
   private final int maxScreenCol = 11;
+  /** maximum rows of tiles */
   private final int maxScreenRow = 15;
+  /** the width of the screen  */
   private final int screenWidth = tileSize * maxScreenCol; // 768 pixels // diff now due to change in num cols
+  /** the height of the screen */
   private final int screenHeight = tileSize * maxScreenRow; // 576 // diff now due to change in num rows
   
-  //FPS
+  /** the frames per second  */
   int fps = 60;
 
   //SETUP
+  /** creates the keyhandler */
   KeyHandler keyH = new KeyHandler();
-  //Similar to a timer
+  /** similar to a timer */
   Thread gameThread;
+  /** the sound for the game  */
   Sound sound = new Sound();
+  /** creates the assetsetter */
   AssetSetter aSetter = new AssetSetter(this);
 
   //COLLISION
+  /** creates the collision checker */
   private CollisionChecker cChecker = new CollisionChecker(this);
 
-  //ENITITY
+ 
+  //** creates the player */
   private Player player = new Player(this, keyH);
+  //** creates the arraylist for the monsters */
   public ArrayList<Entity> monster = new ArrayList<Entity>();
 
+  //** creates an arraylist of entities  */
   private ArrayList<Entity> entityList = new ArrayList<Entity>();
+  //** creates an arraylist of projectiles */
   private ArrayList<Entity> projectileList = new ArrayList<Entity>();
 
 
-  //TILES
+  //** creates the tilemanager for the tiles  */
   private TileManager tileM = new TileManager(this);
 
-  //CONSTRUCTOR
+  /** constructor for the game panel which sets the size of the JPanel, sets the background color, and adds keyListener */
   public GamePanel()
   {
     //maybe change this to this.setBounds if Dimension class isn't offering anything
@@ -67,6 +86,7 @@ public class GamePanel extends JPanel implements Runnable
     this.setFocusable(true);
   }
 
+  /** sets up the game by playing music and adding the monsters  */
   public void setupGame()
   {
     playMusic(0);
@@ -74,13 +94,14 @@ public class GamePanel extends JPanel implements Runnable
 
   }
 
-  //THREAD METHODS
+  /** starts the timer for the game  */
   public void startGameThread()
   {
     gameThread = new Thread(this);
     gameThread.start();
   }
 
+  /** determines how often it calls update and repaint and prints the fps */
   @Override
   public void run() 
   {
@@ -123,6 +144,7 @@ public class GamePanel extends JPanel implements Runnable
     }
   }
 
+  /** goes through the arraylist of monster and projectiles an updating them if they are still alive or removing them if they are dead */
   public void update()
   {
     player.update();
@@ -160,7 +182,10 @@ public class GamePanel extends JPanel implements Runnable
     }
   }
 
-  
+  /** adds characters and projectiles to entityList and draws the tiles and entites from the entityList
+   * 
+   * @param g
+   */
   @Override
   public void paintComponent(Graphics g)
   {
@@ -215,18 +240,23 @@ public class GamePanel extends JPanel implements Runnable
     g2.dispose();
   }
 
+  /** plays the music for the game and loops it 
+   * 
+   * @param i  an integer for which music should be played
+   */
   public void playMusic(int i)
   {
     sound.setFile(i);
     sound.play();
     sound.loop();
   }
-
+  
+  /** stops the music */
   public void stopMusic()
   {
     sound.stop();
   }
-  //play sound effect
+  /**plays the sound effects */
   public void playerSE(int i)
   {
     sound.setFile(i);

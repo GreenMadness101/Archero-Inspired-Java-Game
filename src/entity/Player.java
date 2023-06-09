@@ -116,7 +116,7 @@ public class Player extends Entity
       gp.getCollisionChecker().checkTile(this);
       gp.getCollisionChecker().checkBorder(this);
 
-      
+      // Checks collision with monster 
       gp.getCollisionChecker().checkEntity(this, gp.monster);
 
 
