@@ -7,10 +7,20 @@ import javax.imageio.ImageIO;
 
 import entity.Entity;
 import main.GamePanel;
-
+/** class for the bat 
+ * 
+ * @author Ishan
+ * @author Samarth
+ */
 public class MON_Bat extends Entity {
-    private GamePanel gp = null;
+  
+  /** field for the game panel  */
+  private GamePanel gp = null;
 
+    /** constructor for the bat which sets the speed, life, name, calls the super constructor in entity, and sets the field gp to the parameter gp
+     * 
+     * @param gp  the game panel
+     */
     public MON_Bat(GamePanel gp)
     {
         super(gp);
@@ -24,7 +34,10 @@ public class MON_Bat extends Entity {
 
         getImage();
     }
-
+  /**sets the image for the bats for all directions
+   * 
+   * @exception IOExceptions   causes an error if the image does not work 
+   */
     public void getImage()
     {
         try {
@@ -44,6 +57,7 @@ public class MON_Bat extends Entity {
 
     }
 
+    /** pathfinding for the bat to follow the player depending on the difference in their x and y and then determining how the bat should move depending on those values  */
     public void setAction()
     {
       setActionLockCounter(getActionLockCounter()+1);

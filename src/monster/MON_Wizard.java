@@ -7,14 +7,24 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import entity.Entity;
-import entity.Projectile;
+
 import main.GamePanel;
 import object.OBJ_MonsterProjectile;
 
+/** class for the wizard 
+ * 
+ * @author Ishan
+ * @author Samarth
+ */
 public class MON_Wizard extends Entity
 {
+  /** field for the game panel  */
     private GamePanel gp = null;
 
+    /** constructor for the wizard which sets the speed, life, name, calls the super constructor in entity, and sets the field gp to the parameter gp
+     * 
+     * @param gp  the game panel
+     */
     public MON_Wizard(GamePanel gp)
     {
         super(gp);
@@ -28,8 +38,12 @@ public class MON_Wizard extends Entity
 
         getImage();
     }
-
-    public void getImage()
+    
+  /**sets the image for the wizard for all directions
+   * 
+   * @exception IOExceptions   causes an error if the image does not work 
+   */
+     public void getImage()
     {
         try {
             setUp1(ImageIO.read(getClass().getResourceAsStream("/res/monster/oldman_down_1.png")));
@@ -47,7 +61,7 @@ public class MON_Wizard extends Entity
           }
 
     }
-
+    /** pathfinding for the wizard to follow the player depending on the difference in their x and y and then determining how the bat should move depending on those values  */
     public void setAction()
     {
       setActionLockCounter(getActionLockCounter()+1);
