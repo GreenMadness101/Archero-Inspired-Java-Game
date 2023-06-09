@@ -1,18 +1,28 @@
 package main;
 
-import entity.Entity;
 import monster.MON_Bat;
 import monster.MON_GreenSlime;
 import monster.MON_Wizard;
-
+/**Adds the monsters to the map
+ * 
+ * @author Ishan
+ * @author Samarth 
+ */
 public class AssetSetter 
 {
+    //** the game panel */
     GamePanel gp;
 
+    /**constructor for assetsetter sets the field gamepanel to the parameter game panel
+     * 
+     * @param gp  the game panel
+     */
     public AssetSetter(GamePanel gp)
     {
         this.gp = gp;
     }
+
+    /** adds the monsters to the arraylist in game panel an also adds the monsters to the map at specifies x and y coordinates */
     public void setMonster()
     {
         gp.monster.add(new MON_GreenSlime(gp));
