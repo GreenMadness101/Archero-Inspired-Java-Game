@@ -89,7 +89,7 @@ public class GamePanel extends JPanel implements Runnable
   /** sets up the game by playing music and adding the monsters  */
   public void setupGame()
   {
-    playMusic(0);
+    //playMusic(0);
     aSetter.setMonster();
 
   }
