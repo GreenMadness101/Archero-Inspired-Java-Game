@@ -21,8 +21,8 @@ public class OBJ_Projectile extends Projectile
     public OBJ_Projectile(GamePanel gp) {
         super(gp);
         setName("projectile");
-        setSpeed(6);
-        setMaxLife(80);
+        setSpeed(7);
+        setMaxLife(600);
         setLife(getMaxLife());
         //attack = 2;
         setAlive(false);

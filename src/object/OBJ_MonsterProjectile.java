@@ -23,7 +23,7 @@ public class OBJ_MonsterProjectile extends Projectile
         super(gp);
         setName("projectile");
         setSpeed(7);
-        setMaxLife(80);
+        setMaxLife(300);
         setLife(getMaxLife());
         setAlive(false);
         getImage();

@@ -56,7 +56,7 @@ public class Player extends Entity
     //CHANGE
     setProjectile(new OBJ_Projectile(gp));
 
-    setDamage(10);
+    setDamage(5);
   }
   
    /** sets the images for the player for each direction
@@ -97,18 +97,40 @@ public class Player extends Entity
       if(keyH.getUpPressed())
       {
         setDirection("up");
+        // setY(getY() - getSpeed());
       }
       if(keyH.getLeftPressed())
       {
         setDirection("left");
+        // setX(getX() - getSpeed());
       }
       if(keyH.getDownPressed())
-      {setDirection("down");
+      {
+        setDirection("down");
+        // setY(getY() + getSpeed());
       }
       if(keyH.getRightPressed())
       {
         setDirection("right");
+        // setX(getX() + getSpeed());
       }
+      //diagonal movement attempt
+      // if(keyH.getUpPressed() && keyH.getRightPressed())
+      // {
+      //   setDirection("up-right");
+      // }
+      // if(keyH.getUpPressed() && keyH.getLeftPressed())
+      // {
+      //   setDirection("up-left");
+      // }
+      // if(keyH.getDownPressed() && keyH.getRightPressed())
+      // {
+      //   setDirection("down-right");
+      // }
+      // if(keyH.getDownPressed() && keyH.getLeftPressed())
+      // {
+      //   setDirection("down-left");
+      // }
 
       // CHECK TILE COLLISION
       setCollisionOn(false);
@@ -143,6 +165,24 @@ public class Player extends Entity
             setX(getX() - getSpeed());
             //x -= speed;
             break;
+          //diagonal movement attempt
+          // case "up-right":
+          //   setX(getX() + getSpeed());
+          //   setY(getY() - getSpeed());
+          //   break;
+          // case "up-left":
+          //   setX(getX() - getSpeed());
+          //   setY(getY() - getSpeed());
+          //   break;          
+          // case "down-right":
+          //   setX(getX() + getSpeed());
+          //   setY(getY() + getSpeed());
+          //   break;
+          // case "down-left":
+          //   setX(getX() - getSpeed());
+          //   setY(getY() + getSpeed());
+          //   break;
+          
         }
     }
 
@@ -159,19 +199,14 @@ public class Player extends Entity
     {
       gp.getTileM().closeGate();
       setShootCounter(getShootCounter() + 1);
-      while(keyH.getShotKeyPressed() && getShootCounter() > 20)
+      while(keyH.getShotKeyPressed() && getShootCounter() > 30)
       {
-        
-        //SET DEFAULT COORDINATED, DIRECTION, AND USER
-  
-        //make method to find closest monster
-  
-        //placeholder values
         int i = findClosestMonster();
         if(i != 999)
         {
-          getProjectile().set(getX(), getY(), gp.monster.get(i).getX(), gp.monster.get(i).getY(), true, this);
-          gp.getProjectileList().add(getProjectile());
+          gp.getProjectileList().add(new OBJ_Projectile(gp));
+          Projectile proj =(Projectile) (gp.getProjectileList().get(gp.getProjectileList().size() - 1));
+          proj.set(getX(), getY(), gp.monster.get(i).getX(), gp.monster.get(i).getY(), true, this);
           setShootCounter(0);
         }
       }
@@ -229,6 +264,31 @@ public class Player extends Entity
         else
           image = getLeft2();
         break;
+      //diagonal movement attempt
+      // case "up-right":
+      //   if(getSpriteBool())
+      //     image = getUp1();
+      //   else
+      //     image = getUp2();
+      //   break;
+      // case "up-left":
+      //   if(getSpriteBool())
+      //     image = getUp1();
+      //   else
+      //     image = getUp2();
+      //   break;
+      // case "down-right":
+      //   if(getSpriteBool())
+      //     image = getDown1();
+      //   else
+      //     image = getDown2();
+      //   break;
+      // case "down-left":
+      //   if(getSpriteBool())
+      //     image = getDown1();
+      //   else
+      //     image = getDown2();
+      //   break;
     }
 
     createPlayerHealthBar(g2);

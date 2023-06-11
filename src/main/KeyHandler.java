@@ -41,7 +41,7 @@ private boolean upPressed, downPressed, leftPressed, rightPressed;
                 break;
             case KeyEvent.VK_D:
                 rightPressed = true;
-                break;
+            break;
             
             // case KeyEvent.VK_F:
             //     shotKeyPressed = true; 

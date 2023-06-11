@@ -24,6 +24,8 @@ public class TileManager
   public Tile[] tile;
   /** 2D array list which holds maps */
   public int mapTileNum[][];
+  /** holds current map */
+  private String currentMap;
 
   /** constructor for tile manager
    * 
@@ -129,6 +131,8 @@ public class TileManager
    */
   public void loadMap(String filePath)
   {
+    //current map
+    currentMap = filePath;
     //default set the tile to closed gate
     mapTileNum[5][0] = 14;
     try
@@ -216,6 +220,14 @@ public class TileManager
   public void closeGate()
   {
     mapTileNum[5][0] = 14;
+  }
+  public String getCurrentMap() 
+  {
+      return currentMap;
+  }
+  public void setCurrentMap(String currentMap) 
+  {
+      this.currentMap = currentMap;
   }
   
   // public boolean getMonsterTile(int i, int j)

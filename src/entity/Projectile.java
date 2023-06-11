@@ -69,11 +69,11 @@ public class Projectile extends Entity
       //collision for projectile   
       if(user == gp.getPlayer())
       {
-          int monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
-          setCollisionOn(false);
-          setCollisionDamage(false);
-          gp.getCollisionChecker().checkTile(this);
-        if(monsterIndex != 99 )
+        int monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
+        setCollisionOn(false);
+        setCollisionDamage(false);
+        gp.getCollisionChecker().checkTile(this);
+        if(monsterIndex != 999)
         {
           monsterIndex = gp.getCollisionChecker().checkEntity(this, gp.monster);
           if(monsterIndex != 999)
@@ -88,10 +88,10 @@ public class Projectile extends Entity
         {
           setAlive(false);
         }
-      }
 
-      setY(getY() + dY);
-      setX(getX() + dX);
+        setY(getY() + dY);
+        setX(getX() + dX);
+      }
         
       // switch(getDirection())
       // {

@@ -63,39 +63,39 @@ public class MON_GreenSlime extends Entity
   /** pathfinding for the slime to follow the player depending on the difference in their x and y and then determining how the bat should move depending on those values  */
   public void setAction()
   {
-    setActionLockCounter(getActionLockCounter()+1);
+    // setActionLockCounter(getActionLockCounter()+1);
     
-    if(getActionLockCounter() == 10)
-    {
-      int difX = Math.abs(this.getX() - gp.getPlayer().getX());
-      int difY = Math.abs(this.getY() - gp.getPlayer().getY());
+    // if(getActionLockCounter() == 10)
+    // {
+    //   int difX = Math.abs(this.getX() - gp.getPlayer().getX());
+    //   int difY = Math.abs(this.getY() - gp.getPlayer().getY());
      
-      if(difX > difY)
-      {
-        if((this.getX() - gp.getPlayer().getX()) < 0)
-        {
-          this.setDirection("right");
-        }
-        if((this.getX() - gp.getPlayer().getX()) > 0)
-        {
-          this.setDirection("left");
-        }
-      }
-      else if(difX < difY)
-      {
-        if((this.getY() - gp.getPlayer().getY()) < 0)
-        {
-          this.setDirection("down");
-        }
-        if((this.getY() - gp.getPlayer().getY()) > 0)
-        {
-          this.setDirection("up");
-        }
-      }
+    //   if(difX > difY)
+    //   {
+    //     if((this.getX() - gp.getPlayer().getX()) < 0)
+    //     {
+    //       this.setDirection("right");
+    //     }
+    //     if((this.getX() - gp.getPlayer().getX()) > 0)
+    //     {
+    //       this.setDirection("left");
+    //     }
+    //   }
+    //   else if(difX < difY)
+    //   {
+    //     if((this.getY() - gp.getPlayer().getY()) < 0)
+    //     {
+    //       this.setDirection("down");
+    //     }
+    //     if((this.getY() - gp.getPlayer().getY()) > 0)
+    //     {
+    //       this.setDirection("up");
+    //     }
+    //   }
     
 
-      setActionLockCounter(0);
-    }
+    //   setActionLockCounter(0);
+    // }
 
   }
 }

@@ -162,15 +162,20 @@ public class CollisionChecker
         entity.setTeleportCounter(entity.getTeleportCounter() + 1);
         if(gp.getTileM().tile[tileNum1].getTeleport() && entity.getTeleportCounter() > 100)
         {
-          int i = (int)(Math.random()*7) + 1;
-          gp.getTileM().loadMap("/res/maps/map" + i + ".txt");
-          gp.getPlayer().setX(240);
-          gp.getPlayer().setY(600);
-          gp.aSetter.setMonster();
-          entity.setTeleportCounter(0);
+          teleportMap(entity);
         }
         break;
     }
+  }
+
+  private void teleportMap(Entity entity) 
+  {
+    int i = (int)(Math.random()*7) + 1;
+    gp.getTileM().loadMap("/res/maps/map" + i + ".txt");
+    gp.getPlayer().setX(240);
+    gp.getPlayer().setY(600);
+    gp.aSetter.setMonster();
+    entity.setTeleportCounter(0);
   }
 
   /** checks if player is colliding with monster
@@ -362,6 +367,14 @@ public class CollisionChecker
           entity.setCollisionOn(true);
         }
         break;
+      //diagonal movement attempt
+      // case "up-right":
+      //   if(entity.getY() <= 0 || entity.getX() + gp.getTileSize() >= gp.getScreenWidth())
+      //   {
+      //     entity.setCollisionOn(true);
+      //   }
+      //   break;
+      
     }
     
   }

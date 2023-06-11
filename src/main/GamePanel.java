@@ -57,18 +57,18 @@ public class GamePanel extends JPanel implements Runnable
   private CollisionChecker cChecker = new CollisionChecker(this);
 
  
-  //** creates the player */
+  /** creates the player */
   private Player player = new Player(this, keyH);
-  //** creates the arraylist for the monsters */
+  /** creates the arraylist for the monsters */
   public ArrayList<Entity> monster = new ArrayList<Entity>();
 
-  //** creates an arraylist of entities  */
+  /** creates an arraylist of entities  */
   private ArrayList<Entity> entityList = new ArrayList<Entity>();
-  //** creates an arraylist of projectiles */
+  /** creates an arraylist of projectiles */
   private ArrayList<Entity> projectileList = new ArrayList<Entity>();
 
 
-  //** creates the tilemanager for the tiles  */
+  /** creates the tilemanager for the tiles  */
   private TileManager tileM = new TileManager(this);
 
   /** constructor for the game panel which sets the size of the JPanel, sets the background color, and adds keyListener */

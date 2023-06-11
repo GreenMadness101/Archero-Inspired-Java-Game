@@ -26,7 +26,7 @@ public class MON_Bat extends Entity {
         super(gp);
         this.gp = gp;
         setName("monster");
-        setSpeed(3);
+        setSpeed(2);
         setMaxLife(30);
         setLife(getMaxLife());
 
