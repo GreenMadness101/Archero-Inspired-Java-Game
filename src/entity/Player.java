@@ -204,8 +204,8 @@ public class Player extends Entity
         int i = findClosestMonster();
         if(i != 999)
         {
-          gp.getProjectileList().add(new OBJ_Projectile(gp));
-          Projectile proj =(Projectile) (gp.getProjectileList().get(gp.getProjectileList().size() - 1));
+          gp.getPlayerProjectileList().add(new OBJ_Projectile(gp));
+          Projectile proj =(Projectile) (gp.getPlayerProjectileList().get(gp.getPlayerProjectileList().size() - 1));
           proj.set(getX(), getY(), gp.monster.get(i).getX(), gp.monster.get(i).getY(), true, this);
           setShootCounter(0);
         }

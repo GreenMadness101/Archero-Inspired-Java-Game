@@ -65,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable
   /** creates an arraylist of entities  */
   private ArrayList<Entity> entityList = new ArrayList<Entity>();
   /** creates an arraylist of projectiles */
-  private ArrayList<Entity> projectileList = new ArrayList<Entity>();
+  private ArrayList<Entity> playerProjectileList = new ArrayList<Entity>();
 
 
   /** creates the tilemanager for the tiles  */
@@ -165,17 +165,17 @@ public class GamePanel extends JPanel implements Runnable
       }
     }
 
-    for(int i  = 0; i < projectileList.size(); i++)
+    for(int i  = 0; i < playerProjectileList.size(); i++)
     {
-      if(projectileList.get(i) != null)
+      if(playerProjectileList.get(i) != null)
       {
-        if(projectileList.get(i).getAlive())
+        if(playerProjectileList.get(i).getAlive())
         {
-          projectileList.get(i).update();
+          playerProjectileList.get(i).update();
         }
-        if(!projectileList.get(i).getAlive())
+        if(!playerProjectileList.get(i).getAlive())
         {
-          projectileList.remove(i);
+          playerProjectileList.remove(i);
         }
 
       }
@@ -208,11 +208,11 @@ public class GamePanel extends JPanel implements Runnable
       }
     }
 
-    for(int i = 0; i <projectileList.size(); i++)
+    for(int i = 0; i <playerProjectileList.size(); i++)
     {
-      if(projectileList.get(i) != null)
+      if(playerProjectileList.get(i) != null)
       {
-        entityList.add(projectileList.get(i));
+        entityList.add(playerProjectileList.get(i));
       }
     }
 
@@ -317,9 +317,9 @@ public class GamePanel extends JPanel implements Runnable
       return tileM;
   }
 
-  public ArrayList<Entity> getProjectileList()
+  public ArrayList<Entity> getPlayerProjectileList()
   {
-    return projectileList;
+    return playerProjectileList;
   }
 
   // public Entity[] getMonsterArr()
