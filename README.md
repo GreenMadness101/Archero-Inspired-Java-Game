@@ -1,18 +1,9 @@
-## Getting Started
+### Archero-Inspired Java Game
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This project is a Java-based game that replicates key mechanics from the popular mobile app Archero. This game showcases advanced programming techniques in game development, including complex projectile motion, real-time targeting algorithms, and comprehensive game entity management.
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Features
+Archero-like Gameplay: Experience gameplay mechanics inspired by the mobile hit Archero.
+Advanced Projectile System: Utilizes trigonometry for accurate diagonal projectile movement.
+Intelligent Targeting: Implements algorithms to identify and target the nearest monster in real-time.
+Rich Game World: Includes a variety of game entities, objects, projectiles, and tiles.
